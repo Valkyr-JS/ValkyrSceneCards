@@ -2,10 +2,13 @@
   "name": "valkyrscenecards",
   "version": "0.1.0",
   "description": "A rework of the scene cards for Stash.",
-  "main": "main.ts",
+  "main": "./src/main.ts",
   "scripts": {
+    "dev": "webpack --config webpack.dev.js",
+    "start": "npm run watch",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build"
+    "storybook:build": "storybook build",
+    "watch": "webpack --config webpack.dev.js --watch"
   },
   "repository": {
     "type": "git",
