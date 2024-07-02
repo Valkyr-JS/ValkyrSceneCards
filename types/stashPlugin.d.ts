@@ -114,6 +114,14 @@ interface PatchableComponentsInstead {
     ) => React.JSX.Element[]
   ): void;
   (
+    component: "SceneCard.Image",
+    fn: (
+      props: ISceneCardProps,
+      _: object,
+      Original: React.JSX
+    ) => React.JSX.Element[]
+  ): void;
+  (
     component: "SceneCard.Overlays",
     fn: (
       props: ISceneCardProps,
@@ -142,7 +150,7 @@ interface IHoverPopover extends React.PropsWithChildren {
 }
 
 interface ISceneCardProps {
-  scene: GQL.SlimSceneDataFragment;
+  scene: Scene;
   containerWidth?: number;
   previewHeight?: number;
   index?: number;

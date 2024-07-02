@@ -5,3 +5,5 @@ version: 0.1.0
 ui:
   javascript:
     - ValkyrSceneCards.js
+  css:
+    - ValkyrSceneCards.css

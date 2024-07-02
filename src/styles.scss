@@ -1,0 +1,15 @@
+// Hide resolution and duration from preview thumbnail.
+.scene-specs-overlay {
+  display: none !important;
+}
+
+// Only show the checkbox if hovering over the thumbnail, not any other parts of
+// the card.
+.grid-card:hover .card-check {
+  opacity: 0;
+}
+
+.grid-card:has(.video-section.thumbnail-section:hover) .card-check {
+  opacity: 0.75;
+  transition: opacity 0.5s;
+}

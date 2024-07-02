@@ -1,3 +1,4 @@
+import "./styles.scss";
 const { PluginApi } = window;
 const { React } = PluginApi;
 
@@ -7,6 +8,6 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
 });
 
 // Remove overlays
-PluginApi.patch.instead("SceneCard.Overlays", function (props, _, _Original) {
+PluginApi.patch.instead("SceneCard.Overlays", function () {
   return [];
 });
