@@ -11,3 +11,8 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
 PluginApi.patch.instead("SceneCard.Overlays", function () {
   return [];
 });
+
+// Remove popovers
+PluginApi.patch.instead("SceneCard.Popovers", function () {
+  return [];
+});

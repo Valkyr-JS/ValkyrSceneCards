@@ -129,6 +129,14 @@ interface PatchableComponentsInstead {
       Original: React.JSX
     ) => React.JSX.Element[]
   ): void;
+  (
+    component: "SceneCard.Popovers",
+    fn: (
+      props: ISceneCardProps,
+      _: object,
+      Original: React.JSX
+    ) => React.JSX.Element[]
+  ): void;
 }
 
 interface PropsPerformerDetailsPanelDetailGroup
