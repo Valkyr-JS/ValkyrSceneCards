@@ -13,3 +13,10 @@
   opacity: 0.75;
   transition: opacity 0.5s;
 }
+
+.card-section {
+  // Hide the hard-coded title
+  & > a:first-child {
+    display: none;
+  }
+}
