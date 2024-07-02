@@ -114,6 +114,14 @@ interface PatchableComponentsInstead {
     ) => React.JSX.Element[]
   ): void;
   (
+    component: "SceneCard.Details",
+    fn: (
+      props: ISceneCardProps,
+      _: object,
+      Original: React.JSX
+    ) => React.JSX.Element[]
+  ): void;
+  (
     component: "SceneCard.Image",
     fn: (
       props: ISceneCardProps,

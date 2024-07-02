@@ -2,9 +2,15 @@ import "./styles.scss";
 const { PluginApi } = window;
 const { React } = PluginApi;
 
-PluginApi.patch.instead("SceneCard", function (props, _, Original) {
+// Remove overlays
+PluginApi.patch.instead("SceneCard.Details", function (props) {
   console.log(props);
-  return [<Original {...props} />];
+  return [
+    <div className="scene-card__details">
+      <span className="scene-card__date">{props.scene.date}</span>
+      <div className="scene-card__description">{props.scene.details}</div>
+    </div>,
+  ];
 });
 
 // Remove overlays
