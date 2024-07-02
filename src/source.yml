@@ -1,0 +1,7 @@
+name: Valkyr Scene Cards
+description: A rework of the scene cards for Stash.
+url: https://github.com/Valkyr-JS/ValkyrSceneCards
+version: 0.1.0
+ui:
+  javascript:
+    - ValkyrSceneCards.js
