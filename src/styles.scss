@@ -1,22 +1,24 @@
-// Hide resolution and duration from preview thumbnail.
-.scene-specs-overlay {
-  display: none !important;
-}
+// Hide resolution, duration, and ratings banner from preview thumbnail.
+.scene-card {
+  .scene-specs-overlay,
+  .rating-banner {
+    display: none !important;
+  }
 
-// Only show the checkbox if hovering over the thumbnail, not any other parts of
-// the card.
-.grid-card:hover .card-check {
-  opacity: 0;
-}
+  // Only show the checkbox if hovering over the thumbnail, not any other parts
+  // of the card.
+  &:hover .card-check {
+    opacity: 0;
+  }
+  &:has(.video-section.thumbnail-section:hover) .card-check {
+    opacity: 0.75;
+    transition: opacity 0.5s;
+  }
 
-.grid-card:has(.video-section.thumbnail-section:hover) .card-check {
-  opacity: 0.75;
-  transition: opacity 0.5s;
-}
-
-.card-section {
-  // Hide the hard-coded title
-  & > a:first-child {
-    display: none;
+  .card-section {
+    // Hide the hard-coded title
+    & > a:first-child {
+      display: none;
+    }
   }
 }
