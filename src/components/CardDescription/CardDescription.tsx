@@ -8,13 +8,12 @@ const CardDescription = (props: ISceneCardProps) => {
   console.log(props);
 
   const link = `/scenes/${props.scene.id}`;
+  const file = props.scene.files[0];
 
-  const resolution = TextUtils.resolution(
-    props.scene.files[0].width,
-    props.scene.files[0].height
-  );
+  const duration = TextUtils.secondsToTimestamp(file.duration);
+  const resolution = TextUtils.resolution(file.width, file.height);
 
-  let shortRes = "";
+  let shortRes: string | null = "";
 
   switch (resolution) {
     case "144p":
@@ -32,11 +31,22 @@ const CardDescription = (props: ISceneCardProps) => {
       shortRes = "2K";
       break;
     default:
-      shortRes = resolution || "";
+      shortRes = resolution || null;
       break;
   }
   return (
     <div className="scene-card__details">
+      <div className="vsc-card-description__small-bar">
+        <span className="vsc-card-description__studio">
+          {props.scene.studio?.name}
+        </span>
+        <div className="vsc-card-description__file-data">
+          <span className="vsc-card-description__duration">{duration}</span>
+          {shortRes ? (
+            <span className="vsc-card-description__resolution">{shortRes}</span>
+          ) : null}
+        </div>
+      </div>
       <a href={link}>
         <h5 className="card-section-title flex-aligned">{props.scene.title}</h5>
       </a>
@@ -44,9 +54,6 @@ const CardDescription = (props: ISceneCardProps) => {
         {props.scene.details}
       </div>
       <span className="scene-card__date">{props.scene.date}</span>
-      <div>
-        <span className="vsc-card-description__resolution">{shortRes}</span>
-      </div>
     </div>
   );
 };

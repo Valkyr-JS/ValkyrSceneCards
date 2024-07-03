@@ -6,13 +6,38 @@
     -webkit-box-orient: vertical;
   }
 
+  &__small-bar {
+    display: flex;
+    align-items: start;
+    margin-bottom: 3px;
+
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  &__studio {
+    line-height: 1.2;
+  }
+
+  &__file-data {
+    align-items: center;
+    margin-left: auto;
+    opacity: 0.65;
+  }
+
+  &__duration {
+    margin-right: 5px;
+  }
+
   &__resolution {
-    padding: 0 4px 1px;
+    padding: 1px 4px;
     background-color: #f5f8fa;
     color: #30404d;
-    font-weight: 700;
-    opacity: 0.65;
-    font-size: 13px;
+    font-weight: 900;
     user-select: none;
+  }
+
+  &__title-link {
+    display: inline-block;
   }
 }
