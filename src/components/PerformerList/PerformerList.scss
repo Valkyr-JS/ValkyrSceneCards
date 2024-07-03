@@ -21,6 +21,14 @@ $overlap: 10px;
 
     margin-left: -$overlap;
 
+    a {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
     img {
       width: 100%;
     }
@@ -35,6 +43,13 @@ $overlap: 10px;
       background-color: #202b33;
       height: 100%;
       width: 100%;
+    }
+
+    svg {
+      position: absolute;
+      margin: 0;
+      font-size: $performer-avatar-width * 0.6;
+      opacity: 0.2;
     }
   }
 }

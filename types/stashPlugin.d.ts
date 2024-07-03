@@ -59,6 +59,9 @@ interface IPluginApi {
     };
     FontAwesomeSolid: {
       faEthernet: any;
+      faMars: any;
+      faTansgenderAlt: any;
+      faVenus: any;
     };
     Intl: {
       FormattedMessage: React.FC<any>;
