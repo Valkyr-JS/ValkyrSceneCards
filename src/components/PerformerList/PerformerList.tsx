@@ -1,4 +1,5 @@
 import { sortPerformers } from "../../helpers/sort";
+import "./PerformerList.scss";
 const { GQL, React } = window.PluginApi;
 
 const PerformerList: React.FC<PerformerListProps> = (props) => {
@@ -24,7 +25,7 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
     console.log(qAllAvatars);
 
     return (
-      <div className="vsc-card-description__performers">
+      <div className="vsc-performer-list vsc-performer-list__avatar-list">
         {sortedPerformers.map((p) => {
           const avatarUrl = getPerformerAvatarUrl(
             p.id,
@@ -33,7 +34,7 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
 
           if (!!avatarUrl) {
             return (
-              <span className="vsc-card-description__performer-avatar">
+              <span className="vsc-performer-list__avatar">
                 <a href={`/performers/${p.id}`}>
                   <img src={avatarUrl} alt={p.name} />
                 </a>
@@ -48,7 +49,7 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
               }
             });
             return (
-              <span className="vsc-card-description__performer-avatar">
+              <span className="vsc-performer-list__avatar">
                 <a href={`/performers/${p.id}`}>
                   <span>{initials}</span>
                 </a>
@@ -60,7 +61,7 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
     );
   } else {
     return (
-      <div className="vsc-card-description__performers">
+      <div className="vsc-performer-list">
         {sortedPerformers.map((p, i) => {
           const totalPerformers = props.performers.length;
           const isOneBeforeLast = i === totalPerformers - 2;

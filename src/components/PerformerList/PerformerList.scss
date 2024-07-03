@@ -1,0 +1,40 @@
+$performer-avatar-width: 60px;
+$overlap: 10px;
+
+.vsc-performer-list {
+  display: flex;
+  margin: 10px 0;
+
+  &__avatar-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: $overlap;
+  }
+
+  &__avatar {
+    display: inline-block;
+    height: $performer-avatar-width;
+    width: $performer-avatar-width;
+    border: 3px solid #30404d;
+    border-radius: 50%;
+    overflow: hidden;
+
+    margin-left: -$overlap;
+
+    img {
+      width: 100%;
+    }
+
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 18px;
+      font-weight: 700;
+      background-color: #202b33;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
