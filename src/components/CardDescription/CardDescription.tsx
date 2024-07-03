@@ -4,6 +4,10 @@ import { TextUtils } from "../../helpers";
 import PerformerList from "../PerformerList/PerformerList";
 
 const { React } = window.PluginApi;
+//@ts-ignore
+const { Icon } = window.PluginApi.components;
+//@ts-ignore
+const { faStar } = window.PluginApi.libraries.FontAwesomeSolid;
 
 const CardDescription = (props: ISceneCardProps) => {
   const link = `/scenes/${props.scene.id}`;
@@ -56,7 +60,11 @@ const CardDescription = (props: ISceneCardProps) => {
       </div>
       <PerformerList performers={props.scene.performers} />
       <div className="vsc-card-description__foot">
-        <span className="scene-card__date">{props.scene.date}</span>
+        <span className="vsc-card-description__date">{props.scene.date}</span>
+        <span className="vsc-card-description__rating">
+          {(props.scene.rating100 || 0) / 10}
+          <Icon icon={faStar} />
+        </span>
       </div>
     </div>
   );

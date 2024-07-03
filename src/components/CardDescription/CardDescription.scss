@@ -11,7 +11,12 @@
   }
 
   &__foot {
+    display: flex;
     margin-bottom: 10px;
+  }
+
+  &__date {
+    margin-right: auto;
   }
 
   &__small-bar {
