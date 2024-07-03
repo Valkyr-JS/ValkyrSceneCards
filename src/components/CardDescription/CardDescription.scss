@@ -1,9 +1,19 @@
+$performer-avatar-height: 60px;
+
 .vsc-card-description {
   &__details {
+    flex-grow: 1;
+  }
+
+  &__details-inner {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+  }
+
+  &__foot {
+    margin-bottom: 10px;
   }
 
   &__small-bar {
@@ -42,6 +52,36 @@
   }
 
   &__performers {
+    display: flex;
     margin: 10px 0;
+  }
+
+  &__performer-avatar {
+    display: inline-block;
+    height: $performer-avatar-height;
+    width: $performer-avatar-height;
+    border: 3px solid #30404d;
+    border-radius: 50%;
+    overflow: hidden;
+
+    &:not(:first-child) {
+      margin-left: -10px;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 18px;
+      font-weight: 700;
+      background-color: #202b33;
+      height: 100%;
+      width: 100%;
+    }
   }
 }

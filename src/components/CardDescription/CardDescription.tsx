@@ -1,13 +1,11 @@
 import { ISceneCardProps } from "../../../types/stashPlugin";
 import "./CardDescription.scss";
 import { TextUtils } from "../../helpers";
-import { sortPerformers } from "../../helpers/sort";
+import PerformerList from "../PerformerList/PerformerList";
 
 const { React } = window.PluginApi;
 
 const CardDescription = (props: ISceneCardProps) => {
-  console.log(props);
-
   const link = `/scenes/${props.scene.id}`;
   const file = props.scene.files[0];
 
@@ -52,31 +50,14 @@ const CardDescription = (props: ISceneCardProps) => {
         <h5 className="card-section-title flex-aligned">{props.scene.title}</h5>
       </a>
       <div className="scene-card__description vsc-card-description__details">
-        {props.scene.details}
+        <div className="vsc-card-description__details-inner">
+          {props.scene.details}
+        </div>
       </div>
-      <div className="vsc-card-description__performers">
-        {sortPerformers(props.scene.performers).map((p, i) => {
-          const totalPerformers = props.scene.performers.length;
-          const isOneBeforeLast = i === totalPerformers - 2;
-          const isAnyBeforeLast = i < totalPerformers - 1;
-
-          let suffix = null;
-          if (totalPerformers === 2 && isOneBeforeLast) suffix = " and ";
-          else {
-            if (isAnyBeforeLast) suffix = ", ";
-            if (isOneBeforeLast) suffix += "and ";
-          }
-          return (
-            <>
-              <a href={`/performers/${p.id}`}>
-                <span>{p.name}</span>
-              </a>
-              {suffix}
-            </>
-          );
-        })}
+      <PerformerList performers={props.scene.performers} />
+      <div className="vsc-card-description__foot">
+        <span className="scene-card__date">{props.scene.date}</span>
       </div>
-      <span className="scene-card__date">{props.scene.date}</span>
     </div>
   );
 };

@@ -16,9 +16,17 @@
   }
 
   .card-section {
+    height: 100%;
     // Hide the hard-coded title
     & > a:first-child {
       display: none;
     }
+  }
+
+  // Consistent height for details
+  &__details {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 }

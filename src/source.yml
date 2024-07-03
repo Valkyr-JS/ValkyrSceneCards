@@ -7,3 +7,8 @@ ui:
     - ValkyrSceneCards.js
   css:
     - ValkyrSceneCards.css
+settings:
+  performerAvatarsShow:
+    displayName: Use performer avatars
+    description: Replaces the text list with performer avatars. This requires some setup.
+    type: BOOLEAN

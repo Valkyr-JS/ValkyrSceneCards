@@ -9,20 +9,33 @@ interface IPluginApi {
   React: React;
   ReactDOM: typeof ReactDOM;
   GQL: {
-    useConfigurationQuery(): { data: { configuration: ConfigResult } };
+    useConfigurationQuery(): {
+      data: { configuration: ConfigResult };
+      loading: boolean;
+    };
+    useFindImagesQuery(args: { variables: QueryFindImagesArgs }): {
+      data: {
+        findImages: Query["findImages"];
+      };
+      loading: boolean;
+    };
     useFindPerformerQuery(args: { variables: QueryFindPerformerArgs }): {
       data: {
         findPerformer: Query["findPerformer"];
       };
+      loading: boolean;
     };
     useFindScenesQuery(args: { variables: QueryFindScenesArgs }): {
       data: { findScenes: Query["findScenes"] };
+      loading: boolean;
     };
     useFindStudiosQuery(args: { variables: QueryFindStudiosArgs }): {
       data: { findStudios: Query["findStudios"] };
+      loading: boolean;
     };
     useFindTagsQuery(args: { variables: QueryFindTagsArgs }): {
       data: { findTags: Query["findTags"] };
+      loading: boolean;
     };
     useStatsQuery(): { data: { stats: StatsResultType } };
   };
