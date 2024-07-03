@@ -1,6 +1,7 @@
 import { ISceneCardProps } from "../../../types/stashPlugin";
 import "./CardDescription.scss";
 import { TextUtils } from "../../helpers";
+import { sortPerformers } from "../../helpers/sort";
 
 const { React } = window.PluginApi;
 
@@ -52,6 +53,28 @@ const CardDescription = (props: ISceneCardProps) => {
       </a>
       <div className="scene-card__description vsc-card-description__details">
         {props.scene.details}
+      </div>
+      <div className="vsc-card-description__performers">
+        {sortPerformers(props.scene.performers).map((p, i) => {
+          const totalPerformers = props.scene.performers.length;
+          const isOneBeforeLast = i === totalPerformers - 2;
+          const isAnyBeforeLast = i < totalPerformers - 1;
+
+          let suffix = null;
+          if (totalPerformers === 2 && isOneBeforeLast) suffix = " and ";
+          else {
+            if (isAnyBeforeLast) suffix = ", ";
+            if (isOneBeforeLast) suffix += "and ";
+          }
+          return (
+            <>
+              <a href={`/performers/${p.id}`}>
+                <span>{p.name}</span>
+              </a>
+              {suffix}
+            </>
+          );
+        })}
       </div>
       <span className="scene-card__date">{props.scene.date}</span>
     </div>
