@@ -5,4 +5,13 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
   }
+
+  &__resolution {
+    padding: 0 4px 1px;
+    background-color: #f5f8fa;
+    color: #30404d;
+    font-weight: bold;
+    opacity: 0.65;
+    font-size: 13px;
+  }
 }
