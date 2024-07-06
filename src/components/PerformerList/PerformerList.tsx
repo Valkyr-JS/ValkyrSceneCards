@@ -51,13 +51,23 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
             profileImagesQuery: qProfileImages.data?.findPerformers,
           });
 
-          if (performerAvatarsProfile && !!avatarUrl?.url) {
+          const useCustomAvatar = !!performerAvatarsTagID && !!avatarUrl.custom;
+          const useProfileImage =
+            performerAvatarsProfile && !!avatarUrl.profile;
+          if (useCustomAvatar || useProfileImage) {
             return (
               <span
-                className={`vsc-performer-list__avatar vsc-performer-list__avatar--${avatarUrl.isCustom ? "custom" : "profile"}`}
+                className={`vsc-performer-list__avatar vsc-performer-list__avatar--${useCustomAvatar ? "custom" : "profile"}`}
               >
                 <a href={`/performers/${p.id}`}>
-                  <img src={avatarUrl.url} alt={p.name} />
+                  <img
+                    src={
+                      useCustomAvatar
+                        ? (avatarUrl.custom as string)
+                        : (avatarUrl.profile as string)
+                    }
+                    alt={p.name}
+                  />
                 </a>
               </span>
             );
@@ -129,11 +139,13 @@ const getPerformerAvatarUrl = (args: IgetPerformerAvatarUrl) => {
   )?.image_path;
 
   // Don't return the native default image
-  const url =
-    !!args.avatarTag && !!avatarUrl
-      ? { url: avatarUrl, isCustom: true }
-      : { url: profileImageUrl, isCustom: false };
-  return !url.url?.includes("default=true") ? url : undefined;
+  const url = {
+    custom: avatarUrl,
+    profile: !profileImageUrl?.includes("default=true")
+      ? profileImageUrl
+      : undefined,
+  };
+  return url;
 };
 
 interface IgetPerformerAvatarUrl {
