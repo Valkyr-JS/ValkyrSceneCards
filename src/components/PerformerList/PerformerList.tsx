@@ -1,13 +1,16 @@
 import cx from "classnames";
 import { sortPerformers } from "../../helpers/sort";
 import "./PerformerList.scss";
-const { GQL, React } = window.PluginApi;
-//@ts-ignore
-const { Icon } = window.PluginApi.components;
+import { IHoverPopover } from "../../../types/stashPlugin";
+import { TextUtils } from "../../helpers";
+const { PluginApi } = window;
+const { GQL, React } = PluginApi;
 const { faMars, faTansgenderAlt, faVenus } =
   window.PluginApi.libraries.FontAwesomeSolid;
 
 const PerformerList: React.FC<PerformerListProps> = (props) => {
+  const { Icon } = PluginApi.components;
+
   const {
     performerAvatarsActive,
     performerAvatarsProfile,
@@ -41,7 +44,6 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
     });
 
     if (qAvatars.loading || qProfileImages.loading) return null;
-    console.log(qProfileImages);
 
     const avatarListClasses = cx(
       "vsc-performer-list",
@@ -70,18 +72,20 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
               ["vsc-performer-list__avatar--profile"]: !useCustomAvatar,
             });
             return (
-              <span className={avatarClasses}>
-                <a href={`/performers/${p.id}`}>
-                  <img
-                    src={
-                      useCustomAvatar
-                        ? (avatarUrl.custom as string)
-                        : (avatarUrl.profile as string)
-                    }
-                    alt={p.name}
-                  />
-                </a>
-              </span>
+              <PerformerPopover performer={p} releaseDate={props.scene.date}>
+                <span className={avatarClasses}>
+                  <a href={`/performers/${p.id}`}>
+                    <img
+                      src={
+                        useCustomAvatar
+                          ? (avatarUrl.custom as string)
+                          : (avatarUrl.profile as string)
+                      }
+                      alt={p.name}
+                    />
+                  </a>
+                </span>
+              </PerformerPopover>
             );
           } else {
             const names = p.name.split(" ");
@@ -93,12 +97,14 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
             });
             const genderIcon = getPerformerGenderIcon(p.gender);
             return (
-              <span className="vsc-performer-list__avatar">
-                <a href={`/performers/${p.id}`}>
-                  <span>{initials}</span>
-                  {!!genderIcon ? <Icon icon={genderIcon} /> : null}
-                </a>
-              </span>
+              <PerformerPopover performer={p} releaseDate={props.scene.date}>
+                <span className="vsc-performer-list__avatar">
+                  <a href={`/performers/${p.id}`}>
+                    <span>{initials}</span>
+                    {!!genderIcon ? <Icon icon={genderIcon} /> : null}
+                  </a>
+                </span>
+              </PerformerPopover>
             );
           }
         })}
@@ -139,6 +145,8 @@ interface PerformerListProps {
   performers: Performer[];
   /** The plugin config data. */
   pluginConfig: VSCFinalConfigMap;
+  /** The scene data. */
+  scene: Scene;
 }
 
 const getPerformerAvatarUrl = (args: IgetPerformerAvatarUrl) => {
@@ -179,3 +187,41 @@ const getPerformerGenderIcon = (gender: Performer["gender"]) => {
       return faTansgenderAlt;
   }
 };
+
+const PerformerPopover: React.FC<PerformerPopoverProps> = ({
+  performer,
+  releaseDate,
+  ...props
+}) => {
+  const { HoverPopover } = PluginApi.components;
+  const qPerformer = GQL.useFindPerformerQuery({
+    variables: { id: performer.id },
+  });
+  if (qPerformer.loading) return null;
+
+  const Content = () => {
+    const birthdate = qPerformer.data.findPerformer?.birthdate;
+    return (
+      <span className="vsc-performer-list__performer-hover">
+        {performer.name}
+        {birthdate && releaseDate
+          ? " (" + TextUtils.age(birthdate, releaseDate) + ")"
+          : null}
+      </span>
+    );
+  };
+
+  return (
+    <HoverPopover
+      content={<Content />}
+      children={props.children}
+      leaveDelay={100}
+      placement="top"
+    />
+  );
+};
+
+interface PerformerPopoverProps extends React.PropsWithChildren {
+  performer: Performer;
+  releaseDate: Scene["date"];
+}

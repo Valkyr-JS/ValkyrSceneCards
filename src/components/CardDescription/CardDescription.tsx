@@ -61,6 +61,7 @@ const CardDescription: React.FC<CardDescriptionProps> = (props) => {
       <PerformerList
         performers={props.scene.performers}
         pluginConfig={props.pluginConfig}
+        scene={props.scene}
       />
       <div className="vsc-card-description__foot">
         <span className="vsc-card-description__date">{props.scene.date}</span>

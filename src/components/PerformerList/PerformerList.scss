@@ -61,4 +61,8 @@ $overlap: 10px;
     height: $performer-avatar-width-large;
     width: $performer-avatar-width-large;
   }
+
+  &__performer-hover {
+    padding: 5px;
+  }
 }

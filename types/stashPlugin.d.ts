@@ -1,4 +1,9 @@
 import type React from "@types/react";
+import type { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type {
+  IconDefinition,
+  SizeProp,
+} from "@fortawesome/fontawesome-svg-core";
 declare global {
   interface Window {
     PluginApi: IPluginApi;
@@ -92,6 +97,7 @@ interface IPluginApi {
 
 interface StashPluginComponents {
   HoverPopover: (props: IHoverPopover) => React.JSX.Element;
+  Icon: (props: IIcon) => FontAwesomeIcon;
   "PerformerDetailsPanel.DetailGroup": (
     props: PropsPerformerDetailsPanelDetailGroup
   ) => React.JSX.Element;
@@ -198,4 +204,11 @@ interface ISceneCardProps {
   selected?: boolean | undefined;
   zoomIndex?: number;
   onSelectedChanged?: (selected: boolean, shiftKey: boolean) => void;
+}
+
+interface IIcon {
+  icon: IconDefinition;
+  className?: string;
+  color?: string;
+  size?: SizeProp;
 }
