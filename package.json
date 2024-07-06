@@ -45,6 +45,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "classnames": "^2.5.1",
     "react-intl": "^6.6.8",
     "sass": "^1.77.6",
     "typescript": "^5.5.3"

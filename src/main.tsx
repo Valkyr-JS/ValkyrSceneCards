@@ -23,6 +23,10 @@ PluginApi.patch.instead("SceneCard.Details", function (props) {
       userConfig?.performerAvatarsProfile,
       false
     ),
+    performerAvatarsSizeLarge: getConfigProp(
+      userConfig?.performerAvatarsSizeLarge,
+      false
+    ),
     performerAvatarsTagID: getConfigProp(userConfig?.performerAvatarsTagID, ""),
   };
 

@@ -16,6 +16,10 @@ settings:
     displayName: Use profile images as default avatars
     description: When enabled, the top section of the performer's profile image is used for their avatar. If disabled, or if no profile image is available, the performer's initials are used instead.
     type: BOOLEAN
+  performerAvatarsSizeLarge:
+    displayName: Show large performer avatars
+    description: When enabled, all performer avatars will be displayed in a larger size than the default.
+    type: BOOLEAN
   performerAvatarsTagID:
     displayName: Custom avatar image tag ID
     description: Set the ID of the tag given to custom avatar images. Custom avatars will take precedence over other types of avatars.

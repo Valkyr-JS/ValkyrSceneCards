@@ -1,3 +1,4 @@
+import cx from "classnames";
 import { sortPerformers } from "../../helpers/sort";
 import "./PerformerList.scss";
 const { GQL, React } = window.PluginApi;
@@ -10,6 +11,7 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
   const {
     performerAvatarsActive,
     performerAvatarsProfile,
+    performerAvatarsSizeLarge,
     performerAvatarsTagID,
   } = props.pluginConfig;
   const sortedPerformers = sortPerformers(props.performers);
@@ -41,8 +43,16 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
     if (qAvatars.loading || qProfileImages.loading) return null;
     console.log(qProfileImages);
 
+    const avatarListClasses = cx(
+      "vsc-performer-list",
+      "vsc-performer-list__avatar-list",
+      {
+        ["vsc-performer-list__avatar-list--large"]: performerAvatarsSizeLarge,
+      }
+    );
+
     return (
-      <div className="vsc-performer-list vsc-performer-list__avatar-list">
+      <div className={avatarListClasses}>
         {sortedPerformers.map((p) => {
           const avatarUrl = getPerformerAvatarUrl({
             avatarsQuery: qAvatars.data?.findImages,
@@ -55,10 +65,12 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
           const useProfileImage =
             performerAvatarsProfile && !!avatarUrl.profile;
           if (useCustomAvatar || useProfileImage) {
+            const avatarClasses = cx("vsc-performer-list__avatar", {
+              ["vsc-performer-list__avatar--custom"]: useCustomAvatar,
+              ["vsc-performer-list__avatar--profile"]: !useCustomAvatar,
+            });
             return (
-              <span
-                className={`vsc-performer-list__avatar vsc-performer-list__avatar--${useCustomAvatar ? "custom" : "profile"}`}
-              >
+              <span className={avatarClasses}>
                 <a href={`/performers/${p.id}`}>
                   <img
                     src={
