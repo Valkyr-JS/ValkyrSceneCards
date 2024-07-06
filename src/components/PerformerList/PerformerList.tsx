@@ -7,39 +7,57 @@ const { faMars, faTansgenderAlt, faVenus } =
   window.PluginApi.libraries.FontAwesomeSolid;
 
 const PerformerList: React.FC<PerformerListProps> = (props) => {
-  const qConfig = GQL.useConfigurationQuery();
-  if (qConfig.loading) return null;
-
+  const {
+    performerAvatarsActive,
+    performerAvatarsProfile,
+    performerAvatarsTagID,
+  } = props.pluginConfig;
   const sortedPerformers = sortPerformers(props.performers);
 
-  const performerAvatarsShow: boolean | undefined =
-    qConfig.data.configuration.plugins.ValkyrSceneCards.performerAvatarsShow;
+  if (performerAvatarsActive) {
+    const qProfileImages = GQL.useFindPerformersQuery({
+      variables: {
+        filter: { per_page: -1 },
+        performer_ids: sortedPerformers.map((pf) => +pf.id),
+      },
+    });
 
-  if (performerAvatarsShow) {
-    const qAllAvatars = GQL.useFindImagesQuery({
+    const qAvatars = GQL.useFindImagesQuery({
       variables: {
         filter: { per_page: -1 },
         image_filter: {
-          tags: { modifier: CriterionModifier.Includes, value: ["1824"] },
+          performers: {
+            modifier: CriterionModifier.Includes,
+            value: sortedPerformers.map((pf) => pf.id),
+          },
+          tags: {
+            modifier: CriterionModifier.Includes,
+            value: [performerAvatarsTagID],
+          },
         },
       },
     });
 
-    if (qAllAvatars.loading) return null;
+    if (qAvatars.loading || qProfileImages.loading) return null;
+    console.log(qProfileImages);
 
     return (
       <div className="vsc-performer-list vsc-performer-list__avatar-list">
         {sortedPerformers.map((p) => {
-          const avatarUrl = getPerformerAvatarUrl(
-            p.id,
-            qAllAvatars.data.findImages
-          );
+          const avatarUrl = getPerformerAvatarUrl({
+            avatarsQuery: qAvatars.data?.findImages,
+            avatarTag: performerAvatarsTagID,
+            id: p.id,
+            profileImagesQuery: qProfileImages.data?.findPerformers,
+          });
 
-          if (!!avatarUrl) {
+          if (performerAvatarsProfile && !!avatarUrl?.url) {
             return (
-              <span className="vsc-performer-list__avatar">
+              <span
+                className={`vsc-performer-list__avatar vsc-performer-list__avatar--${avatarUrl.isCustom ? "custom" : "profile"}`}
+              >
                 <a href={`/performers/${p.id}`}>
-                  <img src={avatarUrl} alt={p.name} />
+                  <img src={avatarUrl.url} alt={p.name} />
                 </a>
               </span>
             );
@@ -52,7 +70,6 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
               }
             });
             const genderIcon = getPerformerGenderIcon(p.gender);
-            console.log(genderIcon);
             return (
               <span className="vsc-performer-list__avatar">
                 <a href={`/performers/${p.id}`}>
@@ -96,19 +113,35 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
 export default PerformerList;
 
 interface PerformerListProps {
+  /** The performers featured in the scene. */
   performers: Performer[];
+  /** The plugin config data. */
+  pluginConfig: VSCFinalConfigMap;
 }
 
-const getPerformerAvatarUrl = (
-  id: Performer["id"],
-  allAvatarsQuery: FindImagesResultType
-) => {
-  const url = allAvatarsQuery.images.find((img) =>
-    img.performers.find((pf) => pf.id === id)
+const getPerformerAvatarUrl = (args: IgetPerformerAvatarUrl) => {
+  const avatarUrl = args.avatarsQuery?.images.find((img) =>
+    img.performers.find((pf) => pf.id === args.id)
   )?.paths.image;
 
-  return !!url ? url : null;
+  const profileImageUrl = args.profileImagesQuery?.performers.find(
+    (pf) => pf.id === args.id
+  )?.image_path;
+
+  // Don't return the native default image
+  const url =
+    !!args.avatarTag && !!avatarUrl
+      ? { url: avatarUrl, isCustom: true }
+      : { url: profileImageUrl, isCustom: false };
+  return !url.url?.includes("default=true") ? url : undefined;
 };
+
+interface IgetPerformerAvatarUrl {
+  avatarsQuery?: FindImagesResultType;
+  avatarTag?: string;
+  id: Performer["id"];
+  profileImagesQuery?: FindPerformersResultType;
+}
 
 const getPerformerGenderIcon = (gender: Performer["gender"]) => {
   switch (gender) {

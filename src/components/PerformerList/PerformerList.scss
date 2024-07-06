@@ -28,6 +28,10 @@ $overlap: 10px;
       align-items: center;
     }
 
+    &--profile a {
+      align-items: start;
+    }
+
     img {
       width: 100%;
     }

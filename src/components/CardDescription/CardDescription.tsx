@@ -9,7 +9,7 @@ const { Icon } = window.PluginApi.components;
 //@ts-ignore
 const { faStar } = window.PluginApi.libraries.FontAwesomeSolid;
 
-const CardDescription = (props: ISceneCardProps) => {
+const CardDescription: React.FC<CardDescriptionProps> = (props) => {
   const link = `/scenes/${props.scene.id}`;
   const file = props.scene.files[0];
 
@@ -58,7 +58,10 @@ const CardDescription = (props: ISceneCardProps) => {
           {props.scene.details}
         </div>
       </div>
-      <PerformerList performers={props.scene.performers} />
+      <PerformerList
+        performers={props.scene.performers}
+        pluginConfig={props.pluginConfig}
+      />
       <div className="vsc-card-description__foot">
         <span className="vsc-card-description__date">{props.scene.date}</span>
         <span className="vsc-card-description__rating">
@@ -71,3 +74,8 @@ const CardDescription = (props: ISceneCardProps) => {
 };
 
 export default CardDescription;
+
+interface CardDescriptionProps extends ISceneCardProps {
+  /** The plugin config data. */
+  pluginConfig: VSCFinalConfigMap;
+}

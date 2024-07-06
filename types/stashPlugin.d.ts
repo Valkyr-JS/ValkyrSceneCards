@@ -14,7 +14,7 @@ interface IPluginApi {
       loading: boolean;
     };
     useFindImagesQuery(args: { variables: QueryFindImagesArgs }): {
-      data: {
+      data?: {
         findImages: Query["findImages"];
       };
       loading: boolean;
@@ -22,6 +22,12 @@ interface IPluginApi {
     useFindPerformerQuery(args: { variables: QueryFindPerformerArgs }): {
       data: {
         findPerformer: Query["findPerformer"];
+      };
+      loading: boolean;
+    };
+    useFindPerformersQuery(args: { variables: QueryFindPerformersArgs }): {
+      data?: {
+        findPerformers: Query["findPerformers"];
       };
       loading: boolean;
     };

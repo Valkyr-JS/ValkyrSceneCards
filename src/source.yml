@@ -8,7 +8,15 @@ ui:
   css:
     - ValkyrSceneCards.css
 settings:
-  performerAvatarsShow:
+  performerAvatarsActive:
     displayName: Use performer avatars
-    description: Replaces the text list with performer avatars. This requires some setup.
+    description: When enabled, the text list of performers is replaced with circular avatar images of each performer. These can be customised below.
     type: BOOLEAN
+  performerAvatarsProfile:
+    displayName: Use profile images as default avatars
+    description: When enabled, the top section of the performer's profile image is used for their avatar. If disabled, or if no profile image is available, the performer's initials are used instead.
+    type: BOOLEAN
+  performerAvatarsTagID:
+    displayName: Custom avatar image tag ID
+    description: Set the ID of the tag given to custom avatar images. Custom avatars will take precedence over other types of avatars.
+    type: STRING
