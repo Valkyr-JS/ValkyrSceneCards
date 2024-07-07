@@ -55,7 +55,7 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
 
     return (
       <div className={avatarListClasses}>
-        {sortedPerformers.map((p) => {
+        {sortedPerformers.map((p, i) => {
           const avatarUrl = getPerformerAvatarUrl({
             avatarsQuery: qAvatars.data?.findImages,
             avatarTag: performerAvatarsTagID,
@@ -66,26 +66,32 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
           const useCustomAvatar = !!performerAvatarsTagID && !!avatarUrl.custom;
           const useProfileImage =
             performerAvatarsProfile && !!avatarUrl.profile;
+
+          // Card inline styles. Descending z-index to put left-most cards on top.
+          const inlineStyles = { zIndex: sortedPerformers.length - (i + 1) };
+
           if (useCustomAvatar || useProfileImage) {
             const avatarClasses = cx("vsc-performer-list__avatar", {
               ["vsc-performer-list__avatar--custom"]: useCustomAvatar,
               ["vsc-performer-list__avatar--profile"]: !useCustomAvatar,
             });
             return (
-              <PerformerPopover performer={p} releaseDate={props.scene.date}>
-                <span className={avatarClasses}>
-                  <a href={`/performers/${p.id}`}>
-                    <img
-                      src={
-                        useCustomAvatar
-                          ? (avatarUrl.custom as string)
-                          : (avatarUrl.profile as string)
-                      }
-                      alt={p.name}
-                    />
-                  </a>
-                </span>
-              </PerformerPopover>
+              <div style={inlineStyles}>
+                <PerformerPopover performer={p} releaseDate={props.scene.date}>
+                  <span className={avatarClasses}>
+                    <a href={`/performers/${p.id}`}>
+                      <img
+                        src={
+                          useCustomAvatar
+                            ? (avatarUrl.custom as string)
+                            : (avatarUrl.profile as string)
+                        }
+                        alt={p.name}
+                      />
+                    </a>
+                  </span>
+                </PerformerPopover>
+              </div>
             );
           } else {
             const names = p.name.split(" ");
@@ -97,14 +103,16 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
             });
             const genderIcon = getPerformerGenderIcon(p.gender);
             return (
-              <PerformerPopover performer={p} releaseDate={props.scene.date}>
-                <span className="vsc-performer-list__avatar">
-                  <a href={`/performers/${p.id}`}>
-                    <span>{initials}</span>
-                    {!!genderIcon ? <Icon icon={genderIcon} /> : null}
-                  </a>
-                </span>
-              </PerformerPopover>
+              <div style={inlineStyles}>
+                <PerformerPopover performer={p} releaseDate={props.scene.date}>
+                  <span className="vsc-performer-list__avatar">
+                    <a href={`/performers/${p.id}`}>
+                      <span>{initials}</span>
+                      {!!genderIcon ? <Icon icon={genderIcon} /> : null}
+                    </a>
+                  </span>
+                </PerformerPopover>
+              </div>
             );
           }
         })}
