@@ -16,6 +16,14 @@ const CardDescription: React.FC<CardDescriptionProps> = (props) => {
 
   let shortRes: string | null = "";
 
+  const rating =
+    +(props.scene.rating100 ?? 0) > 0 ? (
+      <span className="vsc-card-description__rating">
+        {(props.scene.rating100 || 0) / 10}
+        <Icon icon={faStar} />
+      </span>
+    ) : null;
+
   const organized = props.scene.organized ? (
     <span className="vsc-card-description__organized">
       <Icon icon={faBox} />
@@ -70,10 +78,7 @@ const CardDescription: React.FC<CardDescriptionProps> = (props) => {
       />
       <div className="vsc-card-description__foot">
         <span className="vsc-card-description__date">{props.scene.date}</span>
-        <span className="vsc-card-description__rating">
-          {(props.scene.rating100 || 0) / 10}
-          <Icon icon={faStar} />
-        </span>
+        {rating}
       </div>
     </div>
   );
