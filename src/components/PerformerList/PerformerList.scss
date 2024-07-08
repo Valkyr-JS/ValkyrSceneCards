@@ -15,10 +15,9 @@ $overlap: 10px;
     display: inline-block;
     height: $performer-avatar-width;
     width: $performer-avatar-width;
-    border: 3px solid #30404d;
     border-radius: 50%;
     overflow: hidden;
-
+    box-shadow: 2px 0 0 0 rgba(0, 0, 0, 0.45);
     margin-left: -$overlap;
 
     a {
