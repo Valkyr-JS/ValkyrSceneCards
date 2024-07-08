@@ -1,7 +1,6 @@
 import cx from "classnames";
 import { sortPerformers } from "../../helpers/sort";
 import "./PerformerList.scss";
-import { IHoverPopover } from "../../../types/stashPlugin";
 import { TextUtils } from "../../helpers";
 const { PluginApi } = window;
 const { GQL, React } = PluginApi;

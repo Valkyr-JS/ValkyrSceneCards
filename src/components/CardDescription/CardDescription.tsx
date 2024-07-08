@@ -4,7 +4,7 @@ import { TextUtils } from "../../helpers";
 import PerformerList from "../PerformerList/PerformerList";
 
 const { React } = window.PluginApi;
-const { Icon } = window.PluginApi.components;
+const { HoverPopover, Icon } = window.PluginApi.components;
 const { faBox, faStar } = window.PluginApi.libraries.FontAwesomeSolid;
 
 const CardDescription: React.FC<CardDescriptionProps> = (props) => {
@@ -58,7 +58,18 @@ const CardDescription: React.FC<CardDescriptionProps> = (props) => {
         <div className="vsc-card-description__file-data">
           <span className="vsc-card-description__duration">{duration}</span>
           {shortRes ? (
-            <span className="vsc-card-description__resolution">{shortRes}</span>
+            <HoverPopover
+              className="vsc-card-description__resolution"
+              content={
+                <span className="vsc-card-description__resolution-hover">
+                  {resolution}
+                </span>
+              }
+              leaveDelay={100}
+              placement="top"
+            >
+              {shortRes}
+            </HoverPopover>
           ) : null}
           {organized}
         </div>

@@ -37,12 +37,17 @@ $small-data-spacer: 8px;
   }
 
   &__resolution {
+    display: inline;
     padding: 1px 4px;
     background-color: #f5f8fa;
     color: #30404d;
     font-weight: 900;
     user-select: none;
     margin-left: $small-data-spacer;
+  }
+
+  &__resolution-hover {
+    padding: 5px;
   }
 
   &__organized {
