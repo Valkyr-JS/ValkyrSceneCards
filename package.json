@@ -2,10 +2,13 @@
   "name": "valkyrscenecards",
   "version": "0.1.0",
   "description": "A rework of the scene cards for Stash.",
-  "main": "main.ts",
+  "main": "./src/main.ts",
   "scripts": {
+    "dev": "webpack --config webpack.dev.js",
+    "start": "npm run watch",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build"
+    "storybook:build": "storybook build",
+    "watch": "webpack --config webpack.dev.js --watch"
   },
   "repository": {
     "type": "git",
@@ -19,6 +22,8 @@
   "homepage": "https://github.com/Valkyr-JS/ValkyrSceneCards#readme",
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.0",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@storybook/addon-essentials": "^8.1.11",
     "@storybook/addon-interactions": "^8.1.11",
     "@storybook/addon-links": "^8.1.11",
@@ -42,6 +47,8 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "classnames": "^2.5.1",
+    "react-intl": "^6.6.8",
     "sass": "^1.77.6",
     "typescript": "^5.5.3"
   }
