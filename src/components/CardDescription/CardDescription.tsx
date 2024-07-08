@@ -53,9 +53,13 @@ const CardDescription: React.FC<CardDescriptionProps> = (props) => {
   return (
     <div className="scene-card__details">
       <div className="vsc-card-description__small-bar">
-        <span className="vsc-card-description__studio">
-          {props.scene.studio?.name}
-        </span>
+        {props.scene.studio ? (
+          <span className="vsc-card-description__studio">
+            <a href={"/studios/" + props.scene.studio.id}>
+              {props.scene.studio.name}
+            </a>
+          </span>
+        ) : null}
         <div className="vsc-card-description__file-data">
           <span className="vsc-card-description__duration">{duration}</span>
           {shortRes ? (
