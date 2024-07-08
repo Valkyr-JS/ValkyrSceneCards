@@ -16,6 +16,9 @@ interface VSCConfigMap {
   /** Set the ID of the tag given to custom avatar images. Custom avatars will
    * take precedence over other types of avatars. */
   performerAvatarsTagID?: string;
+  /** When enabled, performer names will be colored according to their gender.
+   * */
+  performerTextColors?: boolean;
 }
 
 interface VSCConfigResult extends ConfigResult {
@@ -30,6 +33,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   performerAvatarsProfile: boolean;
   performerAvatarsSizeLarge: boolean;
   performerAvatarsTagID: string;
+  performerTextColors: boolean;
 }
 
 interface PluginsConfig {

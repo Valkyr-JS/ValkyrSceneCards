@@ -29,6 +29,7 @@ PluginApi.patch.instead("SceneCard.Details", function (props) {
       false
     ),
     performerAvatarsTagID: getConfigProp(userConfig?.performerAvatarsTagID, ""),
+    performerTextColors: getConfigProp(userConfig?.performerTextColors, false),
   };
 
   return [<CardDescription {...props} pluginConfig={pluginConfig} />];

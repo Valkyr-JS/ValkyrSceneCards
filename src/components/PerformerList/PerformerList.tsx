@@ -15,6 +15,7 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
     performerAvatarsProfile,
     performerAvatarsSizeLarge,
     performerAvatarsTagID,
+    performerTextColors,
   } = props.pluginConfig;
   const sortedPerformers = sortPerformers(props.performers);
 
@@ -133,7 +134,10 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
           }
           return (
             <>
-              <a href={`/performers/${p.id}`}>
+              <a
+                href={`/performers/${p.id}`}
+                className={`vsc-performer-list__gender-color--${p.gender?.toLowerCase() || "unknown"}`}
+              >
                 <span>{p.name}</span>
               </a>
               {suffix}
@@ -208,9 +212,14 @@ const PerformerPopover: React.FC<PerformerPopoverProps> = ({
 
   const Content = () => {
     const birthdate = qPerformer.data.findPerformer?.birthdate;
+    const gender = qPerformer.data.findPerformer?.gender;
     return (
       <span className="vsc-performer-list__performer-hover">
-        {performer.name}
+        <span
+          className={`vsc-performer-list__gender-color--${gender?.toLowerCase() || "unknown"}`}
+        >
+          {performer.name}
+        </span>
         {birthdate && releaseDate
           ? " (" + TextUtils.age(birthdate, releaseDate) + ")"
           : null}
