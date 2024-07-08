@@ -69,8 +69,10 @@ interface IPluginApi {
       };
     };
     FontAwesomeSolid: {
+      faBox: any;
       faEthernet: any;
       faMars: any;
+      faStar: any;
       faTansgenderAlt: any;
       faVenus: any;
     };

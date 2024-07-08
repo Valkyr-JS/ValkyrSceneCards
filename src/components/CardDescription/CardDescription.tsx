@@ -4,10 +4,8 @@ import { TextUtils } from "../../helpers";
 import PerformerList from "../PerformerList/PerformerList";
 
 const { React } = window.PluginApi;
-//@ts-ignore
 const { Icon } = window.PluginApi.components;
-//@ts-ignore
-const { faStar } = window.PluginApi.libraries.FontAwesomeSolid;
+const { faBox, faStar } = window.PluginApi.libraries.FontAwesomeSolid;
 
 const CardDescription: React.FC<CardDescriptionProps> = (props) => {
   const link = `/scenes/${props.scene.id}`;
@@ -17,6 +15,12 @@ const CardDescription: React.FC<CardDescriptionProps> = (props) => {
   const resolution = TextUtils.resolution(file.width, file.height);
 
   let shortRes: string | null = "";
+
+  const organized = props.scene.organized ? (
+    <span className="vsc-card-description__organized">
+      <Icon icon={faBox} />
+    </span>
+  ) : null;
 
   switch (resolution) {
     case "144p":
@@ -48,6 +52,7 @@ const CardDescription: React.FC<CardDescriptionProps> = (props) => {
           {shortRes ? (
             <span className="vsc-card-description__resolution">{shortRes}</span>
           ) : null}
+          {organized}
         </div>
       </div>
       <a href={link}>

@@ -1,3 +1,5 @@
+$small-data-spacer: 8px;
+
 .vsc-card-description {
   &__details {
     flex-grow: 1;
@@ -10,15 +12,11 @@
     -webkit-box-orient: vertical;
   }
 
-  &__foot {
-    display: flex;
-    margin-bottom: 10px;
+  &__title-link {
+    display: inline-block;
   }
 
-  &__date {
-    margin-right: auto;
-  }
-
+  // Small bar details
   &__small-bar {
     display: flex;
     align-items: start;
@@ -38,20 +36,30 @@
     opacity: 0.65;
   }
 
-  &__duration {
-    margin-right: 5px;
-  }
-
   &__resolution {
     padding: 1px 4px;
     background-color: #f5f8fa;
     color: #30404d;
     font-weight: 900;
     user-select: none;
+    margin-left: $small-data-spacer;
   }
 
-  &__title-link {
-    display: inline-block;
+  &__organized {
+    .fa-icon {
+      margin-right: 0;
+      margin-left: $small-data-spacer;
+    }
+  }
+
+  // Foot
+  &__foot {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  &__date {
+    margin-right: auto;
   }
 
   &__rating {
