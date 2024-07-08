@@ -65,3 +65,21 @@ $overlap: 10px;
     padding: 5px;
   }
 }
+
+.vsc-performer-list__gender-color {
+  &--male {
+    color: #89cff0 !important;
+  }
+  &--female {
+    color: #f38cac !important;
+  }
+  &--transgender_male,
+  &--transgender_female,
+  &--intersex,
+  &--non_binary {
+    color: #c8a2c8 !important;
+  }
+  &--unknown {
+    color: white !important;
+  }
+}

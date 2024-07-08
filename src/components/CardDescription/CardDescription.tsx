@@ -8,6 +8,7 @@ const { HoverPopover, Icon } = window.PluginApi.components;
 const { faBox, faStar } = window.PluginApi.libraries.FontAwesomeSolid;
 
 const CardDescription: React.FC<CardDescriptionProps> = (props) => {
+  const { descriptionHidden } = props.pluginConfig;
   const link = `/scenes/${props.scene.id}`;
   const file = props.scene.files[0];
 
@@ -52,9 +53,13 @@ const CardDescription: React.FC<CardDescriptionProps> = (props) => {
   return (
     <div className="scene-card__details">
       <div className="vsc-card-description__small-bar">
-        <span className="vsc-card-description__studio">
-          {props.scene.studio?.name}
-        </span>
+        {props.scene.studio ? (
+          <span className="vsc-card-description__studio">
+            <a href={"/studios/" + props.scene.studio.id}>
+              {props.scene.studio.name}
+            </a>
+          </span>
+        ) : null}
         <div className="vsc-card-description__file-data">
           <span className="vsc-card-description__duration">{duration}</span>
           {shortRes ? (
@@ -77,11 +82,13 @@ const CardDescription: React.FC<CardDescriptionProps> = (props) => {
       <a href={link}>
         <h5 className="card-section-title flex-aligned">{props.scene.title}</h5>
       </a>
-      <div className="scene-card__description vsc-card-description__details">
-        <div className="vsc-card-description__details-inner">
-          {props.scene.details}
+      {descriptionHidden ? null : (
+        <div className="scene-card__description vsc-card-description__details">
+          <div className="vsc-card-description__details-inner">
+            {props.scene.details}
+          </div>
         </div>
-      </div>
+      )}
       <PerformerList
         performers={props.scene.performers}
         pluginConfig={props.pluginConfig}

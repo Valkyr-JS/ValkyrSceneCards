@@ -15,6 +15,7 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
     performerAvatarsProfile,
     performerAvatarsSizeLarge,
     performerAvatarsTagID,
+    performerTextColors,
   } = props.pluginConfig;
   const sortedPerformers = sortPerformers(props.performers);
 
@@ -76,7 +77,11 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
             });
             return (
               <div style={inlineStyles}>
-                <PerformerPopover performer={p} releaseDate={props.scene.date}>
+                <PerformerPopover
+                  performer={p}
+                  releaseDate={props.scene.date}
+                  performerTextColors={performerTextColors}
+                >
                   <span className={avatarClasses}>
                     <a href={`/performers/${p.id}`}>
                       <img
@@ -103,7 +108,11 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
             const genderIcon = getPerformerGenderIcon(p.gender);
             return (
               <div style={inlineStyles}>
-                <PerformerPopover performer={p} releaseDate={props.scene.date}>
+                <PerformerPopover
+                  performer={p}
+                  releaseDate={props.scene.date}
+                  performerTextColors={performerTextColors}
+                >
                   <span className="vsc-performer-list__avatar">
                     <a href={`/performers/${p.id}`}>
                       <span>{initials}</span>
@@ -124,6 +133,9 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
           const totalPerformers = props.performers.length;
           const isOneBeforeLast = i === totalPerformers - 2;
           const isAnyBeforeLast = i < totalPerformers - 1;
+          const genderClass = performerTextColors
+            ? `vsc-performer-list__gender-color--${p.gender?.toLowerCase() || "unknown"}`
+            : undefined;
 
           let suffix = null;
           if (totalPerformers === 2 && isOneBeforeLast) suffix = " and ";
@@ -133,7 +145,7 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
           }
           return (
             <>
-              <a href={`/performers/${p.id}`}>
+              <a href={`/performers/${p.id}`} className={genderClass}>
                 <span>{p.name}</span>
               </a>
               {suffix}
@@ -197,6 +209,7 @@ const getPerformerGenderIcon = (gender: Performer["gender"]) => {
 
 const PerformerPopover: React.FC<PerformerPopoverProps> = ({
   performer,
+  performerTextColors,
   releaseDate,
   ...props
 }) => {
@@ -208,9 +221,13 @@ const PerformerPopover: React.FC<PerformerPopoverProps> = ({
 
   const Content = () => {
     const birthdate = qPerformer.data.findPerformer?.birthdate;
+    const gender = qPerformer.data.findPerformer?.gender;
+    const genderClass = performerTextColors
+      ? `vsc-performer-list__gender-color--${gender?.toLowerCase() || "unknown"}`
+      : undefined;
     return (
       <span className="vsc-performer-list__performer-hover">
-        {performer.name}
+        <span className={genderClass}>{performer.name}</span>
         {birthdate && releaseDate
           ? " (" + TextUtils.age(birthdate, releaseDate) + ")"
           : null}
@@ -230,5 +247,6 @@ const PerformerPopover: React.FC<PerformerPopoverProps> = ({
 
 interface PerformerPopoverProps extends React.PropsWithChildren {
   performer: Performer;
+  performerTextColors: boolean;
   releaseDate: Scene["date"];
 }

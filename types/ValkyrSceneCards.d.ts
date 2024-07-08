@@ -1,6 +1,8 @@
 /** Stash only creates config items when they are changed. By default they are
  * `undefined`. */
 interface VSCConfigMap {
+  /** When enabled, the description will be removed from scene cards. */
+  descriptionHidden?: boolean;
   /** When enabled, the text list of performers is replaced with circular
    * avatar images of each performer. These can be customised below. */
   performerAvatarsActive?: boolean;
@@ -14,6 +16,9 @@ interface VSCConfigMap {
   /** Set the ID of the tag given to custom avatar images. Custom avatars will
    * take precedence over other types of avatars. */
   performerAvatarsTagID?: string;
+  /** When enabled, performer names will be colored according to their gender.
+   * */
+  performerTextColors?: boolean;
 }
 
 interface VSCConfigResult extends ConfigResult {
@@ -23,10 +28,12 @@ interface VSCConfigResult extends ConfigResult {
 
 /** Matches `VSCConfigMap` but with required properties. */
 interface VSCFinalConfigMap extends VSCConfigMap {
+  descriptionHidden: boolean;
   performerAvatarsActive: boolean;
   performerAvatarsProfile: boolean;
   performerAvatarsSizeLarge: boolean;
   performerAvatarsTagID: string;
+  performerTextColors: boolean;
 }
 
 interface PluginsConfig {
