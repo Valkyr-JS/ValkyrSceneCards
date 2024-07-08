@@ -15,6 +15,7 @@ PluginApi.patch.instead("SceneCard.Details", function (props) {
 
   // Compile the user's config with config defaults
   const pluginConfig: VSCFinalConfigMap = {
+    descriptionHidden: getConfigProp(userConfig?.descriptionHidden, false),
     performerAvatarsActive: getConfigProp(
       userConfig?.performerAvatarsActive,
       false

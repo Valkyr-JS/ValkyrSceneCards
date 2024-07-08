@@ -8,6 +8,10 @@ ui:
   css:
     - ValkyrSceneCards.css
 settings:
+  descriptionHidden:
+    displayName: Hide the description
+    description: When enabled, the description will be removed from scene cards.
+    type: BOOLEAN
   performerAvatarsActive:
     displayName: Use performer avatars
     description: When enabled, the text list of performers is replaced with circular avatar images of each performer. These can be customised below.

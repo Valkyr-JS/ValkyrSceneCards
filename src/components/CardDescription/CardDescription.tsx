@@ -8,6 +8,7 @@ const { HoverPopover, Icon } = window.PluginApi.components;
 const { faBox, faStar } = window.PluginApi.libraries.FontAwesomeSolid;
 
 const CardDescription: React.FC<CardDescriptionProps> = (props) => {
+  const { descriptionHidden } = props.pluginConfig;
   const link = `/scenes/${props.scene.id}`;
   const file = props.scene.files[0];
 
@@ -77,11 +78,13 @@ const CardDescription: React.FC<CardDescriptionProps> = (props) => {
       <a href={link}>
         <h5 className="card-section-title flex-aligned">{props.scene.title}</h5>
       </a>
-      <div className="scene-card__description vsc-card-description__details">
-        <div className="vsc-card-description__details-inner">
-          {props.scene.details}
+      {descriptionHidden ? null : (
+        <div className="scene-card__description vsc-card-description__details">
+          <div className="vsc-card-description__details-inner">
+            {props.scene.details}
+          </div>
         </div>
-      </div>
+      )}
       <PerformerList
         performers={props.scene.performers}
         pluginConfig={props.pluginConfig}
