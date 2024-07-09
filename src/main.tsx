@@ -1,38 +1,9 @@
-import CardDescription from "./components/CardDescription/CardDescription";
 import "./styles.scss";
 const { PluginApi } = window;
-const { GQL, React } = PluginApi;
+const { React } = PluginApi;
 
-// Remove overlays
-PluginApi.patch.instead("SceneCard.Details", function (props) {
-  const qConfig = GQL.useConfigurationQuery();
-
-  const dataLoading = qConfig.loading;
-  if (dataLoading) return [];
-
-  const userConfig = (qConfig.data.configuration as VSCConfigResult).plugins
-    .ValkyrSceneCards;
-
-  // Compile the user's config with config defaults
-  const pluginConfig: VSCFinalConfigMap = {
-    descriptionHidden: getConfigProp(userConfig?.descriptionHidden, false),
-    performerAvatarsActive: getConfigProp(
-      userConfig?.performerAvatarsActive,
-      false
-    ),
-    performerAvatarsProfile: getConfigProp(
-      userConfig?.performerAvatarsProfile,
-      false
-    ),
-    performerAvatarsSizeLarge: getConfigProp(
-      userConfig?.performerAvatarsSizeLarge,
-      false
-    ),
-    performerAvatarsTagID: getConfigProp(userConfig?.performerAvatarsTagID, ""),
-    performerTextColors: getConfigProp(userConfig?.performerTextColors, false),
-  };
-
-  return [<CardDescription {...props} pluginConfig={pluginConfig} />];
+PluginApi.patch.instead("SceneCard.Details", function (props, _, Original) {
+  return [<Original {...props} />];
 });
 
 // Remove overlays
