@@ -1,0 +1,7 @@
+.scene-card {
+  // Hide resolution, duration, and ratings banner from preview thumbnail.
+  .scene-specs-overlay,
+  .rating-banner {
+    display: none !important;
+  }
+}
