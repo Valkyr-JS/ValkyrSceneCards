@@ -2,9 +2,19 @@ import "./styles.scss";
 const { PluginApi } = window;
 const { React } = PluginApi;
 
+PluginApi.patch.instead("SceneCard", function (props, _, Original) {
+  console.log("SceneCard: ", props);
+
+  // Add parent class for scoping
+  return [
+    <div className="valkyr-scene-card">
+      <Original {...props} />
+    </div>,
+  ];
+});
+
 PluginApi.patch.instead("SceneCard.Details", function (props, _, Original) {
-  console.log("SceneCard.Details: ", props);
-  return [];
+  return [<Original {...props} />];
 });
 
 // Remove overlays

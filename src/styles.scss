@@ -1,4 +1,6 @@
-.scene-card {
+.valkyr-scene-card {
+  display: flex;
+
   // Hide resolution, duration, and ratings banner from preview thumbnail.
   .scene-specs-overlay,
   .rating-banner {
@@ -9,4 +11,9 @@
   .card-section > a:first-child {
     display: none !important;
   }
+}
+
+.slick-slider .valkyr-scene-card {
+  // Refill space
+  height: 100%;
 }
