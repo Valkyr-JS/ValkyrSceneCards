@@ -3,7 +3,8 @@ const { PluginApi } = window;
 const { React } = PluginApi;
 
 PluginApi.patch.instead("SceneCard.Details", function (props, _, Original) {
-  return [<Original {...props} />];
+  console.log("SceneCard.Details: ", props);
+  return [];
 });
 
 // Remove overlays
