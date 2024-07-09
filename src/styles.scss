@@ -4,4 +4,9 @@
   .rating-banner {
     display: none !important;
   }
+
+  // Hide hardcoded title. Title will be recreated.
+  .card-section > a:first-child {
+    display: none !important;
+  }
 }
