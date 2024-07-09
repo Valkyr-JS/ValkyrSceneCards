@@ -1,0 +1,10 @@
+/**
+ * Create a url link to a scene page.
+ *
+ * TODO - Incorporate scene queue string
+ * */
+export const makeSceneUrl = ({ scene }: ImakeSceneUrl) => `/scenes/${scene.id}`;
+
+interface ImakeSceneUrl {
+  scene: Scene;
+}
