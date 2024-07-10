@@ -73,12 +73,13 @@ interface IPluginApi {
       };
     };
     FontAwesomeSolid: {
-      faBox: any;
-      faEthernet: any;
-      faMars: any;
-      faStar: any;
-      faTansgenderAlt: any;
-      faVenus: any;
+      faBox: IconDefinition;
+      faEye: IconDefinition;
+      faEthernet: IconDefinition;
+      faMars: IconDefinition;
+      faStar: IconDefinition;
+      faTansgenderAlt: IconDefinition;
+      faVenus: IconDefinition;
     };
     Intl: {
       FormattedMessage: React.FC<any>;

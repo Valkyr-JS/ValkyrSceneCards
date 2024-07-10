@@ -4,9 +4,10 @@
   display: grid;
   grid-template-rows: [details-top top-shelf-top] auto [top-shelf-bottom title-top] auto [title-bottom key-info-top] auto [key-info-bottom description-top] auto [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
 
+  /* -------------------------------- Top shelf ------------------------------- */
   .vsc-top-shelf {
     display: grid;
-    grid-template-columns: [top-shelf-start studio-start] 1fr [studio-end user-data-start] min-content [user-data-end top-shelf-end];
+    grid-template-columns: [top-shelf-start studio-start] 1fr [studio-end user-data-start] max-content [user-data-end top-shelf-end];
 
     font-size: var(--#{$prefix}-font-sm);
   }
@@ -16,6 +17,12 @@
     grid-row: top-shelf-top / top-shelf-bottom;
   }
 
+  .vsc-user-data {
+    grid-column: user-data-start / user-data-end;
+    grid-row: top-shelf-top / top-shelf-bottom;
+  }
+
+  /* ---------------------------------- Title --------------------------------- */
   .vsc-title {
     grid-row: title-top / title-bottom;
   }
