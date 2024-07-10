@@ -1,12 +1,9 @@
 import { SceneCardDetails } from "./components/SceneCard";
 import "./styles.scss";
 const { PluginApi } = window;
-const { React } = PluginApi;
+const { GQL, React } = PluginApi;
 
 PluginApi.patch.instead("SceneCard", function (props, _, Original) {
-  console.log("SceneCard: ", props);
-
-  // Add parent class for scoping
   return [
     <div className="valkyr-scene-card">
       <Original {...props} />
@@ -14,8 +11,39 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
   ];
 });
 
-PluginApi.patch.instead("SceneCard.Details", function (props, _) {
-  return [<SceneCardDetails {...props} />];
+PluginApi.patch.instead("SceneCard.Details", function (props) {
+  const qConfig = GQL.useConfigurationQuery();
+  const dataLoaded = !qConfig.loading;
+
+  // Get and set the config, using default values if they haven't been set by
+  // the user.
+  if (!dataLoaded) return [];
+  const userConfig: VSCConfigMap =
+    qConfig.data.configuration.plugins.ValkyrSceneCards;
+
+  const config: VSCFinalConfigMap = {
+    hideStudioParent: userConfig.hideStudioParent ?? false,
+  };
+
+  // Fetch additional data as needed
+  const extendedProps = { ...props };
+  if (!config.hideStudioParent && !!extendedProps.scene.studio) {
+    const studioData = GQL.useFindStudioQuery({
+      variables: { id: props.scene.studio?.id || "" },
+    });
+
+    if (!!studioData.data)
+      extendedProps.scene = {
+        ...extendedProps.scene,
+        studio: {
+          ...extendedProps.scene.studio,
+          ...studioData.data.findStudio,
+        },
+      };
+  }
+
+  // Render without additional data while waiting.
+  return [<SceneCardDetails {...extendedProps} config={config} />];
 });
 
 // Remove overlays
@@ -27,9 +55,3 @@ PluginApi.patch.instead("SceneCard.Overlays", function () {
 PluginApi.patch.instead("SceneCard.Popovers", function () {
   return [];
 });
-
-/** Returns the given property from the user's config, or the default value if
- * the user hasn't explicitly set it. */
-function getConfigProp<T>(value: T | undefined, defaultValue: T) {
-  return value ?? defaultValue;
-}
