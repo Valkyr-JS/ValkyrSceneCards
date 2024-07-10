@@ -1,0 +1,8 @@
+.valkyr-scene-card .card-section {
+  display: grid;
+  grid-template-rows: [details-top top-shelf-top] auto [top-shelf-bottom title-top] auto [title-bottom key-info-top] auto [key-info-bottom description-top] auto [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
+
+  .vsc-title {
+    grid-row: title-top/title-bottom;
+  }
+}
