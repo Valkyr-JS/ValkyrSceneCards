@@ -24,7 +24,7 @@ const Studio: React.FC<StudioProps> = ({ scene, ...props }) => {
 export default Studio;
 
 interface StudioProps {
-  /** Scene data. */
+  /** The scene data. */
   scene: Scene;
   /** When `true`, the parent studio will not be displayed. */
   hideStudioParent: boolean;
