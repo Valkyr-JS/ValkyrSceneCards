@@ -1,8 +1,22 @@
+@import "../../scss/variables";
+
 .valkyr-scene-card .card-section {
   display: grid;
   grid-template-rows: [details-top top-shelf-top] auto [top-shelf-bottom title-top] auto [title-bottom key-info-top] auto [key-info-bottom description-top] auto [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
 
+  .vsc-top-shelf {
+    display: grid;
+    grid-template-columns: [top-shelf-start studio-start] 1fr [studio-end user-data-start] min-content [user-data-end top-shelf-end];
+
+    font-size: var(--#{$prefix}-font-sm);
+  }
+
+  .vsc-studio {
+    grid-column: studio-start / studio-end;
+    grid-row: top-shelf-top / top-shelf-bottom;
+  }
+
   .vsc-title {
-    grid-row: title-top/title-bottom;
+    grid-row: title-top / title-bottom;
   }
 }
