@@ -1,3 +1,6 @@
+@import "./scss/variables";
+@import "./scss/functions";
+
 .valkyr-scene-card {
   display: flex;
 
@@ -16,4 +19,8 @@
 .slick-slider .valkyr-scene-card {
   // Refill space
   height: 100%;
+}
+
+:root {
+  --#{$prefix}-font-sm: #{toRem(12)};
 }
