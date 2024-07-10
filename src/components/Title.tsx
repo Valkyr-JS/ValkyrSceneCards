@@ -16,5 +16,6 @@ const Title: React.FC<TitleProps> = ({ scene }) => {
 export default Title;
 
 interface TitleProps {
+  /** The scene data. */
   scene: Scene;
 }
