@@ -7,3 +7,8 @@ ui:
     - ValkyrSceneCards.js
   css:
     - ValkyrSceneCards.css
+settings:
+  hideStudioParent:
+    displayName: Hide studio parent
+    description: When enabled, the parent studio will not be displayed.
+    type: BOOLEAN

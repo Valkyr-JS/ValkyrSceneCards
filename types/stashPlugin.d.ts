@@ -11,7 +11,7 @@ declare global {
 }
 
 interface IPluginApi {
-  React: React;
+  React: typeof React;
   ReactDOM: typeof ReactDOM;
   GQL: {
     useConfigurationQuery(): {
@@ -38,6 +38,10 @@ interface IPluginApi {
     };
     useFindScenesQuery(args: { variables: QueryFindScenesArgs }): {
       data: { findScenes: Query["findScenes"] };
+      loading: boolean;
+    };
+    useFindStudioQuery(args: { variables: QueryFindStudioArgs }): {
+      data: { findStudio: Query["findStudio"] };
       loading: boolean;
     };
     useFindStudiosQuery(args: { variables: QueryFindStudiosArgs }): {
