@@ -7,7 +7,7 @@ const Title: React.FC<TitleProps> = ({ scene }) => {
   const link = makeSceneUrl({ scene });
 
   return (
-    <a href={link}>
+    <a href={link} className="vsc-title">
       <h5>{title}</h5>
     </a>
   );
