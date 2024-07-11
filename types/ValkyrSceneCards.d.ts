@@ -1,3 +1,5 @@
+import type { ISceneCardProps } from "./stashPlugin";
+
 /** Stash only creates config items when they are changed. By default they are
  * `undefined`. */
 interface VSCConfigMap {
@@ -34,4 +36,9 @@ interface VSCFinalConfigMap extends VSCConfigMap {
 
 interface PluginsConfig {
   ValkyrSceneCards?: VSCConfigMap;
+}
+
+interface ISceneCardPropsExtended extends ISceneCardProps {
+  /** The user's plugin config. */
+  config: VSCFinalConfigMap;
 }
