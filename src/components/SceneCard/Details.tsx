@@ -1,4 +1,5 @@
 import { ISceneCardProps } from "../../../types/stashPlugin";
+import KeyData from "../KeyData";
 import Studio from "../Studio";
 import Title from "../Title";
 import UserData from "../UserData";
@@ -7,7 +8,6 @@ const { React } = window.PluginApi;
 
 const Details: React.FC<SceneCardProps> = ({ config, scene }) => {
   console.log(scene);
-  console.log(config.parentStudioSeparator);
 
   return (
     <>
@@ -26,6 +26,7 @@ const Details: React.FC<SceneCardProps> = ({ config, scene }) => {
         />
       </div>
       <Title scene={scene} />
+      <KeyData scene={scene} />
     </>
   );
 };
