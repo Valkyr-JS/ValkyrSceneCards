@@ -12,6 +12,8 @@ const Resolution: React.FC<ResolutionProps> = ({ file, ...props }) => {
 
   // If the user has chosen to render an icon, render it
   if (props.resolutionIcon) {
+    const { HoverPopover } = window.PluginApi.components;
+
     let shortRes: string | null = "";
     switch (resolution) {
       case "144p":
@@ -33,8 +35,20 @@ const Resolution: React.FC<ResolutionProps> = ({ file, ...props }) => {
         break;
     }
 
+    // Render a hover popover is the resolution has more detail available
     return (
-      <span className="vsc-resolution vsc-resolution--icon">{shortRes}</span>
+      <HoverPopover
+        className="vsc-resolution vsc-resolution--icon"
+        content={
+          <span className="vsc-text-hover">
+            {file.width} &times; {file.height}
+          </span>
+        }
+        leaveDelay={100}
+        placement="top"
+      >
+        {shortRes}
+      </HoverPopover>
     );
   }
 

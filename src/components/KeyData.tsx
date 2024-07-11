@@ -22,17 +22,17 @@ const KeyData: React.FC<KeyDataProps> = ({
   ) : null;
 
   // Render nothing if there is no data at all to render
-  if (!showDate && !showDuration && !hideResolution) return null;
+  if (!showDate && !showDuration && hideResolution) return null;
 
   return (
     <div className="vsc-key-data">
-      {date}
-      {duration}
       <Resolution
         file={primaryFile}
         hideResolution={hideResolution}
         resolutionIcon={props.resolutionIcon}
       />
+      {date}
+      {duration}
     </div>
   );
 };
