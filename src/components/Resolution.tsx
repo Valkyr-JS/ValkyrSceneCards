@@ -35,7 +35,6 @@ const Resolution: React.FC<ResolutionProps> = ({ file, ...props }) => {
         break;
     }
 
-    // Render a hover popover is the resolution has more detail available
     return (
       <HoverPopover
         className="vsc-resolution vsc-resolution--icon"

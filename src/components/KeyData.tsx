@@ -14,12 +14,22 @@ const KeyData: React.FC<KeyDataProps> = ({
   const showDuration = !!primaryFile && !props.hideDuration;
 
   const date = showDate ? <span className="vsc-date">{scene.date}</span> : null;
+  let duration: React.JSX.Element | null = null;
 
-  const duration = showDuration ? (
-    <span className="vsc-duration">
-      {TextUtils.secondsToTimestamp(primaryFile.duration ?? 0)}
-    </span>
-  ) : null;
+  if (showDuration) {
+    let timestamp = TextUtils.secondsToTimestamp(primaryFile.duration ?? 0);
+    if (props.durationPadding) {
+      const reverseTimes = timestamp.split(":").reverse();
+      if (reverseTimes.length === 1) reverseTimes.push("00", "00");
+      if (reverseTimes.length === 2) reverseTimes.push("00");
+
+      timestamp = reverseTimes
+        .map((v) => (v.length < 2 ? "0" + v : v))
+        .reverse()
+        .join(":");
+    }
+    duration = <span className="vsc-duration">{timestamp}</span>;
+  }
 
   // Render nothing if there is no data at all to render
   if (!showDate && !showDuration && hideResolution) return null;
@@ -40,6 +50,9 @@ const KeyData: React.FC<KeyDataProps> = ({
 export default KeyData;
 
 interface KeyDataProps {
+  /** When `true`, the scene duration will be padded out to HH:MM:SS. For
+   * example, 6:37 would appear as 00:06:37. */
+  durationPadding: boolean;
   /** When `true`, the scene date will not be displayed. */
   hideDate: boolean;
   /** When `true`, the scene duration will not be displayed. */
