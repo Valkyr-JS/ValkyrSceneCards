@@ -11,7 +11,7 @@ const Details: React.FC<SceneCardProps> = ({ config, scene }) => {
   return (
     <>
       <div className="vsc-top-shelf">
-        <Studio scene={scene} hideStudioParent={config.hideStudioParent} />
+        <Studio scene={scene} hideParentStudio={config.hideParentStudio} />
         <UserData
           hideOCount={config.hideOCount}
           hideOrganized={config.hideOrganized}

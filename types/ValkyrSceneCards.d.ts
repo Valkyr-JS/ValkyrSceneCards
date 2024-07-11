@@ -9,7 +9,7 @@ interface VSCConfigMap {
   /** When enabled, the scene play count and icon will not be displayed. */
   hidePlayCount?: boolean;
   /** When enabled, the parent studio will not be displayed. */
-  hideStudioParent?: boolean;
+  hideParentStudio?: boolean;
   /** When enabled, numerical data that has a value of 0 will not be displayed,
    * irrespective of other settings. */
   hideZeroValueData?: boolean;
@@ -25,7 +25,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   hideOCount: boolean;
   hideOrganized: boolean;
   hidePlayCount: boolean;
-  hideStudioParent: boolean;
+  hideParentStudio: boolean;
   hideZeroValueData: boolean;
 }
 
