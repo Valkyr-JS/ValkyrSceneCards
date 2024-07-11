@@ -14,6 +14,11 @@
   .card-section > a:first-child {
     display: none !important;
   }
+
+  .fa-icon {
+    // Set to zero here to be overridden elsewhere as needed.
+    margin: 0;
+  }
 }
 
 .slick-slider .valkyr-scene-card {
