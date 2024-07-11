@@ -4,9 +4,9 @@ $column-gap: toRem(10);
 
 .valkyr-scene-card .card-section {
   display: grid;
-  grid-template-rows: [details-top top-line-top] auto [top-line-bottom title-top] auto [title-bottom key-info-top] auto [key-info-bottom description-top] auto [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
+  grid-template-rows: [details-top top-line-top] auto [top-line-bottom title-top] auto [title-bottom key-data-top] auto [key-data-bottom description-top] auto [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
 
-  /* -------------------------------- Top shelf ------------------------------- */
+  /* -------------------------------- Top line -------------------------------- */
   .vsc-top-line {
     display: grid;
     grid-template-columns: [top-line-start studio-start] 1fr [studio-end user-data-start] max-content [user-data-end top-line-end];
@@ -38,7 +38,19 @@ $column-gap: toRem(10);
   }
 
   /* ---------------------------------- Title --------------------------------- */
+
   .vsc-title {
     grid-row: title-top / title-bottom;
+  }
+
+  /* -------------------------------- Key data -------------------------------- */
+
+  .vsc-key-data {
+    grid-row: key-data-top / key-data-bottom;
+
+    display: flex;
+    column-gap: $column-gap;
+
+    font-size: var(--#{$prefix}-font-sm);
   }
 }
