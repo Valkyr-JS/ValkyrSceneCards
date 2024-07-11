@@ -22,7 +22,11 @@ PluginApi.patch.instead("SceneCard.Details", function (props) {
     qConfig.data.configuration.plugins.ValkyrSceneCards;
 
   const config: VSCFinalConfigMap = {
+    hideOCount: userConfig.hideOCount ?? false,
+    hideOrganized: userConfig.hideOrganized ?? false,
+    hidePlayCount: userConfig.hidePlayCount ?? false,
     hideStudioParent: userConfig.hideStudioParent ?? false,
+    hideZeroValueData: userConfig.hideZeroValueData ?? false,
   };
 
   // Fetch additional data as needed
