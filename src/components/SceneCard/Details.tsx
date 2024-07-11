@@ -12,7 +12,13 @@ const Details: React.FC<SceneCardProps> = ({ config, scene }) => {
     <>
       <div className="vsc-top-shelf">
         <Studio scene={scene} hideStudioParent={config.hideStudioParent} />
-        <UserData scene={scene} />
+        <UserData
+          hideOCount={config.hideOCount}
+          hideOrganized={config.hideOrganized}
+          hidePlayCount={config.hidePlayCount}
+          hideZeroValueData={config.hideZeroValueData}
+          scene={scene}
+        />
       </div>
       <Title scene={scene} />
     </>

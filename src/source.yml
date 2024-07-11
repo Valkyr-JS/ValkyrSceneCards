@@ -8,7 +8,23 @@ ui:
   css:
     - ValkyrSceneCards.css
 settings:
+  hideOCount:
+    displayName: Hide O count
+    description: When enabled, the scene O count and icon will not be displayed.
+    type: BOOLEAN
+  hideOrganized:
+    displayName: Hide organized icon
+    description: When enabled, the organized icon will not be displayed for scenes marked as organized.
+    type: BOOLEAN
+  hidePlayCount:
+    displayName: Hide play count
+    description: When enabled, the scene play count and icon will not be displayed.
+    type: BOOLEAN
   hideStudioParent:
     displayName: Hide studio parent
     description: When enabled, the parent studio will not be displayed.
+    type: BOOLEAN
+  hideZeroValueData:
+    displayName: Hide zero-value data
+    description: When enabled, numerical data that has a value of 0 will not be displayed, irrespective of other settings.
     type: BOOLEAN
