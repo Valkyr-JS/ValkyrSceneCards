@@ -20,8 +20,8 @@ settings:
     displayName: Hide play count
     description: When enabled, the scene play count and icon will not be displayed.
     type: BOOLEAN
-  hideStudioParent:
-    displayName: Hide studio parent
+  hideParentStudio:
+    displayName: Hide parent studio
     description: When enabled, the parent studio will not be displayed.
     type: BOOLEAN
   hideZeroValueData:

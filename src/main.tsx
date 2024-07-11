@@ -25,13 +25,13 @@ PluginApi.patch.instead("SceneCard.Details", function (props) {
     hideOCount: userConfig.hideOCount ?? false,
     hideOrganized: userConfig.hideOrganized ?? false,
     hidePlayCount: userConfig.hidePlayCount ?? false,
-    hideStudioParent: userConfig.hideStudioParent ?? false,
+    hideParentStudio: userConfig.hideParentStudio ?? false,
     hideZeroValueData: userConfig.hideZeroValueData ?? false,
   };
 
   // Fetch additional data as needed
   const extendedProps = { ...props };
-  if (!config.hideStudioParent && !!extendedProps.scene.studio) {
+  if (!config.hideParentStudio && !!extendedProps.scene.studio) {
     const studioData = GQL.useFindStudioQuery({
       variables: { id: props.scene.studio?.id || "" },
     });

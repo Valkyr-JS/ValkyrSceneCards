@@ -15,7 +15,7 @@ const Studio: React.FC<StudioProps> = ({ scene, ...props }) => {
       <a href={link}>{studio.name}</a>
       <ParentStudio
         childStudio={studio}
-        hideStudioParent={props.hideStudioParent}
+        hideParentStudio={props.hideParentStudio}
       />
     </span>
   );
@@ -27,7 +27,7 @@ interface StudioProps {
   /** The scene data. */
   scene: Scene;
   /** When `true`, the parent studio will not be displayed. */
-  hideStudioParent: boolean;
+  hideParentStudio: boolean;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -40,7 +40,7 @@ const ParentStudio: React.FC<ParentStudioProps> = ({
 }) => {
   // If the parent studio is undefined, or the user has set the parent studio to
   // hidden, do not render the component.
-  if (props.hideStudioParent || !childStudio.parent_studio) return null;
+  if (props.hideParentStudio || !childStudio.parent_studio) return null;
 
   const { parent_studio } = childStudio;
   const link = makeStudioUrl({ studioID: parent_studio.id });
@@ -56,7 +56,7 @@ const ParentStudio: React.FC<ParentStudioProps> = ({
 
 interface ParentStudioProps {
   /** When `true`, the parent studio will not be displayed. */
-  hideStudioParent: boolean;
+  hideParentStudio: boolean;
   /** Child studio data. */
   childStudio: Studio;
 }
