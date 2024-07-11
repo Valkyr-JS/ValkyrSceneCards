@@ -27,23 +27,26 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
       },
     });
 
-    const qAvatars = GQL.useFindImagesQuery({
-      variables: {
-        filter: { per_page: -1 },
-        image_filter: {
-          performers: {
-            modifier: CriterionModifier.Includes,
-            value: sortedPerformers.map((pf) => pf.id),
+    // Fetch avatars only if a tag has been provided by the user.
+    const qAvatars = !!performerAvatarsTagID
+      ? GQL.useFindImagesQuery({
+          variables: {
+            filter: { per_page: -1 },
+            image_filter: {
+              performers: {
+                modifier: CriterionModifier.Includes,
+                value: sortedPerformers.map((pf) => pf.id),
+              },
+              tags: {
+                modifier: CriterionModifier.Includes,
+                value: [performerAvatarsTagID],
+              },
+            },
           },
-          tags: {
-            modifier: CriterionModifier.Includes,
-            value: [performerAvatarsTagID],
-          },
-        },
-      },
-    });
+        })
+      : null;
 
-    if (qAvatars.loading || qProfileImages.loading) return null;
+    if ((!!qAvatars && qAvatars.loading) || qProfileImages.loading) return null;
 
     const avatarListClasses = cx(
       "vsc-performer-list",
@@ -57,7 +60,7 @@ const PerformerList: React.FC<PerformerListProps> = (props) => {
       <div className={avatarListClasses}>
         {sortedPerformers.map((p, i) => {
           const avatarUrl = getPerformerAvatarUrl({
-            avatarsQuery: qAvatars.data?.findImages,
+            avatarsQuery: qAvatars?.data?.findImages,
             avatarTag: performerAvatarsTagID,
             id: p.id,
             profileImagesQuery: qProfileImages.data?.findPerformers,
