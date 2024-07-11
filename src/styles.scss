@@ -3,10 +3,6 @@
 .valkyr-scene-card {
   display: flex;
 
-  .card {
-    border-radius: var(--#{$prefix}-border-radius);
-  }
-
   // Hide resolution, duration, and ratings banner from preview thumbnail.
   .scene-specs-overlay,
   .rating-banner {
@@ -30,8 +26,6 @@
 }
 
 :root {
-  --#{$prefix}-border-radius: #{3px};
   --#{$prefix}-font-sm: #{toRem(12)};
-  --#{$prefix}-title-size: #{toRem(17.5)};
-  --#{$prefix}-top-shelf-opacity: #{0.8};
+  --#{$prefix}-top-line-opacity: #{0.8};
 }
