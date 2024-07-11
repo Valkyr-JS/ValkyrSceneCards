@@ -7,11 +7,16 @@ const { React } = window.PluginApi;
 
 const Details: React.FC<SceneCardProps> = ({ config, scene }) => {
   console.log(scene);
+  console.log(config.parentStudioSeparator);
 
   return (
     <>
       <div className="vsc-top-shelf">
-        <Studio scene={scene} hideParentStudio={config.hideParentStudio} />
+        <Studio
+          hideParentStudio={config.hideParentStudio}
+          parentStudioSeparator={config.parentStudioSeparator}
+          scene={scene}
+        />
         <UserData
           hideOCount={config.hideOCount}
           hideOrganized={config.hideOrganized}

@@ -16,15 +16,19 @@ settings:
     displayName: Hide organized icon
     description: When enabled, the organized icon will not be displayed for scenes marked as organized.
     type: BOOLEAN
-  hidePlayCount:
-    displayName: Hide play count
-    description: When enabled, the scene play count and icon will not be displayed.
-    type: BOOLEAN
   hideParentStudio:
     displayName: Hide parent studio
     description: When enabled, the parent studio will not be displayed.
+    type: BOOLEAN
+  hidePlayCount:
+    displayName: Hide play count
+    description: When enabled, the scene play count and icon will not be displayed.
     type: BOOLEAN
   hideZeroValueData:
     displayName: Hide zero-value data
     description: When enabled, numerical data that has a value of 0 will not be displayed, irrespective of other settings.
     type: BOOLEAN
+  parentStudioSeparator:
+    displayName: Studio / parent studio separator
+    description: Set the separator character that appears between the studio and parent studio. Leave this blank to wrap the parent studio in brackets.
+    type: STRING

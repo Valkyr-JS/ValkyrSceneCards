@@ -6,13 +6,16 @@ interface VSCConfigMap {
   /** When enabled, the organized icon will not be displayed for scenes marked
    * as organized. */
   hideOrganized?: boolean;
-  /** When enabled, the scene play count and icon will not be displayed. */
-  hidePlayCount?: boolean;
   /** When enabled, the parent studio will not be displayed. */
   hideParentStudio?: boolean;
+  /** When enabled, the scene play count and icon will not be displayed. */
+  hidePlayCount?: boolean;
   /** When enabled, numerical data that has a value of 0 will not be displayed,
    * irrespective of other settings. */
   hideZeroValueData?: boolean;
+  /** Set the separator character that appears between the studio and parent
+   * studio. Leave this blank to wrap the parent studio in brackets. */
+  parentStudioSeparator?: string;
 }
 
 interface VSCConfigResult extends ConfigResult {
@@ -20,12 +23,12 @@ interface VSCConfigResult extends ConfigResult {
   ui: UIConfig;
 }
 
-/** Matches `VSCConfigMap` but properties are required. */
+/** Matches `VSCConfigMap` but with certain properties made required. */
 interface VSCFinalConfigMap extends VSCConfigMap {
   hideOCount: boolean;
   hideOrganized: boolean;
-  hidePlayCount: boolean;
   hideParentStudio: boolean;
+  hidePlayCount: boolean;
   hideZeroValueData: boolean;
 }
 
