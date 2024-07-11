@@ -53,4 +53,15 @@ $column-gap: toRem(10);
 
     font-size: var(--#{$prefix}-font-sm);
   }
+
+  .vsc-resolution {
+    &--icon {
+      display: inline;
+      padding: 0 4px;
+      background-color: var(--#{$prefix}-resolution-icon-bg-color);
+      color: var(--#{$prefix}-resolution-icon-color);
+      font-weight: 900;
+      user-select: none;
+    }
+  }
 }
