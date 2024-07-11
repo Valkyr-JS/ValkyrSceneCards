@@ -8,6 +8,14 @@ ui:
   css:
     - ValkyrSceneCards.css
 settings:
+  hideDate:
+    displayName: Hide date
+    description: When enabled, the scene date will not be displayed.
+    type: BOOLEAN
+  hideDuration:
+    displayName: Hide duration
+    description: When enabled, the scene duration will not be displayed.
+    type: BOOLEAN
   hideOCount:
     displayName: Hide O count
     description: When enabled, the scene O count and icon will not be displayed.
@@ -24,6 +32,10 @@ settings:
     displayName: Hide play count
     description: When enabled, the scene play count and icon will not be displayed.
     type: BOOLEAN
+  hideResolution:
+    displayName: Hide resolution
+    description: When enabled, the scene resolution will not be displayed.
+    type: BOOLEAN
   hideZeroValueData:
     displayName: Hide zero-value data
     description: When enabled, numerical data that has a value of 0 will not be displayed, irrespective of other settings.
@@ -32,3 +44,7 @@ settings:
     displayName: Studio / parent studio separator
     description: Set the separator character that appears between the studio and parent studio. Leave this blank to wrap the parent studio in brackets.
     type: STRING
+  resolutionIcon:
+    displayName: Display resolution as icon
+    description: When enabled, the scene resolution be displayed as an SD/HD/2K/4K/etc. icon. SD and HD icons can be hovered over for the full resolution.
+    type: BOOLEAN

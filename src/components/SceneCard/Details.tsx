@@ -26,7 +26,13 @@ const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
         />
       </div>
       <Title scene={scene} />
-      <KeyData scene={scene} />
+      <KeyData
+        hideDate={config.hideDate}
+        hideDuration={config.hideDuration}
+        hideResolution={config.hideResolution}
+        resolutionIcon={config.resolutionIcon}
+        scene={scene}
+      />
     </>
   );
 };
