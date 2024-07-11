@@ -1,4 +1,7 @@
+@import "../../scss/functions";
 @import "../../scss/variables";
+
+$column-gap: toRem(10);
 
 .valkyr-scene-card .card-section {
   display: grid;
@@ -8,6 +11,7 @@
   .vsc-top-shelf {
     display: grid;
     grid-template-columns: [top-shelf-start studio-start] 1fr [studio-end user-data-start] max-content [user-data-end top-shelf-end];
+    column-gap: $column-gap;
 
     font-size: var(--#{$prefix}-font-sm);
   }
@@ -20,6 +24,16 @@
   .vsc-user-data {
     grid-column: user-data-start / user-data-end;
     grid-row: top-shelf-top / top-shelf-bottom;
+
+    display: flex;
+    column-gap: $column-gap;
+  }
+
+  .vsc-play-count,
+  .vsc-o-count {
+    svg {
+      margin-right: toRem(3);
+    }
   }
 
   /* ---------------------------------- Title --------------------------------- */
