@@ -27,6 +27,7 @@ PluginApi.patch.instead("SceneCard.Details", function (props) {
     hidePlayCount: userConfig.hidePlayCount ?? false,
     hideParentStudio: userConfig.hideParentStudio ?? false,
     hideZeroValueData: userConfig.hideZeroValueData ?? false,
+    parentStudioSeparator: userConfig.parentStudioSeparator,
   };
 
   // Fetch additional data as needed

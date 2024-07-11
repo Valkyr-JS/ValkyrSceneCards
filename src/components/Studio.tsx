@@ -16,6 +16,7 @@ const Studio: React.FC<StudioProps> = ({ scene, ...props }) => {
       <ParentStudio
         childStudio={studio}
         hideParentStudio={props.hideParentStudio}
+        parentStudioSeparator={props.parentStudioSeparator}
       />
     </span>
   );
@@ -28,6 +29,9 @@ interface StudioProps {
   scene: Scene;
   /** When `true`, the parent studio will not be displayed. */
   hideParentStudio: boolean;
+  /** Set the separator character that appears between the studio and parent
+   * studio. Leave `undefined` to wrap the parent studio in brackets. */
+  parentStudioSeparator?: string;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -36,6 +40,7 @@ interface StudioProps {
 
 const ParentStudio: React.FC<ParentStudioProps> = ({
   childStudio,
+  parentStudioSeparator,
   ...props
 }) => {
   // If the parent studio is undefined, or the user has set the parent studio to
@@ -45,18 +50,27 @@ const ParentStudio: React.FC<ParentStudioProps> = ({
   const { parent_studio } = childStudio;
   const link = makeStudioUrl({ studioID: parent_studio.id });
 
+  const wrapInBrackets = !parentStudioSeparator;
+  const separator = !!parentStudioSeparator
+    ? " " + parentStudioSeparator + " "
+    : null;
+
   return (
     <>
-      {" ("}
+      {wrapInBrackets ? " (" : null}
+      {separator}
       <a href={link}>{parent_studio.name}</a>
-      {")"}
+      {wrapInBrackets ? ")" : null}
     </>
   );
 };
 
 interface ParentStudioProps {
-  /** When `true`, the parent studio will not be displayed. */
-  hideParentStudio: boolean;
   /** Child studio data. */
   childStudio: Studio;
+  /** When `true`, the parent studio will not be displayed. */
+  hideParentStudio: boolean;
+  /** Set the separator character that appears between the studio and parent
+   * studio. Leave `undefined` to wrap the parent studio in brackets. */
+  parentStudioSeparator?: string;
 }
