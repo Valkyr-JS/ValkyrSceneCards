@@ -1,7 +1,7 @@
 import { ISceneCardProps } from "../../../types/stashPlugin";
 import Studio from "../Studio";
 import Title from "../Title";
-import UserData from "../UserData/UserData";
+import UserData from "../UserData";
 import "./Details.scss";
 const { React } = window.PluginApi;
 
