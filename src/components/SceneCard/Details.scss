@@ -1,5 +1,4 @@
-@import "../../scss/functions";
-@import "../../scss/variables";
+@import "../../scss";
 
 $column-gap: toRem(10);
 
@@ -12,8 +11,10 @@ $column-gap: toRem(10);
     display: grid;
     grid-template-columns: [top-shelf-start studio-start] 1fr [studio-end user-data-start] max-content [user-data-end top-shelf-end];
     column-gap: $column-gap;
+    margin-bottom: 3px;
 
     font-size: var(--#{$prefix}-font-sm);
+    opacity: var(--#{$prefix}-top-shelf-opacity);
   }
 
   .vsc-studio {
@@ -39,5 +40,9 @@ $column-gap: toRem(10);
   /* ---------------------------------- Title --------------------------------- */
   .vsc-title {
     grid-row: title-top / title-bottom;
+
+    h5 {
+      font-size: var(--#{$prefix}-title-size);
+    }
   }
 }
