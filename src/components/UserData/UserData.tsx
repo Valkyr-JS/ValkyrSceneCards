@@ -22,6 +22,9 @@ const UserData: React.FC<UserDataProps> = ({
     scene.play_count
   );
 
+  // Render nothing if there is no data at all to render
+  if (!showOCount && !showPlayCount && !scene.organized) return null;
+
   const playCount = showPlayCount ? (
     <span className="vsc-play-count">
       <Icon icon={faEye} />
