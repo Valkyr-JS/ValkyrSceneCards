@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "../../scss";
 
 $column-gap: toRem(10);
@@ -64,4 +65,10 @@ $column-gap: toRem(10);
       user-select: none;
     }
   }
+}
+
+/* ----------------------------- Hover popovers ----------------------------- */
+
+.vsc-text-hover {
+  padding: math.div($column-gap, 2);
 }
