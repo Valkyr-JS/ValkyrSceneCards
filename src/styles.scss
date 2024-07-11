@@ -27,5 +27,7 @@
 
 :root {
   --#{$prefix}-font-sm: #{toRem(12)};
+  --#{$prefix}-resolution-icon-bg-color: #{$body-color};
+  --#{$prefix}-resolution-icon-color: #{$card-bg};
   --#{$prefix}-top-line-opacity: #{0.8};
 }

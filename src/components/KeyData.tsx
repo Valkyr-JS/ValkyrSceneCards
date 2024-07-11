@@ -1,13 +1,17 @@
 import TextUtils from "../helpers/text";
+import Resolution from "./Resolution";
 const { React } = window.PluginApi;
 
-const KeyData: React.FC<KeyDataProps> = ({ scene, ...props }) => {
+const KeyData: React.FC<KeyDataProps> = ({
+  hideResolution,
+  scene,
+  ...props
+}) => {
   // Base all file data on the file with the highest resolution
   const primaryFile = scene.files.sort((a, b) => b.height - a.height)[0];
 
   const showDate = typeof scene.date !== "undefined" && !props.hideDate;
   const showDuration = !!primaryFile && !props.hideDuration;
-  const showResolution = !!primaryFile && !props.hideResolution;
 
   const date = showDate ? <span className="vsc-date">{scene.date}</span> : null;
 
@@ -17,20 +21,18 @@ const KeyData: React.FC<KeyDataProps> = ({ scene, ...props }) => {
     </span>
   ) : null;
 
-  const resolution = showResolution ? (
-    <span className="vsc-resolution">
-      {TextUtils.resolution(primaryFile.width, primaryFile.height)}
-    </span>
-  ) : null;
-
   // Render nothing if there is no data at all to render
-  if (!showDate && !showDuration && !showResolution) return null;
+  if (!showDate && !showDuration && !hideResolution) return null;
 
   return (
     <div className="vsc-key-data">
       {date}
       {duration}
-      {resolution}
+      <Resolution
+        file={primaryFile}
+        hideResolution={hideResolution}
+        resolutionIcon={props.resolutionIcon}
+      />
     </div>
   );
 };
