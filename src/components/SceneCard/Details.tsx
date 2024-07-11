@@ -1,4 +1,4 @@
-import { ISceneCardProps } from "../../../types/stashPlugin";
+import type { ISceneCardPropsExtended } from "../../../types/ValkyrSceneCards";
 import KeyData from "../KeyData";
 import Studio from "../Studio";
 import Title from "../Title";
@@ -6,8 +6,8 @@ import UserData from "../UserData";
 import "./Details.scss";
 const { React } = window.PluginApi;
 
-const Details: React.FC<SceneCardProps> = ({ config, scene }) => {
-  console.log(scene);
+const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
+  console.log(config, scene);
 
   return (
     <>
@@ -32,8 +32,3 @@ const Details: React.FC<SceneCardProps> = ({ config, scene }) => {
 };
 
 export default Details;
-
-interface SceneCardProps extends ISceneCardProps {
-  /** The user's plugin config. */
-  config: VSCFinalConfigMap;
-}
