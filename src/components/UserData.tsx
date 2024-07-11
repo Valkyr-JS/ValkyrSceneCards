@@ -1,4 +1,4 @@
-import Droplet from "../Icons/Droplet";
+import Droplet from "./Icons/Droplet";
 
 const { React } = window.PluginApi;
 const { Icon } = window.PluginApi.components;
