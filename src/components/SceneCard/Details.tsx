@@ -11,7 +11,7 @@ const Details: React.FC<SceneCardProps> = ({ config, scene }) => {
 
   return (
     <>
-      <div className="vsc-top-shelf">
+      <div className="vsc-top-line">
         <Studio
           hideParentStudio={config.hideParentStudio}
           parentStudioSeparator={config.parentStudioSeparator}

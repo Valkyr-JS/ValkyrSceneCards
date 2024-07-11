@@ -4,27 +4,27 @@ $column-gap: toRem(10);
 
 .valkyr-scene-card .card-section {
   display: grid;
-  grid-template-rows: [details-top top-shelf-top] auto [top-shelf-bottom title-top] auto [title-bottom key-info-top] auto [key-info-bottom description-top] auto [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
+  grid-template-rows: [details-top top-line-top] auto [top-line-bottom title-top] auto [title-bottom key-info-top] auto [key-info-bottom description-top] auto [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
 
   /* -------------------------------- Top shelf ------------------------------- */
-  .vsc-top-shelf {
+  .vsc-top-line {
     display: grid;
-    grid-template-columns: [top-shelf-start studio-start] 1fr [studio-end user-data-start] max-content [user-data-end top-shelf-end];
+    grid-template-columns: [top-line-start studio-start] 1fr [studio-end user-data-start] max-content [user-data-end top-line-end];
     column-gap: $column-gap;
     margin-bottom: 3px;
 
     font-size: var(--#{$prefix}-font-sm);
-    opacity: var(--#{$prefix}-top-shelf-opacity);
+    opacity: var(--#{$prefix}-top-line-opacity);
   }
 
   .vsc-studio {
     grid-column: studio-start / studio-end;
-    grid-row: top-shelf-top / top-shelf-bottom;
+    grid-row: top-line-top / top-line-bottom;
   }
 
   .vsc-user-data {
     grid-column: user-data-start / user-data-end;
-    grid-row: top-shelf-top / top-shelf-bottom;
+    grid-row: top-line-top / top-line-bottom;
 
     display: flex;
     column-gap: $column-gap;
@@ -40,9 +40,5 @@ $column-gap: toRem(10);
   /* ---------------------------------- Title --------------------------------- */
   .vsc-title {
     grid-row: title-top / title-bottom;
-
-    h5 {
-      font-size: var(--#{$prefix}-title-size);
-    }
   }
 }
