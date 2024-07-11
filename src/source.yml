@@ -8,6 +8,10 @@ ui:
   css:
     - ValkyrSceneCards.css
 settings:
+  durationPadding:
+    displayName: Pad duration timestamps
+    description: When enabled, the scene duration will be padded out to HH:MM:SS. For example, 6:37 would appear as 00:06:37.
+    type: BOOLEAN
   hideDate:
     displayName: Hide date
     description: When enabled, the scene date will not be displayed.

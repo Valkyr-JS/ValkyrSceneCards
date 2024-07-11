@@ -3,6 +3,9 @@ import type { ISceneCardProps } from "./stashPlugin";
 /** Stash only creates config items when they are changed. By default they are
  * `undefined`. */
 interface VSCConfigMap {
+  /** When enabled, the scene duration will be padded out to HH:MM:SS. For
+   * example, 6:37 would appear as 00:06:37. */
+  durationPadding?: boolean;
   /** When enabled, the scene date will not be displayed. */
   hideDate?: boolean;
   /** When enabled, the scene duration will not be displayed. */
@@ -36,6 +39,7 @@ interface VSCConfigResult extends ConfigResult {
 
 /** Matches `VSCConfigMap` but with certain properties made required. */
 interface VSCFinalConfigMap extends VSCConfigMap {
+  durationPadding: boolean;
   hideDate: boolean;
   hideDuration: boolean;
   hideOCount: boolean;

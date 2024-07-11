@@ -18,6 +18,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       qConfig.data.configuration.plugins.ValkyrSceneCards;
 
     const config: VSCFinalConfigMap = {
+      durationPadding: userConfig.durationPadding ?? false,
       hideDate: userConfig.hideDate ?? false,
       hideDuration: userConfig.hideDuration ?? false,
       hideOCount: userConfig.hideOCount ?? false,
