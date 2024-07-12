@@ -24,6 +24,10 @@ settings:
     displayName: Hide description
     description: When enabled, the scene description will not be displayed.
     type: BOOLEAN
+  hideDirector:
+    displayName: Hide director
+    description: When enabled, the scene director will not be displayed.
+    type: BOOLEAN
   hideDuration:
     displayName: Hide duration
     description: When enabled, the scene duration will not be displayed.
