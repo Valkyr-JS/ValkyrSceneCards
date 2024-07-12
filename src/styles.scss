@@ -9,9 +9,14 @@
     display: none !important;
   }
 
-  // Hide hardcoded title. Title will be recreated.
-  .card-section > a:first-child {
-    display: none !important;
+  .card-section {
+    // Match native top padding
+    padding-bottom: 0.5rem;
+
+    // Hide hardcoded title. Title will be recreated.
+    & > a:first-child {
+      display: none !important;
+    }
   }
 
   .fa-icon {
