@@ -26,8 +26,9 @@
 }
 
 :root {
+  --#{$prefix}-director-link-color: #{$stash-link-color};
   --#{$prefix}-font-sm: #{toRem(12)};
-  --#{$prefix}-resolution-icon-bg-color: #{$body-color};
-  --#{$prefix}-resolution-icon-color: #{$card-bg};
+  --#{$prefix}-resolution-icon-bg-color: #{$stash-body-color};
+  --#{$prefix}-resolution-icon-color: #{$stash-card-bg};
   --#{$prefix}-top-line-opacity: #{0.8};
 }
