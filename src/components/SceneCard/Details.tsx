@@ -1,4 +1,5 @@
 import type { ISceneCardPropsExtended } from "../../../types/ValkyrSceneCards";
+import Description from "../Description";
 import KeyData from "../KeyData";
 import Studio from "../Studio";
 import Title from "../Title";
@@ -32,6 +33,11 @@ const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
         hideDuration={config.hideDuration}
         hideResolution={config.hideResolution}
         resolutionIcon={config.resolutionIcon}
+        scene={scene}
+      />
+      <Description
+        descriptionMaxLines={config.descriptionMaxLines}
+        hideDescription={config.hideDescription}
         scene={scene}
       />
     </>
