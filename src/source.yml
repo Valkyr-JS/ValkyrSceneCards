@@ -8,6 +8,10 @@ ui:
   css:
     - ValkyrSceneCards.css
 settings:
+  descriptionMaxLines:
+    displayName: Description max line length
+    description: Set the maximum number of lines that a scene description can fill before being truncated. Default is 3.
+    type: NUMBER
   durationPadding:
     displayName: Pad duration timestamps
     description: When enabled, the scene duration will be padded out to HH:MM:SS. For example, 6:37 would appear as 00:06:37.
@@ -15,6 +19,10 @@ settings:
   hideDate:
     displayName: Hide date
     description: When enabled, the scene date will not be displayed.
+    type: BOOLEAN
+  hideDescription:
+    displayName: Hide description
+    description: When enabled, the scene description will not be displayed.
     type: BOOLEAN
   hideDuration:
     displayName: Hide duration

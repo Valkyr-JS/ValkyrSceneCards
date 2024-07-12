@@ -2,10 +2,12 @@
 @import "../../scss";
 
 $column-gap: toRem(10);
+$row-gap: toRem(10);
 
 .valkyr-scene-card .card-section {
   display: grid;
-  grid-template-rows: [details-top top-line-top] auto [top-line-bottom title-top] auto [title-bottom key-data-top] auto [key-data-bottom description-top] auto [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
+  grid-template-rows: [details-top top-line-top] auto [top-line-bottom title-top] auto [title-bottom key-data-top] auto [key-data-bottom description-top] 1fr [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
+  height: 100%;
 
   /* -------------------------------- Top line -------------------------------- */
   .vsc-top-line {
@@ -51,6 +53,7 @@ $column-gap: toRem(10);
 
     display: flex;
     column-gap: $column-gap;
+    margin-top: 3px;
 
     font-size: var(--#{$prefix}-font-sm);
   }
@@ -64,6 +67,24 @@ $column-gap: toRem(10);
       font-weight: 900;
       user-select: none;
     }
+  }
+
+  /* ------------------------------- Description ------------------------------ */
+
+  // Fill available space to match card heights
+  .vsc-description {
+    flex-grow: 1;
+  }
+
+  .vsc-description-inner {
+    // Limit number of lines
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: pre-line;
+
+    margin-top: $row-gap;
+    margin-bottom: $row-gap;
   }
 }
 

@@ -3,11 +3,16 @@ import type { ISceneCardProps } from "./stashPlugin";
 /** Stash only creates config items when they are changed. By default they are
  * `undefined`. */
 interface VSCConfigMap {
+  /** Set the maximum number of lines that a scene description can fill before
+   * being truncated. Default is 3. */
+  descriptionMaxLines?: number;
   /** When enabled, the scene duration will be padded out to HH:MM:SS. For
    * example, 6:37 would appear as 00:06:37. */
   durationPadding?: boolean;
   /** When enabled, the scene date will not be displayed. */
   hideDate?: boolean;
+  /** When enabled, the scene description will not be displayed. */
+  hideDescription?: boolean;
   /** When enabled, the scene duration will not be displayed. */
   hideDuration?: boolean;
   /** When enabled, the scene O count and icon will not be displayed. */
@@ -39,8 +44,10 @@ interface VSCConfigResult extends ConfigResult {
 
 /** Matches `VSCConfigMap` but with certain properties made required. */
 interface VSCFinalConfigMap extends VSCConfigMap {
+  descriptionMaxLines: number;
   durationPadding: boolean;
   hideDate: boolean;
+  hideDescription: boolean;
   hideDuration: boolean;
   hideOCount: boolean;
   hideOrganized: boolean;
