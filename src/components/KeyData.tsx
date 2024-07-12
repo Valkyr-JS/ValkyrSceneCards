@@ -1,9 +1,10 @@
 import TextUtils from "../helpers/text";
-import Resolution from "./Resolution";
+import ResolutionIcon from "./ResolutionIcon";
 const { React } = window.PluginApi;
 
 const KeyData: React.FC<KeyDataProps> = ({
   hideResolution,
+  resolutionIcon,
   scene,
   ...props
 }) => {
@@ -12,8 +13,24 @@ const KeyData: React.FC<KeyDataProps> = ({
 
   const showDate = typeof scene.date !== "undefined" && !props.hideDate;
   const showDuration = !!primaryFile && !props.hideDuration;
+  const showResolution = !!primaryFile && !hideResolution;
 
+  // Render nothing if there is no data at all to render
+  if (!showDate && !showDuration && hideResolution) return null;
+
+  // Date
   const date = showDate ? <span className="vsc-date">{scene.date}</span> : null;
+
+  // Resolution
+  const showResolutionAsIcon = showResolution && resolutionIcon;
+  const showResolutionAsText = showResolution && !resolutionIcon;
+  const resolutionText = showResolutionAsText ? (
+    <span className="vsc-resolution">
+      {TextUtils.resolution(primaryFile.width, primaryFile.height)}
+    </span>
+  ) : null;
+
+  // Duration
   let duration: React.JSX.Element | null = null;
 
   if (showDuration) {
@@ -31,18 +48,12 @@ const KeyData: React.FC<KeyDataProps> = ({
     duration = <span className="vsc-duration">{timestamp}</span>;
   }
 
-  // Render nothing if there is no data at all to render
-  if (!showDate && !showDuration && hideResolution) return null;
-
   return (
     <div className="vsc-key-data">
-      <Resolution
-        file={primaryFile}
-        hideResolution={hideResolution}
-        resolutionIcon={props.resolutionIcon}
-      />
+      <ResolutionIcon file={primaryFile} hide={!showResolutionAsIcon} />
       {date}
       {duration}
+      {resolutionText}
     </div>
   );
 };
