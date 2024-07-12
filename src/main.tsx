@@ -22,6 +22,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       durationPadding: userConfig.durationPadding ?? false,
       hideDate: userConfig.hideDate ?? false,
       hideDescription: userConfig.hideDescription ?? false,
+      hideDirector: userConfig.hideDirector ?? false,
       hideDuration: userConfig.hideDuration ?? false,
       hideOCount: userConfig.hideOCount ?? false,
       hideOrganized: userConfig.hideOrganized ?? false,

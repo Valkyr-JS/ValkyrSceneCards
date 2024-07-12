@@ -1,5 +1,6 @@
 import type { ISceneCardPropsExtended } from "../../../types/ValkyrSceneCards";
 import Description from "../Description";
+import Director from "../Director";
 import KeyData from "../KeyData";
 import Studio from "../Studio";
 import Title from "../Title";
@@ -40,6 +41,7 @@ const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
         hideDescription={config.hideDescription}
         scene={scene}
       />
+      <Director hideDirector={config.hideDirector} scene={scene} />
     </>
   );
 };

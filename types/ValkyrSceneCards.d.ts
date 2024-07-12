@@ -13,6 +13,8 @@ interface VSCConfigMap {
   hideDate?: boolean;
   /** When enabled, the scene description will not be displayed. */
   hideDescription?: boolean;
+  /** When enabled, the scene director will not be displayed. */
+  hideDirector?: boolean;
   /** When enabled, the scene duration will not be displayed. */
   hideDuration?: boolean;
   /** When enabled, the scene O count and icon will not be displayed. */
@@ -48,6 +50,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   durationPadding: boolean;
   hideDate: boolean;
   hideDescription: boolean;
+  hideDirector: boolean;
   hideDuration: boolean;
   hideOCount: boolean;
   hideOrganized: boolean;
