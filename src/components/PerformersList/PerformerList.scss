@@ -62,5 +62,9 @@
   display: flex;
   justify-content: center;
   column-gap: $column-gap;
+}
+
+.vsc-performer-text-list-popover-data,
+.vsc-performer-text-list-popover-name {
   margin-top: 3px;
 }
