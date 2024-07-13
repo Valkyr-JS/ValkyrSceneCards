@@ -87,14 +87,6 @@ $row-gap: toRem(10);
     margin-bottom: $row-gap;
   }
 
-  /* -------------------------------- Director -------------------------------- */
-
-  .vsc-director {
-    a {
-      color: var(--#{$prefix}-director-link-color);
-    }
-  }
-
   /* ------------------------------- Performers ------------------------------- */
 
   .vsc-performer {

@@ -1,7 +1,6 @@
 @import "./scss";
 
 :root {
-  --#{$prefix}-director-link-color: #{$stash-link-color};
   --#{$prefix}-font-sm: #{toRem(12)};
   --#{$prefix}-performer-link-color: #{$stash-link-color};
   --#{$prefix}-resolution-icon-bg-color: #{$stash-body-color};
