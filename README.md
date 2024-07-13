@@ -47,3 +47,30 @@ You can use a custom image for each performer's avatar with some setup.
 7. Tag each image with the tag you created, and also tag the associated performer.
 
 Returning to any page with scene cards, you should see the performer list now shows your custom images for the performers that you have made them for. If custom images haven't been created for certain performers, they will fallback to default images, or profile images if you have enabled them.
+
+## Styling
+
+I've tried to minimize the amount of theme-based styling such as colors, font appearance, etc. so that the cards are as compatible with theme plugins as possible straight out of the box. Where this couldn't be achieved, I've used CSS variables for easier styling. They have the following default values;
+
+```
+:root {
+    --vsc-font-sm: 12px;
+    --vsc-performer-avatar-bg-color: rgba(0, 0, 0, 0.6);
+    --vsc-performer-avatar-initials-size: 18px;
+    --vsc-performer-avatar-size: 60px;
+    --vsc-resolution-icon-bg-color: #f5f8fa;
+    --vsc-resolution-icon-color: #30404d;
+    --vsc-top-line-opacity: 0.8;
+    --vsc-gender-color--female: #f38cac;
+    --vsc-gender-color--intersex: #c8a2c8;
+    --vsc-gender-color--male: #89cff0;
+    --vsc-gender-color--nonbinary: #c8a2c8;
+    --vsc-gender-color--transfemale: #c8a2c8;
+    --vsc-gender-color--transmale: #c8a2c8;
+    --vsc-gender-color--unknown: #f5f8fa;
+}
+```
+
+To adapt them, copy and paste the above into Settings > Interface > Custom CSS (make sure the _Custom CSS enabled_ option is on), then change the values as needed. This will override the default values.
+
+If other variables are required, please [raise an issue on the Github page](https://github.com/Valkyr-JS/ValkyrSceneCards/issues). Variables will only be created where benficial. For example, this plugin does not change the card's `border-radius`, so adding a variable here serves no purpose.
