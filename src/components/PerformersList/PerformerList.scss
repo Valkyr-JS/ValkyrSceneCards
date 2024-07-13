@@ -3,6 +3,8 @@
 
 .valkyr-scene-card {
   .vsc-performers-list {
+    margin-top: $row-gap;
+
     &__avatars {
       list-style: none;
       padding-left: 0;
