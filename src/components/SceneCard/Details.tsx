@@ -40,6 +40,7 @@ const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
         hideDescription={config.hideDescription}
         scene={scene}
       />
+      <Director hideDirector={config.hideDirector} scene={scene} />
       <PerformersTextList
         hidePerformerHoverAge={config.hidePerformerHoverAge}
         hidePerformerHoverImage={config.hidePerformerHoverImage}
@@ -47,7 +48,6 @@ const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
         performerGenderColors={config.performerGenderColors}
         scene={scene}
       />
-      <Director hideDirector={config.hideDirector} scene={scene} />
     </>
   );
 };
