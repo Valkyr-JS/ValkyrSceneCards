@@ -15,33 +15,33 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
   const configLoaded = !qConfig.loading;
 
   if (configLoaded) {
-    const userConfig: VSCConfigMap =
+    const userConfig: VSCConfigMap | undefined =
       qConfig.data.configuration.plugins.ValkyrSceneCards;
 
     const config: VSCFinalConfigMap = {
-      descriptionMaxLines: userConfig.descriptionMaxLines || 3, // If config returns undefined or 0, set to default
-      durationPadding: userConfig.durationPadding ?? false,
-      hideDate: userConfig.hideDate ?? false,
-      hideDescription: userConfig.hideDescription ?? false,
-      hideDirector: userConfig.hideDirector ?? false,
-      hideDuration: userConfig.hideDuration ?? false,
-      hideOCount: userConfig.hideOCount ?? false,
-      hideOrganized: userConfig.hideOrganized ?? false,
-      hidePlayCount: userConfig.hidePlayCount ?? false,
-      hideParentStudio: userConfig.hideParentStudio ?? false,
-      hidePerformer: userConfig.hidePerformer ?? false,
-      hidePerformerHoverAge: userConfig.hidePerformerHoverAge ?? false,
-      hidePerformerHoverImage: userConfig.hidePerformerHoverImage ?? false,
+      descriptionMaxLines: userConfig?.descriptionMaxLines || 3, // If config returns undefined or 0, set to default
+      durationPadding: userConfig?.durationPadding ?? false,
+      hideDate: userConfig?.hideDate ?? false,
+      hideDescription: userConfig?.hideDescription ?? false,
+      hideDirector: userConfig?.hideDirector ?? false,
+      hideDuration: userConfig?.hideDuration ?? false,
+      hideOCount: userConfig?.hideOCount ?? false,
+      hideOrganized: userConfig?.hideOrganized ?? false,
+      hidePlayCount: userConfig?.hidePlayCount ?? false,
+      hideParentStudio: userConfig?.hideParentStudio ?? false,
+      hidePerformer: userConfig?.hidePerformer ?? false,
+      hidePerformerHoverAge: userConfig?.hidePerformerHoverAge ?? false,
+      hidePerformerHoverImage: userConfig?.hidePerformerHoverImage ?? false,
       hidePerformerHoverNationality:
-        userConfig.hidePerformerHoverNationality ?? false,
-      hideResolution: userConfig.hideResolution ?? false,
-      hideZeroValueData: userConfig.hideZeroValueData ?? false,
-      parentStudioSeparator: userConfig.parentStudioSeparator,
-      performerAvatars: userConfig.performerAvatars ?? false,
-      performerAvatarsCustomTag: userConfig.performerAvatarsCustomTag,
-      performerAvatarsProfile: userConfig.performerAvatarsProfile ?? false,
-      performerGenderColors: userConfig.performerGenderColors ?? false,
-      resolutionIcon: userConfig.resolutionIcon ?? false,
+        userConfig?.hidePerformerHoverNationality ?? false,
+      hideResolution: userConfig?.hideResolution ?? false,
+      hideZeroValueData: userConfig?.hideZeroValueData ?? false,
+      parentStudioSeparator: userConfig?.parentStudioSeparator,
+      performerAvatars: userConfig?.performerAvatars ?? false,
+      performerAvatarsCustomTag: userConfig?.performerAvatarsCustomTag,
+      performerAvatarsProfile: userConfig?.performerAvatarsProfile ?? false,
+      performerGenderColors: userConfig?.performerGenderColors ?? false,
+      resolutionIcon: userConfig?.resolutionIcon ?? false,
     };
 
     // Fetch additional data as needed
