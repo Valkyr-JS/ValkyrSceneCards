@@ -3,6 +3,9 @@
 
 :root {
   --#{$prefix}-font-sm: #{toRem(12)};
+  --#{$prefix}-performer-avatar-bg-color: #{rgba(0, 0, 0, 0.6)};
+  --#{$prefix}-performer-avatar-initials-size: #{toRem(18)};
+  --#{$prefix}-performer-avatar-size: #{$performer-avatar-size};
   --#{$prefix}-performer-link-color: #{$stash-link-color};
   --#{$prefix}-resolution-icon-bg-color: #{$stash-body-color};
   --#{$prefix}-resolution-icon-color: #{$stash-card-bg};

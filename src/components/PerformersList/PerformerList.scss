@@ -1,7 +1,51 @@
+@use "sass:math";
 @import "../../scss";
 
 .valkyr-scene-card {
   .vsc-performers-list {
+    &__avatars {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0;
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: math.div($column-gap, 2);
+
+      .vsc-performer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: var(--#{$prefix}-performer-avatar-size);
+        width: var(--#{$prefix}-performer-avatar-size);
+        border-radius: 50%;
+
+        background-color: var(--#{$prefix}-performer-avatar-bg-color);
+
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          font-size: var(--#{$prefix}-performer-avatar-initials-size);
+          font-weight: 700;
+        }
+
+        svg {
+          position: absolute;
+          margin: 0;
+          font-size: calc(var(--#{$prefix}-performer-avatar-size) * 0.6);
+          opacity: 0.2;
+        }
+
+        .fa-venus {
+          // Icon for some reason isn't lined up correctly
+          margin-left: 2.25px;
+        }
+      }
+    }
+
     &__text {
       & > div {
         display: inline;
