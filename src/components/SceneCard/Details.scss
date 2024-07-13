@@ -94,6 +94,12 @@ $row-gap: toRem(10);
       color: var(--#{$prefix}-director-link-color);
     }
   }
+
+  /* ------------------------------- Performers ------------------------------- */
+
+  .vsc-performer {
+    color: var(--#{$prefix}-performer-link-color);
+  }
 }
 
 /* ----------------------------- Hover popovers ----------------------------- */

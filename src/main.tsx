@@ -31,6 +31,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       hideResolution: userConfig.hideResolution ?? false,
       hideZeroValueData: userConfig.hideZeroValueData ?? false,
       parentStudioSeparator: userConfig.parentStudioSeparator,
+      performerGenderColors: userConfig.performerGenderColors ?? false,
       resolutionIcon: userConfig.resolutionIcon ?? false,
     };
 

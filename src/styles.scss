@@ -33,7 +33,44 @@
 :root {
   --#{$prefix}-director-link-color: #{$stash-link-color};
   --#{$prefix}-font-sm: #{toRem(12)};
+  --#{$prefix}-performer-link-color: #{$stash-link-color};
   --#{$prefix}-resolution-icon-bg-color: #{$stash-body-color};
   --#{$prefix}-resolution-icon-color: #{$stash-card-bg};
   --#{$prefix}-top-line-opacity: #{0.8};
+
+  --#{$prefix}-gender-color--female: #{$stash-gender-female};
+  --#{$prefix}-gender-color--intersex: #{$stash-gender-intersex};
+  --#{$prefix}-gender-color--male: #{$stash-gender-male};
+  --#{$prefix}-gender-color--nonbinary: #{$stash-gender-nonbinary};
+  --#{$prefix}-gender-color--transfemale: #{$stash-gender-transfemale};
+  --#{$prefix}-gender-color--transmale: #{$stash-gender-transmale};
+  --#{$prefix}-gender-color--unknown: #{$stash-gender-unknown};
+}
+
+.vsc-gender-color--female {
+  color: var(--#{$prefix}-gender-color--female) !important;
+}
+
+.vsc-gender-color--intersex {
+  color: var(--#{$prefix}-gender-color--intersex) !important;
+}
+
+.vsc-gender-color--male {
+  color: var(--#{$prefix}-gender-color--male) !important;
+}
+
+.vsc-gender-color--nonbinary {
+  color: var(--#{$prefix}-gender-color--nonbinary) !important;
+}
+
+.vsc-gender-color--transfemale {
+  color: var(--#{$prefix}-gender-color--transfemale) !important;
+}
+
+.vsc-gender-color--transmale {
+  color: var(--#{$prefix}-gender-color--transmale) !important;
+}
+
+.vsc-gender-color--unknown {
+  color: var(--#{$prefix}-gender-color--unknown) !important;
 }
