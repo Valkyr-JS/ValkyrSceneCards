@@ -1,3 +1,4 @@
+import { ISceneCardProps } from "../types/stashPlugin";
 import type {
   ISceneCardPropsExtended,
   VSCConfigMap,
@@ -123,6 +124,18 @@ PluginApi.patch.instead("SceneCard.Overlays", function () {
 });
 
 // Remove popovers
-PluginApi.patch.instead("SceneCard.Popovers", function () {
-  return [];
+PluginApi.patch.instead("SceneCard.Popovers", function (props, _, Original) {
+  // Remove certain data from the original so that data that already exists
+  // elsewhere isn't displayed.
+  const amendedProps: ISceneCardProps = {
+    ...props,
+    scene: {
+      ...props.scene,
+      performers: [],
+      o_counter: undefined,
+      organized: false,
+    },
+  };
+
+  return [<Original {...amendedProps} />];
 });
