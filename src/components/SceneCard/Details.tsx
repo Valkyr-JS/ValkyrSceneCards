@@ -42,6 +42,7 @@ const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
       />
       <Director hideDirector={config.hideDirector} scene={scene} />
       <PerformersTextList
+        hidePerformer={config.hidePerformer}
         hidePerformerHoverAge={config.hidePerformerHoverAge}
         hidePerformerHoverImage={config.hidePerformerHoverImage}
         hidePerformerHoverNationality={config.hidePerformerHoverNationality}
