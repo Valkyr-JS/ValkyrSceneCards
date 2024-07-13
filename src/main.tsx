@@ -137,5 +137,27 @@ PluginApi.patch.instead("SceneCard.Popovers", function (props, _, Original) {
     },
   };
 
+  // @ts-ignore - Fallback for movies if user is on 0.26.x or lower
+  const groups = amendedProps.scene.groups ?? amendedProps.scene.movies;
+
+  /** If no relevant data is available that would render the footer, render an
+   * empty one in order to keep alignment consistent. See
+   * https://github.com/stashapp/stash/blob/develop/ui/v2.5/src/components/Scenes/SceneCard.tsx#L277
+   * for reference. */
+  if (
+    !amendedProps.compact &&
+    amendedProps.scene.tags.length === 0 &&
+    groups.length === 0 &&
+    amendedProps.scene.scene_markers.length === 0 &&
+    amendedProps.scene.galleries.length === 0
+  ) {
+    return [
+      <>
+        <hr />
+        <div className="card-popovers"></div>
+      </>,
+    ];
+  }
+
   return [<Original {...amendedProps} />];
 });
