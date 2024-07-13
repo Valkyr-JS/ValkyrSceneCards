@@ -32,7 +32,7 @@ const PerformersTextList: React.FC<PerformersTextListProps> = ({
           if (isOneBeforeLast) suffix += "and ";
         }
         return (
-          <PerformerPopover performer={pf}>
+          <PerformerPopover performer={pf} sceneDate={scene.date}>
             <a href={`/performers/${pf.id}`} className={classes}>
               <span>{pf.name}</span>
             </a>
@@ -59,16 +59,32 @@ const PerformerPopover: React.FC<PerformersPopover> = ({
 }) => {
   const showAge = !!performer.birthdate;
   const age = showAge ? (
-    <span>{TextUtils.age(performer.birthdate)}</span>
+    <span>{TextUtils.age(performer.birthdate, props.sceneDate)}</span>
   ) : null;
+
+  const content = (
+    <div className="performer-tag-container row">
+      <a
+        href={`/performers/${performer.id}`}
+        className="performer-tag col m-auto"
+      >
+        <img
+          className="image-thumbnail"
+          alt={performer.name ?? ""}
+          src={performer.image_path ?? ""}
+        />
+      </a>
+      <div>
+        {"("}
+        {age}
+        {")"}
+      </div>
+    </div>
+  );
 
   if (showAge) {
     return (
-      <HoverPopover
-        content={<span className="vsc-text-hover">{age}</span>}
-        leaveDelay={100}
-        placement="top"
-      >
+      <HoverPopover content={content} leaveDelay={100} placement="top">
         {props.children}
       </HoverPopover>
     );
@@ -78,4 +94,5 @@ const PerformerPopover: React.FC<PerformersPopover> = ({
 
 interface PerformersPopover extends React.PropsWithChildren {
   performer: Performer;
+  sceneDate: Scene["date"];
 }
