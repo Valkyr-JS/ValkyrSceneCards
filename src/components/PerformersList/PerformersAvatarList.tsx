@@ -38,7 +38,9 @@ const PerformersAvatarList: React.FC<PerformersAvatarListProps> = ({
               hidePerformerHoverNationality={
                 props.hidePerformerHoverNationality
               }
+              hidePerformerHoverName={false}
               performer={pf}
+              performerGenderColors={props.performerGenderColors}
               sceneDate={scene.date}
             >
               <a href={`/performers/${pf.id}`}>

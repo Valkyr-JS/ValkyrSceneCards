@@ -41,7 +41,9 @@ const PerformersTextList: React.FC<PerformersTextListProps> = ({
             hidePerformerHoverAge={props.hidePerformerHoverAge}
             hidePerformerHoverImage={props.hidePerformerHoverImage}
             hidePerformerHoverNationality={props.hidePerformerHoverNationality}
+            hidePerformerHoverName={true}
             performer={pf}
+            performerGenderColors={props.performerGenderColors}
             sceneDate={scene.date}
           >
             <a href={`/performers/${pf.id}`} className={classes}>
