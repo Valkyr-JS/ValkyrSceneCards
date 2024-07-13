@@ -1,6 +1,7 @@
 import { default as cx } from "classnames";
 import { sortPerformers } from "../../helpers";
 import TextUtils from "../../helpers/text";
+import "./PerformerList.scss";
 
 const { React } = window.PluginApi;
 const { HoverPopover } = window.PluginApi.components;
@@ -59,8 +60,24 @@ const PerformerPopover: React.FC<PerformersPopover> = ({
 }) => {
   const showAge = !!performer.birthdate;
   const age = showAge ? (
-    <span>{TextUtils.age(performer.birthdate, props.sceneDate)}</span>
+    <span className="vsc-performer-age">
+      {TextUtils.age(performer.birthdate, props.sceneDate)}
+      {" years old"}
+    </span>
   ) : null;
+
+  const showFlag = !!performer.country;
+  const flag = showFlag ? (
+    <span className={`fi fi-${performer.country?.toLowerCase()}`}></span>
+  ) : null;
+
+  const showData =
+    showFlag || showAge ? (
+      <div className="vsc-performer-text-list-popover-data">
+        {flag}
+        {age}
+      </div>
+    ) : null;
 
   const content = (
     <div className="performer-tag-container row">
@@ -74,15 +91,11 @@ const PerformerPopover: React.FC<PerformersPopover> = ({
           src={performer.image_path ?? ""}
         />
       </a>
-      <div>
-        {"("}
-        {age}
-        {")"}
-      </div>
+      {showData}
     </div>
   );
 
-  if (showAge) {
+  if (showData) {
     return (
       <HoverPopover content={content} leaveDelay={100} placement="top">
         {props.children}

@@ -82,18 +82,4 @@
     margin-top: $row-gap;
     margin-bottom: $row-gap;
   }
-
-  /* ------------------------------- Performers ------------------------------- */
-
-  .vsc-performers-list {
-    &__text {
-      & > div {
-        display: inline;
-      }
-    }
-  }
-
-  .vsc-performer {
-    color: var(--#{$prefix}-performer-link-color);
-  }
 }

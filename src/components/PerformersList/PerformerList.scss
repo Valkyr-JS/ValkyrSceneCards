@@ -1,0 +1,21 @@
+@import "../../scss";
+
+.valkyr-scene-card {
+  .vsc-performers-list {
+    &__text {
+      & > div {
+        display: inline;
+      }
+    }
+  }
+
+  .vsc-performer {
+    color: var(--#{$prefix}-performer-link-color);
+  }
+}
+
+.vsc-performer-text-list-popover-data {
+  display: flex;
+  justify-content: center;
+  column-gap: $column-gap;
+}
