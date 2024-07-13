@@ -44,7 +44,11 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
     };
 
     // Fetch additional data as needed
-    const extendedProps: ISceneCardPropsExtended = { ...props, config };
+    const extendedProps: ISceneCardPropsExtended = {
+      ...props,
+      config,
+      customAvatars: [],
+    };
 
     // Performer data
     if (!!extendedProps.scene.performers) {
@@ -60,8 +64,6 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
           ...extendedProps.scene,
           performers: performersData.data.findPerformers.performers,
         };
-
-      console.log(extendedProps);
     }
 
     // Studio data
@@ -78,6 +80,27 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
             ...studioData.data.findStudio,
           },
         };
+    }
+
+    // Custom avatars
+    if (config.performerAvatars && !!config.performerAvatarsCustomTag) {
+      const avatarData = GQL.useFindImagesQuery({
+        variables: {
+          image_filter: {
+            performers: {
+              modifier: CriterionModifier.Includes,
+              value: extendedProps.scene.performers.map((pf) => pf.id),
+            },
+            tags: {
+              modifier: CriterionModifier.Includes,
+              value: [config.performerAvatarsCustomTag],
+            },
+          },
+        },
+      });
+
+      if (!!avatarData.data)
+        extendedProps.customAvatars = avatarData.data.findImages.images;
     }
 
     return [

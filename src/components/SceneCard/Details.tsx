@@ -10,7 +10,11 @@ import UserData from "../UserData";
 import "./Details.scss";
 const { React } = window.PluginApi;
 
-const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
+const Details: React.FC<ISceneCardPropsExtended> = ({
+  config,
+  scene,
+  ...props
+}) => {
   return (
     <>
       <div className="vsc-top-line">
@@ -57,10 +61,10 @@ const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
         hidePerformerHoverImage={config.hidePerformerHoverImage}
         hidePerformerHoverNationality={config.hidePerformerHoverNationality}
         performerAvatars={config.performerAvatars}
-        performerAvatarsCustomTag={config.performerAvatarsCustomTag}
         performerAvatarsProfile={config.performerAvatarsProfile}
         performerGenderColors={config.performerGenderColors}
         scene={scene}
+        sceneCustomAvatars={props.customAvatars}
       />
     </>
   );
