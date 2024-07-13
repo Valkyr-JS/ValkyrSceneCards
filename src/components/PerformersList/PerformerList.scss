@@ -20,6 +20,7 @@
         height: var(--#{$prefix}-performer-avatar-size);
         width: var(--#{$prefix}-performer-avatar-size);
         border-radius: 50%;
+        overflow: hidden;
 
         background-color: var(--#{$prefix}-performer-avatar-bg-color);
 
@@ -39,9 +40,32 @@
           opacity: 0.2;
         }
 
+        // Required to object-fit avatar image
+        > div {
+          width: 100%;
+          height: 100%;
+        }
+
         .fa-venus {
           // Icon for some reason isn't lined up correctly
           margin-left: 2.25px;
+        }
+
+        .vsc-performer-avatar {
+          height: 100%;
+
+          // Do not set height for image avatars as for some reason it causes
+          // pixelation here.
+          &--profile {
+            height: auto;
+          }
+
+          img {
+            object-fit: cover;
+            object-position: top;
+            height: 100%;
+            width: 100%;
+          }
         }
       }
     }
