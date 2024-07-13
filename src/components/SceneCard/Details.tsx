@@ -53,6 +53,9 @@ const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
       />
       <PerformersAvatarList
         hidePerformer={config.hidePerformer}
+        hidePerformerHoverAge={config.hidePerformerHoverAge}
+        hidePerformerHoverImage={config.hidePerformerHoverImage}
+        hidePerformerHoverNationality={config.hidePerformerHoverNationality}
         performerAvatars={config.performerAvatars}
         performerAvatarsCustomTag={config.performerAvatarsCustomTag}
         performerAvatarsProfile={config.performerAvatarsProfile}

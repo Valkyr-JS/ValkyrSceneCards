@@ -1,4 +1,7 @@
+import { getPerformerGenderIcon, sortPerformers } from "../../helpers";
+import PerformerPopover from "../PerformerPopover";
 const { React } = window.PluginApi;
+const { Icon } = window.PluginApi.components;
 
 const PerformersAvatarList: React.FC<PerformersAvatarListProps> = ({
   scene,
@@ -13,9 +16,39 @@ const PerformersAvatarList: React.FC<PerformersAvatarListProps> = ({
   )
     return null;
 
+  const sortedPerformers = sortPerformers(scene.performers);
+
   return (
     <ul className="vsc-performers-list vsc-performers-list__avatars">
-      <li>Avatar 1</li>
+      {sortedPerformers.map((pf) => {
+        // Create the performer's initials, splitting at hyphens and spaces
+        const names = pf.name.split("-").join(" ").split(" ");
+        let initials = "";
+        names.forEach((n) => {
+          initials += n.split("")[0];
+        });
+
+        // Get the appropriate gender icon
+        const genderIcon = getPerformerGenderIcon(pf.gender);
+        return (
+          <li className="vsc-performer">
+            <PerformerPopover
+              hidePerformerHoverAge={props.hidePerformerHoverAge}
+              hidePerformerHoverImage={props.hidePerformerHoverImage}
+              hidePerformerHoverNationality={
+                props.hidePerformerHoverNationality
+              }
+              performer={pf}
+              sceneDate={scene.date}
+            >
+              <a href={`/performers/${pf.id}`}>
+                <span>{initials}</span>
+                {!!genderIcon ? <Icon icon={genderIcon} /> : null}
+              </a>
+            </PerformerPopover>
+          </li>
+        );
+      })}
     </ul>
   );
 };
@@ -25,6 +58,15 @@ export default PerformersAvatarList;
 interface PerformersAvatarListProps {
   /** When `true`, the list of performers will not be displayed. */
   hidePerformer: boolean;
+  /** When `true`, the performer's age will not be displayed when hovering over
+   * their name or avatar. */
+  hidePerformerHoverAge: boolean;
+  /** When `true`, the performer's image will not be displayed when hovering
+   * over their name or avatar. */
+  hidePerformerHoverImage: boolean;
+  /** When `true`, the performer's nationality will not be displayed when
+   * hovering over their name or avatar. */
+  hidePerformerHoverNationality: boolean;
   /** When `true`, the performer list will be rendered as a set of avatars
    * rather than as a text list. */
   performerAvatars: boolean;
