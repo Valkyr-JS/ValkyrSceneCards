@@ -1,2 +1,49 @@
-# ValkyrSceneCards
-A rework of the scene cards for Stash.
+# Valkyr Scene Cards
+
+A rework of the scene card component for Stash.
+
+## Requirements
+
+To use this plugin you must be running version 0.26 or higher of Stash. No other dependencies are required.
+
+## Installation
+
+1. In Stash go to Settings > Plugins.
+2. Under _Available Plugins_ click the _Add Source_ button.
+3. Fill out the fields in the popup form. The Name and Local Path fields can be whatever you like, but Source URL needs to match the URL below. I recommend the following;
+   - Name: Valkyr-JS
+   - Source URL: https://valkyr-js.github.io/stash-plugins/index.yml
+   - Local Path: Valkyr-JS
+4. Click confirm and you should see a new line under _Available Plugins_ called "Valkyr-JS" (or whatever you entered for Name in the popup). Click this and you'll see my available plugins.
+5. Check the _Valkyr Scene Cards_ checkbox and then click Install in the top right of _Avaialable Plugins_.
+6. (Optional) Configure the plugin via the _Plugins_ panel below _Available Plugins_. For example, to enable to the performer gender colors, under _Valkyr Scene Cards_ toggle _Display performer names in gender colors_ on.
+7. Go to the scenes page or home page and you should see the cards styled differently. You may need to refresh the page to see the changes.
+
+## Performer avatar setup
+
+By default, the plugin displays scene performers in text. This can be replaced with a list of avatars via the Plugins page.
+
+1. To enable avatars, in Stash go to Settings > Plugins.
+2. Under _Plugins_, scroll down to _Valkyr Scene Cards_.
+3. Enable the option titled _Display the performer list as avatars_.
+
+Returning to any page with scene cards, you should see the performer list now shows as a series of text-based avatars, showing the initials of the performer and their gender icon behind it.
+
+### Profile image avatars
+
+Performers profile images can be used in place of the text-based avatars by enabling the option titled _Use performer profile images as avatars_. The top square section of the profile image is used, so results may vary depending on each individual image.
+
+### Custom image avatars
+
+You can use a custom image for each performer's avatar with some setup.
+
+1. In Stash, create a new tag. The name doesn't matter, but take note of the ID.
+   - The tag ID can be found in the tag profile URL; it's the number after `/tags/`. For example, in the URL `http://localhost:xxxx/tags/1731/scenes?sortby=date`, the tag ID would be `1731`.
+2. Go to Settings > Plugins
+3. Under _Plugins_, scroll down to _Valkyr Scene Cards_.
+4. Click Edit on the option titled _Set tag ID for custom performer images_.
+5. Enter the ID of the tag you created.
+6. Add your custom image/s to your Stash if you haven't already done so.
+7. Tag each image with the tag you created, and also tag the associated performer.
+
+Returning to any page with scene cards, you should see the performer list now shows your custom images for the performers that you have made them for. If custom images haven't been created for certain performers, they will fallback to default images, or profile images if you have enabled them.
