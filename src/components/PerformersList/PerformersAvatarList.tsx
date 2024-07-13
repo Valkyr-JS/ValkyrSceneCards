@@ -21,15 +21,18 @@ const PerformersAvatarList: React.FC<PerformersAvatarListProps> = ({
   return (
     <ul className="vsc-performers-list vsc-performers-list__avatars">
       {sortedPerformers.map((pf) => {
-        // Create the performer's initials, splitting at hyphens and spaces
-        const names = pf.name.split("-").join(" ").split(" ");
-        let initials = "";
-        names.forEach((n) => {
-          initials += n.split("")[0];
-        });
+        let avatar: React.JSX.Element;
+
+        switch (true) {
+          case props.performerAvatarsProfile:
+            avatar = <ProfileAvatar performer={pf} />;
+            break;
+          default:
+            avatar = <DefaultAvatar performer={pf} />;
+            break;
+        }
 
         // Get the appropriate gender icon
-        const genderIcon = getPerformerGenderIcon(pf.gender);
         return (
           <li className="vsc-performer">
             <PerformerPopover
@@ -43,10 +46,7 @@ const PerformersAvatarList: React.FC<PerformersAvatarListProps> = ({
               performerGenderColors={props.performerGenderColors}
               sceneDate={scene.date}
             >
-              <a href={`/performers/${pf.id}`}>
-                <span>{initials}</span>
-                {!!genderIcon ? <Icon icon={genderIcon} /> : null}
-              </a>
+              {avatar}
             </PerformerPopover>
           </li>
         );
@@ -80,4 +80,55 @@ interface PerformersAvatarListProps {
   scene: Scene;
   /** When set, performer avatars will use images tagged with this tag ID. */
   performerAvatarsCustomTag?: string;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               Avatar options                               */
+/* -------------------------------------------------------------------------- */
+
+/* ----------------------------- Default avatar ----------------------------- */
+
+const DefaultAvatar: React.FC<DefaultAvatarProps> = ({ performer }) => {
+  // Create the performer's initials, splitting at hyphens and spaces
+  const names = performer.name.split("-").join(" ").split(" ");
+  let initials = "";
+  names.forEach((n) => {
+    initials += n.split("")[0];
+  });
+  const genderIcon = getPerformerGenderIcon(performer.gender);
+
+  return (
+    <a href={`/performers/${performer.id}`} className="vsc-performer-avatar">
+      <span aria-label={performer.name}>{initials}</span>
+      {!!genderIcon ? <Icon icon={genderIcon} /> : null}
+    </a>
+  );
+};
+
+interface DefaultAvatarProps {
+  /** The performer details. */
+  performer: Performer;
+}
+
+/* -------------------------- Profile image avatar -------------------------- */
+
+const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ performer }) => {
+  // Render a default avatar if there is no image for the performer, or the
+  // native default image is being used.
+  if (!performer.image_path || performer.image_path.includes("default=true"))
+    return <DefaultAvatar performer={performer} />;
+
+  return (
+    <a
+      href={`/performers/${performer.id}`}
+      className="vsc-performer-avatar vsc-performer-avatar--profile"
+    >
+      <img src={performer.image_path} alt={performer.name} />
+    </a>
+  );
+};
+
+interface ProfileAvatarProps {
+  /** The performer details. */
+  performer: Performer;
 }
