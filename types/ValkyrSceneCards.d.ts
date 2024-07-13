@@ -45,6 +45,20 @@ interface VSCConfigMap {
   /** Set the separator character that appears between the studio and parent
    * studio. Leave this blank to wrap the parent studio in brackets. */
   parentStudioSeparator?: string;
+  /** When enabled, the performer list will be rendered as a set of avatars
+   * rather than as a text list. By default these appear as the performer
+   * initials against a background image indicating their gender. These can be
+   * overriden with the "Set tag ID for custom performer images" and "Use
+   * performer profile images as avatars" options. */
+  performerAvatars?: boolean;
+  /** When set, performer avatars will use images tagged with this tag ID. This
+   * option overrides default and profile picture avatars. "Display the
+   * performer list as avatars" must be set to true in order to use. */
+  performerAvatarsCustomTag?: string;
+  /** When enabled, performer avatars will use the performer's profile image.
+   * The avatar will display the topmost square of the profile image. "Display
+   * the performer list as avatars" must be set to true in order to use. */
+  performerAvatarsProfile?: boolean;
   /** When enabled, performer names will be colored according to their gender.
    * These colors can be changed via CSS variables. See the readme in the link
    * for details. */
@@ -77,6 +91,8 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   hidePlayCount: boolean;
   hideResolution: boolean;
   hideZeroValueData: boolean;
+  performerAvatars: boolean;
+  performerAvatarsProfile: boolean;
   performerGenderColors: boolean;
   resolutionIcon: boolean;
 }
