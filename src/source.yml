@@ -44,6 +44,10 @@ settings:
     displayName: Hide parent studio
     description: When enabled, the parent studio will not be displayed.
     type: BOOLEAN
+  hidePerformer:
+    displayName: Hide performers
+    description: When enabled, the list of performers will not be displayed.
+    type: BOOLEAN
   hidePerformerHoverAge:
     displayName: Hide performer age on hover
     description: When enabled, the performer's age will not be displayed when hovering over their name or avatar.

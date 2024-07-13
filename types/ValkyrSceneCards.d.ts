@@ -24,6 +24,8 @@ interface VSCConfigMap {
   hideOrganized?: boolean;
   /** When enabled, the parent studio will not be displayed. */
   hideParentStudio?: boolean;
+  /** When enabled, the list of performers will not be displayed. */
+  hidePerformer?: boolean;
   /** When enabled, the performer's age will not be displayed when hovering over
    * their name or avatar. */
   hidePerformerHoverAge?: boolean;
@@ -68,6 +70,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   hideOCount: boolean;
   hideOrganized: boolean;
   hideParentStudio: boolean;
+  hidePerformer: boolean;
   hidePerformerHoverAge: boolean;
   hidePerformerHoverImage: boolean;
   hidePerformerHoverNationality: boolean;

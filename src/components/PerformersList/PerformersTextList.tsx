@@ -10,8 +10,9 @@ const PerformersTextList: React.FC<PerformersTextListProps> = ({
   scene,
   ...props
 }) => {
-  // If there are no performers, don't render the component
-  if (scene.performers.length < 1) return null;
+  // If there are no performers, or the user has chosen to hide them, don't
+  // render the component
+  if (props.hidePerformer || scene.performers.length < 1) return null;
   console.log(scene.performers);
 
   const sortedPerformers = sortPerformers(scene.performers);
@@ -54,6 +55,8 @@ const PerformersTextList: React.FC<PerformersTextListProps> = ({
 export default PerformersTextList;
 
 interface PerformersTextListProps {
+  /** When `true`, the list of performers will not be displayed. */
+  hidePerformer: boolean;
   /** When `true`, the performer's age will not be displayed when hovering over
    * their name or avatar. */
   hidePerformerHoverAge: boolean;
