@@ -23,7 +23,14 @@ const PerformersAvatarList: React.FC<PerformersAvatarListProps> = ({
       {sortedPerformers.map((pf) => {
         let avatar: React.JSX.Element;
 
+        const customAvatar = props.sceneCustomAvatars.find((img) =>
+          img.performers.find((p) => p.id === pf.id)
+        );
+
         switch (true) {
+          case !!customAvatar:
+            avatar = <CustomAvatar performer={pf} image={customAvatar} />;
+            break;
           case props.performerAvatarsProfile:
             avatar = <ProfileAvatar performer={pf} />;
             break;
@@ -79,7 +86,7 @@ interface PerformersAvatarListProps {
   /** The scene data. */
   scene: Scene;
   /** When set, performer avatars will use images tagged with this tag ID. */
-  performerAvatarsCustomTag?: string;
+  sceneCustomAvatars: Image[];
 }
 
 /* -------------------------------------------------------------------------- */
@@ -88,7 +95,7 @@ interface PerformersAvatarListProps {
 
 /* ----------------------------- Default avatar ----------------------------- */
 
-const DefaultAvatar: React.FC<DefaultAvatarProps> = ({ performer }) => {
+const DefaultAvatar: React.FC<AvatarProps> = ({ performer }) => {
   // Create the performer's initials, splitting at hyphens and spaces
   const names = performer.name.split("-").join(" ").split(" ");
   let initials = "";
@@ -105,14 +112,14 @@ const DefaultAvatar: React.FC<DefaultAvatarProps> = ({ performer }) => {
   );
 };
 
-interface DefaultAvatarProps {
+interface AvatarProps {
   /** The performer details. */
   performer: Performer;
 }
 
 /* -------------------------- Profile image avatar -------------------------- */
 
-const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ performer }) => {
+const ProfileAvatar: React.FC<AvatarProps> = ({ performer }) => {
   // Render a default avatar if there is no image for the performer, or the
   // native default image is being used.
   if (!performer.image_path || performer.image_path.includes("default=true"))
@@ -128,7 +135,23 @@ const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ performer }) => {
   );
 };
 
-interface ProfileAvatarProps {
+/* --------------------------- Custom image avatar -------------------------- */
+
+const CustomAvatar: React.FC<CustomAvatarProps> = ({ image, performer }) => {
+  // Render a default avatar if there is custom image data is invalid for the performer.
+  if (!image.paths.image) return <DefaultAvatar performer={performer} />;
+
+  return (
+    <a
+      href={`/performers/${performer.id}`}
+      className="vsc-performer-avatar vsc-performer-avatar--custom"
+    >
+      <img src={image.paths.image} alt={performer.name} />
+    </a>
+  );
+};
+
+interface CustomAvatarProps extends AvatarProps {
   /** The performer details. */
-  performer: Performer;
+  image: Image;
 }

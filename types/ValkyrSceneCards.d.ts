@@ -104,4 +104,6 @@ interface PluginsConfig {
 interface ISceneCardPropsExtended extends ISceneCardProps {
   /** The user's plugin config. */
   config: VSCFinalConfigMap;
+  /** Custom avatar images. */
+  customAvatars: Image[];
 }
