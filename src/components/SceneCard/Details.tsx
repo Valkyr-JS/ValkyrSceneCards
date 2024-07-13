@@ -40,11 +40,11 @@ const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
         hideDescription={config.hideDescription}
         scene={scene}
       />
-      <Director hideDirector={config.hideDirector} scene={scene} />
       <PerformersTextList
         performerGenderColors={config.performerGenderColors}
         scene={scene}
       />
+      <Director hideDirector={config.hideDirector} scene={scene} />
     </>
   );
 };
