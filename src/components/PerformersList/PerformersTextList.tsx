@@ -10,9 +10,14 @@ const PerformersTextList: React.FC<PerformersTextListProps> = ({
   scene,
   ...props
 }) => {
-  // If there are no performers, or the user has chosen to hide them, don't
-  // render the component
-  if (props.hidePerformer || scene.performers.length < 1) return null;
+  // If there are no performers, or the user has chosen to hide them, or the
+  // user has chosen to use performer avatars, don't render the component
+  if (
+    props.hidePerformer ||
+    props.performerAvatars ||
+    scene.performers.length < 1
+  )
+    return null;
   console.log(scene.performers);
 
   const sortedPerformers = sortPerformers(scene.performers);
@@ -66,6 +71,9 @@ interface PerformersTextListProps {
   /** When `true`, the performer's nationality will not be displayed when
    * hovering over their name or avatar. */
   hidePerformerHoverNationality: boolean;
+  /** When `true`, the performer list will be rendered as a set of avatars
+   * rather than as a text list. */
+  performerAvatars: boolean;
   /** When `true`, performer names will be colored according to their gender. */
   performerGenderColors: boolean;
   /** The scene data. */

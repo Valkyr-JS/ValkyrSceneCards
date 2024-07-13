@@ -2,6 +2,7 @@ import type { ISceneCardPropsExtended } from "../../../types/ValkyrSceneCards";
 import Description from "../Description";
 import Director from "../Director";
 import KeyData from "../KeyData";
+import PerformersAvatarList from "../PerformersList/PerformersAvatarList";
 import PerformersTextList from "../PerformersList/PerformersTextList";
 import Studio from "../Studio";
 import Title from "../Title";
@@ -46,6 +47,15 @@ const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
         hidePerformerHoverAge={config.hidePerformerHoverAge}
         hidePerformerHoverImage={config.hidePerformerHoverImage}
         hidePerformerHoverNationality={config.hidePerformerHoverNationality}
+        performerAvatars={config.performerAvatars}
+        performerGenderColors={config.performerGenderColors}
+        scene={scene}
+      />
+      <PerformersAvatarList
+        hidePerformer={config.hidePerformer}
+        performerAvatars={config.performerAvatars}
+        performerAvatarsCustomTag={config.performerAvatarsCustomTag}
+        performerAvatarsProfile={config.performerAvatarsProfile}
         performerGenderColors={config.performerGenderColors}
         scene={scene}
       />
