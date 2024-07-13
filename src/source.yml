@@ -44,6 +44,18 @@ settings:
     displayName: Hide parent studio
     description: When enabled, the parent studio will not be displayed.
     type: BOOLEAN
+  hidePerformerHoverAge:
+    displayName: Hide performer age on hover
+    description: When enabled, the performer's age will not be displayed when hovering over their name or avatar.
+    type: BOOLEAN
+  hidePerformerHoverImage:
+    displayName: Hide performer image on hover
+    description: When enabled, the performer's image will not be displayed when hovering over their name or avatar.
+    type: BOOLEAN
+  hidePerformerHoverNationality:
+    displayName: Hide performer nationality on hover
+    description: When enabled, the performer's nationality will not be displayed when hovering over their name or avatar.
+    type: BOOLEAN
   hidePlayCount:
     displayName: Hide play count
     description: When enabled, the scene play count and icon will not be displayed.

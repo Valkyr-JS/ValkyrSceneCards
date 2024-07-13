@@ -41,6 +41,9 @@ const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
         scene={scene}
       />
       <PerformersTextList
+        hidePerformerHoverAge={config.hidePerformerHoverAge}
+        hidePerformerHoverImage={config.hidePerformerHoverImage}
+        hidePerformerHoverNationality={config.hidePerformerHoverNationality}
         performerGenderColors={config.performerGenderColors}
         scene={scene}
       />
