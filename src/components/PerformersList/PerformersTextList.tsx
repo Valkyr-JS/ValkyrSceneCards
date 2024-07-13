@@ -33,7 +33,13 @@ const PerformersTextList: React.FC<PerformersTextListProps> = ({
           if (isOneBeforeLast) suffix += "and ";
         }
         return (
-          <PerformerPopover performer={pf} sceneDate={scene.date}>
+          <PerformerPopover
+            hidePerformerHoverAge={props.hidePerformerHoverAge}
+            hidePerformerHoverImage={props.hidePerformerHoverImage}
+            hidePerformerHoverNationality={props.hidePerformerHoverNationality}
+            performer={pf}
+            sceneDate={scene.date}
+          >
             <a href={`/performers/${pf.id}`} className={classes}>
               <span>{pf.name}</span>
             </a>
@@ -48,6 +54,15 @@ const PerformersTextList: React.FC<PerformersTextListProps> = ({
 export default PerformersTextList;
 
 interface PerformersTextListProps {
+  /** When `true`, the performer's age will not be displayed when hovering over
+   * their name or avatar. */
+  hidePerformerHoverAge: boolean;
+  /** When `true`, the performer's image will not be displayed when hovering
+   * over their name or avatar. */
+  hidePerformerHoverImage: boolean;
+  /** When `true`, the performer's nationality will not be displayed when
+   * hovering over their name or avatar. */
+  hidePerformerHoverNationality: boolean;
   /** When `true`, performer names will be colored according to their gender. */
   performerGenderColors: boolean;
   /** The scene data. */
@@ -58,7 +73,7 @@ const PerformerPopover: React.FC<PerformersPopover> = ({
   performer,
   ...props
 }) => {
-  const showAge = !!performer.birthdate;
+  const showAge = !!performer.birthdate && !props.hidePerformerHoverAge;
   const age = showAge ? (
     <span className="vsc-performer-age">
       {TextUtils.age(performer.birthdate, props.sceneDate)}
@@ -66,9 +81,23 @@ const PerformerPopover: React.FC<PerformersPopover> = ({
     </span>
   ) : null;
 
-  const showFlag = !!performer.country;
+  const showFlag = !!performer.country && !props.hidePerformerHoverNationality;
   const flag = showFlag ? (
     <span className={`fi fi-${performer.country?.toLowerCase()}`}></span>
+  ) : null;
+
+  const showImage = !!performer.image_path && !props.hidePerformerHoverImage;
+  const image = showImage ? (
+    <a
+      href={`/performers/${performer.id}`}
+      className="performer-tag col m-auto"
+    >
+      <img
+        className="image-thumbnail"
+        alt={performer.name ?? ""}
+        src={performer.image_path ?? ""}
+      />
+    </a>
   ) : null;
 
   const showData =
@@ -81,21 +110,12 @@ const PerformerPopover: React.FC<PerformersPopover> = ({
 
   const content = (
     <div className="performer-tag-container row">
-      <a
-        href={`/performers/${performer.id}`}
-        className="performer-tag col m-auto"
-      >
-        <img
-          className="image-thumbnail"
-          alt={performer.name ?? ""}
-          src={performer.image_path ?? ""}
-        />
-      </a>
+      {image}
       {showData}
     </div>
   );
 
-  if (showData) {
+  if (showData || showImage) {
     return (
       <HoverPopover content={content} leaveDelay={100} placement="top">
         {props.children}
@@ -106,6 +126,17 @@ const PerformerPopover: React.FC<PerformersPopover> = ({
 };
 
 interface PerformersPopover extends React.PropsWithChildren {
+  /** When `true`, the performer's age will not be displayed when hovering over
+   * their name or avatar. */
+  hidePerformerHoverAge: boolean;
+  /** When `true`, the performer's image will not be displayed when hovering
+   * over their name or avatar. */
+  hidePerformerHoverImage: boolean;
+  /** When `true`, the performer's nationality will not be displayed when
+   * hovering over their name or avatar. */
+  hidePerformerHoverNationality: boolean;
+  /** The performer data. */
   performer: Performer;
+  /** The scene date as a string, i.e. YYYY-MM-DD */
   sceneDate: Scene["date"];
 }
