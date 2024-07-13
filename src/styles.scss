@@ -37,6 +37,13 @@
       display: none !important;
     }
   }
+
+  .card-popovers {
+    &:empty {
+      height: 0;
+      padding-bottom: 27px;
+    }
+  }
 }
 
 .slick-slider .valkyr-scene-card {
