@@ -2,9 +2,9 @@
 @import "./scss";
 
 :root {
-  --#{$prefix}-font-sm: #{toRem(12)};
+  --#{$prefix}-font-sm: #{12px};
   --#{$prefix}-performer-avatar-bg-color: #{rgba(0, 0, 0, 0.6)};
-  --#{$prefix}-performer-avatar-initials-size: #{toRem(18)};
+  --#{$prefix}-performer-avatar-initials-size: #{18px};
   --#{$prefix}-performer-avatar-size: #{$performer-avatar-size};
   --#{$prefix}-resolution-icon-bg-color: #{$stash-body-color};
   --#{$prefix}-resolution-icon-color: #{$stash-card-bg};
