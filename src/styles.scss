@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "./scss";
 
 :root {
@@ -49,6 +50,10 @@
 // Fix hover popover content being center aligned
 .hover-popover-content .valkyr-scene-card {
   text-align: initial;
+}
+
+.vsc-text-hover {
+  padding: math.div($column-gap, 2);
 }
 
 .vsc-gender-color--female {
