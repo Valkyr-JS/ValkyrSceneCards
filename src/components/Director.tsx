@@ -6,7 +6,6 @@ const Director: React.FC<DirectorProps> = ({ scene, ...props }) => {
   // not render the component.
   if (props.hideDirector || !scene.director) return null;
 
-  console.log(makeDirectorScenesUrl);
   return (
     <div className="vsc-director">
       Directed by{" "}

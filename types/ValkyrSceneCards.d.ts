@@ -34,6 +34,10 @@ interface VSCConfigMap {
   /** Set the separator character that appears between the studio and parent
    * studio. Leave this blank to wrap the parent studio in brackets. */
   parentStudioSeparator?: string;
+  /** When enabled, performer names will be colored according to their gender.
+   * These colors can be changed via CSS variables. See the readme in the link
+   * for details. */
+  performerGenderColors?: boolean;
   /** When enabled, the scene resolution be displayed as an SD/HD/2K/4K/etc.
    * icon. SD and HD icons can be hovered over for the full resolution. */
   resolutionIcon?: boolean;
@@ -58,6 +62,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   hidePlayCount: boolean;
   hideResolution: boolean;
   hideZeroValueData: boolean;
+  performerGenderColors: boolean;
   resolutionIcon: boolean;
 }
 

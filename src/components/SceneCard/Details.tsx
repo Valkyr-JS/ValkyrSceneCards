@@ -2,6 +2,7 @@ import type { ISceneCardPropsExtended } from "../../../types/ValkyrSceneCards";
 import Description from "../Description";
 import Director from "../Director";
 import KeyData from "../KeyData";
+import PerformersTextList from "../PerformersList/PerformersTextList";
 import Studio from "../Studio";
 import Title from "../Title";
 import UserData from "../UserData";
@@ -9,8 +10,6 @@ import "./Details.scss";
 const { React } = window.PluginApi;
 
 const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
-  console.log(config, scene);
-
   return (
     <>
       <div className="vsc-top-line">
@@ -42,6 +41,10 @@ const Details: React.FC<ISceneCardPropsExtended> = ({ config, scene }) => {
         scene={scene}
       />
       <Director hideDirector={config.hideDirector} scene={scene} />
+      <PerformersTextList
+        performerGenderColors={config.performerGenderColors}
+        scene={scene}
+      />
     </>
   );
 };

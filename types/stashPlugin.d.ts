@@ -200,6 +200,11 @@ interface IHoverPopover extends React.PropsWithChildren {
   target?: React.RefObject<HTMLElement>;
 }
 
+interface IPerformerFragment {
+  name?: Maybe<string>;
+  gender?: Maybe<GenderEnum>;
+}
+
 interface ISceneCardProps {
   scene: Scene;
   containerWidth?: number;
