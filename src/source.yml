@@ -81,7 +81,7 @@ settings:
     description: When enabled, the performer list will be rendered as a set of avatars rather than as a text list. By default these appear as the performer initials against a background image indicating their gender. These can be overriden with the "Set tag ID for custom performer images" and "Use performer profile images as avatars" options.
     type: BOOLEAN
   performerAvatarsCustomTag:
-    displayName: Set tag ID for custom performer images
+    displayName: Set tag ID for custom performer avatars
     description: When set, performer avatars will use images tagged with this tag ID. This option overrides default and profile picture avatars. "Display the performer list as avatars" must be set to true in order to use.
     type: STRING
   performerAvatarsProfile:
