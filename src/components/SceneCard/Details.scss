@@ -1,8 +1,4 @@
-@use "sass:math";
 @import "../../scss";
-
-$column-gap: toRem(10);
-$row-gap: toRem(10);
 
 .valkyr-scene-card .card-section {
   display: grid;
@@ -89,13 +85,15 @@ $row-gap: toRem(10);
 
   /* ------------------------------- Performers ------------------------------- */
 
+  .vsc-performers-list {
+    &__text {
+      & > div {
+        display: inline;
+      }
+    }
+  }
+
   .vsc-performer {
     color: var(--#{$prefix}-performer-link-color);
   }
-}
-
-/* ----------------------------- Hover popovers ----------------------------- */
-
-.vsc-text-hover {
-  padding: math.div($column-gap, 2);
 }
