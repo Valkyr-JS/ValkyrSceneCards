@@ -20,7 +20,13 @@ const PerformerPopover: React.FC<PerformersPopover> = ({
     <span className={`fi fi-${performer.country?.toLowerCase()}`}></span>
   ) : null;
 
-  const showImage = !!performer.image_path && !props.hidePerformerHoverImage;
+  // Only show image if one is available, and it isn't the default for a missing
+  // image, and the user hasn't chosen to hide the images
+  const showImage =
+    !!performer.image_path &&
+    !performer.image_path.includes("default=true") &&
+    !props.hidePerformerHoverImage;
+
   const image = showImage ? (
     <a
       href={`/performers/${performer.id}`}
