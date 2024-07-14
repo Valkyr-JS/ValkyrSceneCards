@@ -1,0 +1,90 @@
+@import "../../scss";
+
+.valkyr-scene-card .card-section {
+  display: grid;
+  grid-template-rows: [details-top top-line-top] auto [top-line-bottom title-top] auto [title-bottom key-data-top] auto [key-data-bottom description-top] 1fr [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
+  height: 100%;
+
+  /* -------------------------------- Top line -------------------------------- */
+  .vsc-top-line {
+    display: grid;
+    grid-template-columns: [top-line-start studio-start] 1fr [studio-end user-data-start] max-content [user-data-end top-line-end];
+    column-gap: $column-gap;
+    margin-bottom: 3px;
+
+    font-size: var(--#{$prefix}-font-sm);
+    opacity: var(--#{$prefix}-top-line-opacity);
+  }
+
+  .vsc-studio {
+    grid-column: studio-start / studio-end;
+    grid-row: top-line-top / top-line-bottom;
+  }
+
+  .vsc-user-data {
+    grid-column: user-data-start / user-data-end;
+    grid-row: top-line-top / top-line-bottom;
+
+    display: flex;
+    column-gap: $column-gap;
+  }
+
+  .vsc-play-count,
+  .vsc-o-count {
+    svg {
+      margin-right: toRem(3);
+    }
+  }
+
+  /* ---------------------------------- Title --------------------------------- */
+
+  .vsc-title {
+    grid-row: title-top / title-bottom;
+  }
+
+  /* -------------------------------- Key data -------------------------------- */
+
+  .vsc-key-data {
+    grid-row: key-data-top / key-data-bottom;
+
+    display: flex;
+    column-gap: $column-gap;
+    margin-top: 3px;
+
+    font-size: var(--#{$prefix}-font-sm);
+  }
+
+  .vsc-resolution {
+    &--icon {
+      display: inline;
+      padding: 0 4px;
+      background-color: var(--#{$prefix}-resolution-icon-bg-color);
+      color: var(--#{$prefix}-resolution-icon-color);
+      font-weight: 900;
+      user-select: none;
+    }
+  }
+
+  /* ------------------------------- Description ------------------------------ */
+
+  // Fill available space to match card heights
+  .vsc-description {
+    flex-grow: 1;
+  }
+
+  .vsc-description-inner {
+    // Limit number of lines
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: pre-line;
+
+    margin-top: $row-gap;
+  }
+
+  /* -------------------------------- Director -------------------------------- */
+
+  .vsc-director {
+    margin-top: $row-gap;
+  }
+}

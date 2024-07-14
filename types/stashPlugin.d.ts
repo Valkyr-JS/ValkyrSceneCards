@@ -11,7 +11,7 @@ declare global {
 }
 
 interface IPluginApi {
-  React: React;
+  React: typeof React;
   ReactDOM: typeof ReactDOM;
   GQL: {
     useConfigurationQuery(): {
@@ -38,6 +38,10 @@ interface IPluginApi {
     };
     useFindScenesQuery(args: { variables: QueryFindScenesArgs }): {
       data: { findScenes: Query["findScenes"] };
+      loading: boolean;
+    };
+    useFindStudioQuery(args: { variables: QueryFindStudioArgs }): {
+      data: { findStudio: Query["findStudio"] };
       loading: boolean;
     };
     useFindStudiosQuery(args: { variables: QueryFindStudiosArgs }): {
@@ -69,12 +73,13 @@ interface IPluginApi {
       };
     };
     FontAwesomeSolid: {
-      faBox: any;
-      faEthernet: any;
-      faMars: any;
-      faStar: any;
-      faTansgenderAlt: any;
-      faVenus: any;
+      faBox: IconDefinition;
+      faEye: IconDefinition;
+      faEthernet: IconDefinition;
+      faMars: IconDefinition;
+      faStar: IconDefinition;
+      faTansgenderAlt: IconDefinition;
+      faVenus: IconDefinition;
     };
     Intl: {
       FormattedMessage: React.FC<any>;
@@ -193,6 +198,11 @@ interface IHoverPopover extends React.PropsWithChildren {
   onOpen?: () => void;
   onClose?: () => void;
   target?: React.RefObject<HTMLElement>;
+}
+
+interface IPerformerFragment {
+  name?: Maybe<string>;
+  gender?: Maybe<GenderEnum>;
 }
 
 interface ISceneCardProps {

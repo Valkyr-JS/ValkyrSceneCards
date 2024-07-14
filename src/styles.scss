@@ -1,32 +1,89 @@
-// Hide resolution, duration, and ratings banner from preview thumbnail.
-.scene-card {
+@use "sass:math";
+@import "./scss";
+
+:root {
+  --#{$prefix}-font-sm: #{12px};
+  --#{$prefix}-performer-avatar-bg-color: #{rgba(0, 0, 0, 0.6)};
+  --#{$prefix}-performer-avatar-initials-size: #{18px};
+  --#{$prefix}-performer-avatar-size: #{$performer-avatar-size};
+  --#{$prefix}-resolution-icon-bg-color: #{$stash-body-color};
+  --#{$prefix}-resolution-icon-color: #{$stash-card-bg};
+  --#{$prefix}-top-line-opacity: #{0.8};
+
+  --#{$prefix}-gender-color--female: #{$stash-gender-female};
+  --#{$prefix}-gender-color--intersex: #{$stash-gender-intersex};
+  --#{$prefix}-gender-color--male: #{$stash-gender-male};
+  --#{$prefix}-gender-color--nonbinary: #{$stash-gender-nonbinary};
+  --#{$prefix}-gender-color--transfemale: #{$stash-gender-transfemale};
+  --#{$prefix}-gender-color--transmale: #{$stash-gender-transmale};
+  --#{$prefix}-gender-color--unknown: #{$stash-gender-unknown};
+}
+
+.valkyr-scene-card {
+  display: flex;
+
+  // Hide resolution, duration, and ratings banner from preview thumbnail.
   .scene-specs-overlay,
   .rating-banner {
     display: none !important;
   }
 
-  // Only show the checkbox if hovering over the thumbnail, not any other parts
-  // of the card.
-  &:hover .card-check {
-    opacity: 0;
-  }
-  &:has(.video-section.thumbnail-section:hover) .card-check {
-    opacity: 0.75;
-    transition: opacity 0.5s;
-  }
-
   .card-section {
-    height: 100%;
-    // Hide the hard-coded title
+    // Match native top padding
+    padding-bottom: 0.5rem;
+
+    // Hide hardcoded title. Title will be recreated.
     & > a:first-child {
-      display: none;
+      display: none !important;
     }
   }
 
-  // Consistent height for details
-  &__details {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  .card-popovers {
+    &:empty {
+      height: 0;
+      padding-bottom: 27px;
+    }
   }
+}
+
+.slick-slider .valkyr-scene-card {
+  // Refill space
+  height: 100%;
+}
+
+// Fix hover popover content being center aligned
+.hover-popover-content .valkyr-scene-card {
+  text-align: initial;
+}
+
+.vsc-text-hover {
+  padding: math.div($column-gap, 2);
+}
+
+.vsc-gender-color--female {
+  color: var(--#{$prefix}-gender-color--female) !important;
+}
+
+.vsc-gender-color--intersex {
+  color: var(--#{$prefix}-gender-color--intersex) !important;
+}
+
+.vsc-gender-color--male {
+  color: var(--#{$prefix}-gender-color--male) !important;
+}
+
+.vsc-gender-color--nonbinary {
+  color: var(--#{$prefix}-gender-color--nonbinary) !important;
+}
+
+.vsc-gender-color--transfemale {
+  color: var(--#{$prefix}-gender-color--transfemale) !important;
+}
+
+.vsc-gender-color--transmale {
+  color: var(--#{$prefix}-gender-color--transmale) !important;
+}
+
+.vsc-gender-color--unknown {
+  color: var(--#{$prefix}-gender-color--unknown) !important;
 }

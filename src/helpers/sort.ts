@@ -1,3 +1,5 @@
+import type { IPerformerFragment } from "../../types/stashPlugin";
+
 export function sortPerformers<T extends IPerformerFragment>(performers: T[]) {
   const ret = performers.slice();
   ret.sort((a, b) => {
@@ -13,11 +15,6 @@ export function sortPerformers<T extends IPerformerFragment>(performers: T[]) {
   });
 
   return ret;
-}
-
-interface IPerformerFragment {
-  name?: Maybe<string>;
-  gender?: Maybe<GenderEnum>;
 }
 
 const SortUtils = {
