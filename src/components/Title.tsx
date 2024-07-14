@@ -1,9 +1,10 @@
-import { makeSceneUrl } from "../helpers";
-
+import { getFilename, makeSceneUrl } from "../helpers";
 const { React } = window.PluginApi;
 
 const Title: React.FC<TitleProps> = ({ scene }) => {
-  const title = scene.title ?? "Untitled";
+  // Title should be the given title > filename > "Untitled"
+  const filename = getFilename({ scene }) ?? "Untitled";
+  const title = scene.title || filename;
   const link = makeSceneUrl({ scene });
 
   return (
