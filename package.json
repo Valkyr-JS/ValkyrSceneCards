@@ -4,10 +4,9 @@
   "description": "A rework of the scene cards for Stash.",
   "main": "./src/main.ts",
   "scripts": {
+    "build": "webpack --config webpack.prod.js",
     "dev": "webpack --config webpack.dev.js",
     "start": "npm run watch",
-    "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build",
     "watch": "webpack --config webpack.dev.js --watch"
   },
   "repository": {
@@ -44,7 +43,8 @@
     "storybook": "^8.1.11",
     "ts-loader": "^9.5.1",
     "webpack": "^5.92.1",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^6.0.1"
   },
   "dependencies": {
     "classnames": "^2.5.1",
