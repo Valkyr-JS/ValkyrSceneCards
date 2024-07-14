@@ -1,3 +1,4 @@
+export * from "./data";
 export * from "./icon";
 export * from "./link";
 export * from "./sort";
