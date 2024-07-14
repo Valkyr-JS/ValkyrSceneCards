@@ -17,6 +17,12 @@ interface VSCConfigMap {
   hideDirector?: boolean;
   /** When enabled, the scene duration will not be displayed. */
   hideDuration?: boolean;
+  /** When enabled, the scene galleries count will not be displayed. */
+  hideGalleries?: boolean;
+  /** When enabled, the scene groups (movies in Stash 0.26 and older) count will not be displayed. */
+  hideGroups?: boolean;
+  /** When enabled, the scene markers count will not be displayed. */
+  hideMarkers?: boolean;
   /** When enabled, the scene O count and icon will not be displayed. */
   hideOCount?: boolean;
   /** When enabled, the organized icon will not be displayed for scenes marked
@@ -39,6 +45,8 @@ interface VSCConfigMap {
   hidePlayCount?: boolean;
   /** When enabled, the scene resolution will not be displayed. */
   hideResolution?: boolean;
+  /** When enabled, the scene tag count will not be displayed. */
+  hideTags?: boolean;
   /** When enabled, numerical data that has a value of 0 will not be displayed,
    * irrespective of other settings. */
   hideZeroValueData?: boolean;
@@ -81,6 +89,9 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   hideDescription: boolean;
   hideDirector: boolean;
   hideDuration: boolean;
+  hideGalleries: boolean;
+  hideGroups: boolean;
+  hideMarkers: boolean;
   hideOCount: boolean;
   hideOrganized: boolean;
   hideParentStudio: boolean;
@@ -90,6 +101,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   hidePerformerHoverNationality: boolean;
   hidePlayCount: boolean;
   hideResolution: boolean;
+  hideTags: boolean;
   hideZeroValueData: boolean;
   performerAvatars: boolean;
   performerAvatarsProfile: boolean;

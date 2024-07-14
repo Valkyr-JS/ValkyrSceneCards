@@ -32,6 +32,18 @@ settings:
     displayName: Hide duration
     description: When enabled, the scene duration will not be displayed.
     type: BOOLEAN
+  hideGalleries:
+    displayName: Hide galleries
+    description: When enabled, the scene galleries count will not be displayed.
+    type: BOOLEAN
+  hideGroups:
+    displayName: Hide groups/movies
+    description: When enabled, the scene groups (movies in Stash 0.26 and older) count will not be displayed.
+    type: BOOLEAN
+  hideMarkers:
+    displayName: Hide markers
+    description: When enabled, the scene markers count will not be displayed.
+    type: BOOLEAN
   hideOCount:
     displayName: Hide O count
     description: When enabled, the scene O count and icon will not be displayed.
@@ -67,6 +79,10 @@ settings:
   hideResolution:
     displayName: Hide resolution
     description: When enabled, the scene resolution will not be displayed.
+    type: BOOLEAN
+  hideTags:
+    displayName: Hide tags
+    description: When enabled, the scene tag count will not be displayed.
     type: BOOLEAN
   hideZeroValueData:
     displayName: Hide zero-value data

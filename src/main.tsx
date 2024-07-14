@@ -25,6 +25,9 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       hideDescription: userConfig?.hideDescription ?? false,
       hideDirector: userConfig?.hideDirector ?? false,
       hideDuration: userConfig?.hideDuration ?? false,
+      hideGalleries: userConfig?.hideGalleries ?? false,
+      hideGroups: userConfig?.hideGroups ?? false,
+      hideMarkers: userConfig?.hideMarkers ?? false,
       hideOCount: userConfig?.hideOCount ?? false,
       hideOrganized: userConfig?.hideOrganized ?? false,
       hidePlayCount: userConfig?.hidePlayCount ?? false,
@@ -35,6 +38,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       hidePerformerHoverNationality:
         userConfig?.hidePerformerHoverNationality ?? false,
       hideResolution: userConfig?.hideResolution ?? false,
+      hideTags: userConfig?.hideTags ?? false,
       hideZeroValueData: userConfig?.hideZeroValueData ?? false,
       parentStudioSeparator: userConfig?.parentStudioSeparator,
       performerAvatars: userConfig?.performerAvatars ?? false,
@@ -125,27 +129,39 @@ PluginApi.patch.instead("SceneCard.Overlays", function () {
 
 // Remove popovers
 PluginApi.patch.instead("SceneCard.Popovers", function (props, _, Original) {
+  const extendedProps = props as ISceneCardPropsExtended;
+
+  // @ts-ignore - Fallback for movies if user is on 0.26.x or lower
+  const groups = extendedProps.scene.groups ?? extendedProps.scene.movies;
+
+  const { hideGalleries, hideGroups, hideMarkers, hideTags } =
+    extendedProps.config;
+
+  // If the user has turned off all data that would sit in the footer, don't
+  // render it
+  if (hideGalleries && hideGroups && hideMarkers && hideTags) return [];
+
   // Remove certain data from the original so that data that already exists
   // elsewhere isn't displayed.
-  const amendedProps: ISceneCardProps = {
-    ...props,
+  const amendedProps = {
+    ...extendedProps,
     scene: {
       ...props.scene,
+      galleries: hideGalleries ? [] : extendedProps.scene.galleries,
+      groups: hideGroups ? [] : groups,
       performers: [],
       o_counter: undefined,
       organized: false,
+      scene_markers: hideMarkers ? [] : extendedProps.scene.scene_markers,
+      tags: hideTags ? [] : extendedProps.scene.tags,
     },
   };
-
-  // @ts-ignore - Fallback for movies if user is on 0.26.x or lower
-  const groups = amendedProps.scene.groups ?? amendedProps.scene.movies;
 
   /** If no relevant data is available that would render the footer, render an
    * empty one in order to keep alignment consistent. See
    * https://github.com/stashapp/stash/blob/develop/ui/v2.5/src/components/Scenes/SceneCard.tsx#L277
    * for reference. */
   if (
-    !amendedProps.compact &&
     amendedProps.scene.tags.length === 0 &&
     groups.length === 0 &&
     amendedProps.scene.scene_markers.length === 0 &&
