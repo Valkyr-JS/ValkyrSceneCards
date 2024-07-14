@@ -55,8 +55,8 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       customAvatars: [],
     };
 
-    // Performer data
-    if (!!extendedProps.scene.performers) {
+    // Performer data - ensure there is at least one performer, or all performers will be returned for an empty array
+    if (!!extendedProps.scene.performers.length) {
       const performersData = GQL.useFindPerformersQuery({
         variables: {
           filter: { per_page: -1 },
@@ -88,7 +88,11 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
     }
 
     // Custom avatars
-    if (config.performerAvatars && !!config.performerAvatarsCustomTag) {
+    if (
+      config.performerAvatars &&
+      !!config.performerAvatarsCustomTag &&
+      !!extendedProps.scene.performers.length
+    ) {
       const avatarData = GQL.useFindImagesQuery({
         variables: {
           image_filter: {
