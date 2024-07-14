@@ -9,7 +9,7 @@ const KeyData: React.FC<KeyDataProps> = ({
   ...props
 }) => {
   // Base all file data on the file with the highest resolution
-  const primaryFile = scene.files.sort((a, b) => b.height - a.height)[0];
+  const primaryFile = [...scene.files].sort((a, b) => b.height - a.height)[0];
 
   const showDate = typeof scene.date !== "undefined" && !props.hideDate;
   const showDuration = !!primaryFile && !props.hideDuration;
