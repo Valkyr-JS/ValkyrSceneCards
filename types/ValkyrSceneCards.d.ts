@@ -43,6 +43,8 @@ interface VSCConfigMap {
   hidePerformerHoverNationality?: boolean;
   /** When enabled, the scene play count and icon will not be displayed. */
   hidePlayCount?: boolean;
+  /** When enabled, the scene user rating will not be displayed. */
+  hideRating?: boolean;
   /** When enabled, the scene resolution will not be displayed. */
   hideResolution?: boolean;
   /** When enabled, the scene tag count will not be displayed. */
@@ -100,6 +102,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   hidePerformerHoverImage: boolean;
   hidePerformerHoverNationality: boolean;
   hidePlayCount: boolean;
+  hideRating: boolean;
   hideResolution: boolean;
   hideTags: boolean;
   hideZeroValueData: boolean;
@@ -118,4 +121,7 @@ interface ISceneCardPropsExtended extends ISceneCardProps {
   config: VSCFinalConfigMap;
   /** Custom avatar images. */
   customAvatars: Image[];
+  /** Stash configuration settings. Not to be confused with `config`, which is
+   * exclusively this plugin's settings, though also defined in Stash. */
+  stashSettings: ConfigResult;
 }
