@@ -2,40 +2,46 @@ import Droplet from "./Icons/Droplet";
 
 const { React } = window.PluginApi;
 const { Icon } = window.PluginApi.components;
-const { faBox, faEye } = window.PluginApi.libraries.FontAwesomeSolid;
+const { faBox, faEye, faStar } = window.PluginApi.libraries.FontAwesomeSolid;
 
 const UserData: React.FC<UserDataProps> = ({
-  hideOCount,
-  hidePlayCount,
   hideZeroValueData,
   scene,
+  ...props
 }) => {
   const showOCount = getShowNumberData(
-    hidePlayCount,
+    props.hidePlayCount,
     hideZeroValueData,
     scene.o_counter
   );
 
   const showPlayCount = getShowNumberData(
-    hideOCount,
+    props.hideOCount,
     hideZeroValueData,
     scene.play_count
   );
 
+  const showRating = getShowNumberData(
+    props.hideRating,
+    hideZeroValueData,
+    scene.rating100
+  );
+
   // Render nothing if there is no data at all to render
-  if (!showOCount && !showPlayCount && !scene.organized) return null;
+  if (!showOCount && !showPlayCount && !showRating && !scene.organized)
+    return null;
 
   const playCount = showPlayCount ? (
     <span className="vsc-play-count">
       <Icon icon={faEye} />
-      <span> {scene.play_count ?? 0}</span>
+      <span>{scene.play_count ?? 0}</span>
     </span>
   ) : null;
 
   const oCount = showOCount ? (
     <span className="vsc-o-count">
       <Droplet />
-      <span> {scene.o_counter ?? 0}</span>
+      <span>{scene.o_counter ?? 0}</span>
     </span>
   ) : null;
 
@@ -45,10 +51,39 @@ const UserData: React.FC<UserDataProps> = ({
     </span>
   ) : null;
 
+  const ratingType = props.ratingSystemOptions?.type ?? "stars";
+  const rating100 = scene.rating100 || 0;
+  let ratingNum = 0;
+  if (ratingType === "decimal") ratingNum = rating100 / 10;
+  else {
+    switch (props.ratingSystemOptions?.starPrecision ?? "full") {
+      case "half":
+        ratingNum = Math.round(rating100 / 10) / 2; // Math.round(74 / 10 = 7.4) / 2 = 3.5
+        break;
+      case "quarter":
+        ratingNum = Math.round(rating100 / 5) / 4; // Math.round(74 / 5 = 14.8) / 4 = 3.75
+        break;
+      case "tenth":
+        ratingNum = Math.round(rating100 / 2) / 10; // Math.round(74 / 2 = 37) / 10 = 3.7
+        break;
+      case "full":
+      default:
+        ratingNum = Math.round(rating100 / 20); // Math.round(74 / 20 = 3.7) = 4
+    }
+  }
+
+  const rating = showRating ? (
+    <span className="vsc-rating">
+      <Icon icon={faStar} />
+      <span>{ratingNum}</span>
+    </span>
+  ) : null;
+
   return (
     <div className="vsc-user-data">
       {playCount}
       {oCount}
+      {rating}
       {organized}
     </div>
   );
@@ -64,11 +99,15 @@ interface UserDataProps {
   hideOrganized: boolean;
   /** When `true`, the scene play count and icon will not be displayed. */
   hidePlayCount: boolean;
+  /** When `true`, the scene user rating will not be displayed. */
+  hideRating: boolean;
   /** When `true`, numerical data that has a value of 0 will not be displayed,
    * irrespective of other settings. */
   hideZeroValueData: boolean;
   /** The scene data. */
   scene: Scene;
+  /** Stash rating system options. */
+  ratingSystemOptions?: IratingSystemOptions;
 }
 
 const getShowNumberData = (

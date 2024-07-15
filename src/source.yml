@@ -76,6 +76,10 @@ settings:
     displayName: Hide play count
     description: When enabled, the scene play count and icon will not be displayed.
     type: BOOLEAN
+  hideRating:
+    displayName: Hide rating
+    description: When enabled, the scene user rating will not be displayed.
+    type: BOOLEAN
   hideResolution:
     displayName: Hide resolution
     description: When enabled, the scene resolution will not be displayed.

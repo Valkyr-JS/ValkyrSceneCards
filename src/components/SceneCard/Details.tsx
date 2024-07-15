@@ -27,7 +27,13 @@ const Details: React.FC<ISceneCardPropsExtended> = ({
           hideOCount={config.hideOCount}
           hideOrganized={config.hideOrganized}
           hidePlayCount={config.hidePlayCount}
+          hideRating={config.hideRating}
           hideZeroValueData={config.hideZeroValueData}
+          ratingSystemOptions={
+            props.stashSettings.ui?.ratingSystemOptions as
+              | IratingSystemOptions
+              | undefined
+          }
           scene={scene}
         />
       </div>

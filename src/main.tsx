@@ -1,4 +1,3 @@
-import { ISceneCardProps } from "../types/stashPlugin";
 import type {
   ISceneCardPropsExtended,
   VSCConfigMap,
@@ -37,6 +36,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       hidePerformerHoverImage: userConfig?.hidePerformerHoverImage ?? false,
       hidePerformerHoverNationality:
         userConfig?.hidePerformerHoverNationality ?? false,
+      hideRating: userConfig?.hideRating ?? false,
       hideResolution: userConfig?.hideResolution ?? false,
       hideTags: userConfig?.hideTags ?? false,
       hideZeroValueData: userConfig?.hideZeroValueData ?? false,
@@ -53,6 +53,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       ...props,
       config,
       customAvatars: [],
+      stashSettings: qConfig.data.configuration,
     };
 
     // Performer data - ensure there is at least one performer, or all performers will be returned for an empty array
