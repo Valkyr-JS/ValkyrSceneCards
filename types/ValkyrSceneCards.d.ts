@@ -125,3 +125,9 @@ interface ISceneCardPropsExtended extends ISceneCardProps {
    * exclusively this plugin's settings, though also defined in Stash. */
   stashSettings: ConfigResult;
 }
+
+interface IScenePreviewPropsExtended extends IScenePreviewProps {
+  /** Stash configuration settings. Not to be confused with `config`, which is
+   * exclusively this plugin's settings, though also defined in Stash. */
+  stashSettings: ConfigResult;
+}

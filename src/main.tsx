@@ -3,7 +3,7 @@ import type {
   VSCConfigMap,
   VSCFinalConfigMap,
 } from "../types/ValkyrSceneCards";
-import { SceneCardDetails, SceneCardPreview } from "./components/SceneCard";
+import { SceneCardDetails, SceneCardImage } from "./components/SceneCard";
 import "./styles.scss";
 const { PluginApi } = window;
 const { GQL, React } = PluginApi;
@@ -122,8 +122,8 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
   return [];
 });
 
-PluginApi.patch.instead("SceneCard.Preview", function (props) {
-  return [<SceneCardPreview {...props} />];
+PluginApi.patch.instead("SceneCard.Image", function (props) {
+  return [<SceneCardImage {...(props as ISceneCardPropsExtended)} />];
 });
 
 PluginApi.patch.instead("SceneCard.Details", function (props) {

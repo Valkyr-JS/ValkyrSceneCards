@@ -32,9 +32,9 @@ const ScenePreview: React.FC<IScenePreviewProps> = ({
   }, [soundActive]);
 
   return (
-    <div className={cx("scene-card-preview", { portrait: isPortrait })}>
+    <div className={cx("scene-card-preview jimmy", { portrait: isPortrait })}>
       <img
-        className="scene-card-preview-image"
+        className="scene-card-preview-image dave"
         loading="lazy"
         src={image}
         alt=""

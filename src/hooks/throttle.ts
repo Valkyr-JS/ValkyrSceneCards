@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { DebouncedFunc, DebounceSettings, throttle } from "lodash-es";
-import { useCallback, useRef } from "react";
+const { React } = window.PluginApi;
 
 export function useThrottle<T extends (...args: any) => any>(
   fn: T,
   wait?: number,
   options?: DebounceSettings
 ): DebouncedFunc<T> {
-  const func = useRef<T>(fn);
+  const func = React.useRef<T>(fn);
   func.current = fn;
-  return useCallback(
+  return React.useCallback(
     throttle(
       function (this: any) {
         return func.current.apply(this, arguments as any);
