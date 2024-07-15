@@ -180,6 +180,14 @@ interface PatchableComponentsInstead {
       Original: React.JSX
     ) => React.JSX.Element[]
   ): void;
+  (
+    component: "SceneCard.Preview",
+    fn: (
+      props: IScenePreviewProps,
+      _: object,
+      Original: React.JSX
+    ) => React.JSX.Element[]
+  ): void;
 }
 
 interface PropsPerformerDetailsPanelDetailGroup
@@ -216,6 +224,15 @@ interface ISceneCardProps {
   selected?: boolean | undefined;
   zoomIndex?: number;
   onSelectedChanged?: (selected: boolean, shiftKey: boolean) => void;
+}
+
+interface IScenePreviewProps {
+  isPortrait: boolean;
+  image?: string;
+  video?: string;
+  soundActive: boolean;
+  vttPath?: string;
+  onScrubberClick?: (timestamp: number) => void;
 }
 
 interface IIcon {
