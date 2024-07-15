@@ -27,6 +27,8 @@ const UserData: React.FC<UserDataProps> = ({
     scene.rating100
   );
 
+  const showOrganized = scene.organized && !props.hideOrganized;
+
   // Render nothing if there is no data at all to render
   if (!showOCount && !showPlayCount && !showRating && !scene.organized)
     return null;
@@ -45,7 +47,7 @@ const UserData: React.FC<UserDataProps> = ({
     </span>
   ) : null;
 
-  const organized = scene.organized ? (
+  const organized = showOrganized ? (
     <span className="vsc-organized">
       <Icon icon={faBox} />
     </span>
