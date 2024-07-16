@@ -7,7 +7,6 @@ const SceneCardImage: React.FC<ISceneCardPropsExtended> = ({
   stashSettings,
   ...props
 }) => {
-  //@ts-ignore
   const history = ReactRouterDOM.useHistory();
   const cont = stashSettings?.interface.continuePlaylistDefault ?? false;
 

@@ -1,4 +1,5 @@
 import type React from "@types/react";
+import type ReactRouterDOM from "@types/react-router-dom";
 import type { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type {
   IconDefinition,
@@ -61,11 +62,7 @@ interface IPluginApi {
     ) => void;
   };
   libraries: {
-    ReactRouterDOM: {
-      Link: React.FC<any>;
-      Route: React.FC<any>;
-      NavLink: React.FC<any>;
-    };
+    ReactRouterDOM: typeof ReactRouterDOM;
     Bootstrap: {
       Button: React.FC<any>;
       Nav: React.FC<any> & {
