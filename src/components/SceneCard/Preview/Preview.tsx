@@ -49,8 +49,23 @@ const ScenePreview: React.FC<IScenePreviewPropsExtended> = ({
     backgroundImage: backgroundImage,
   };
 
-  const scrubber = !config.previewScrubberDisabled ? (
+  const showScrubber = !config.previewScrubberDisabled;
+  const videoScrubber = showScrubber ? (
     <PreviewScrubber vttPath={vttPath} onClick={onScrubberClick} />
+  ) : null;
+
+  const showVideo = !config.previewVideoDisabled;
+  const videoPreview = showVideo ? (
+    <video
+      disableRemotePlayback
+      playsInline
+      muted={!soundActive}
+      className="scene-card-preview-video"
+      loop
+      preload="none"
+      ref={videoEl}
+      src={video}
+    />
   ) : null;
 
   /* -------------------------------- Component ------------------------------- */
@@ -63,17 +78,8 @@ const ScenePreview: React.FC<IScenePreviewPropsExtended> = ({
         src={image}
         alt=""
       />
-      <video
-        disableRemotePlayback
-        playsInline
-        muted={!soundActive}
-        className="scene-card-preview-video"
-        loop
-        preload="none"
-        ref={videoEl}
-        src={video}
-      />
-      {scrubber}
+      {videoPreview}
+      {videoScrubber}
     </div>
   );
 };
