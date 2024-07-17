@@ -44,10 +44,10 @@
 
     svg {
       margin: 0;
-    }
 
-    &:not(:last-child) svg {
-      margin-right: toRem(5);
+      &:not(:last-child) {
+        margin-right: toRem(5);
+      }
     }
   }
 
