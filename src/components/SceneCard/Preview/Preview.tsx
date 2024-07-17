@@ -1,6 +1,7 @@
 import { default as cx } from "classnames";
 import PreviewScrubber from "./PreviewScrubber";
 import type { IScenePreviewProps } from "@pluginTypes/stashPlugin";
+import "./Preview.scss";
 const { React } = window.PluginApi;
 
 const ScenePreview: React.FC<IScenePreviewProps> = ({
@@ -32,9 +33,9 @@ const ScenePreview: React.FC<IScenePreviewProps> = ({
   }, [soundActive]);
 
   return (
-    <div className={cx("scene-card-preview jimmy", { portrait: isPortrait })}>
+    <div className={cx("scene-card-preview", { portrait: isPortrait })}>
       <img
-        className="scene-card-preview-image dave"
+        className="scene-card-preview-image"
         loading="lazy"
         src={image}
         alt=""

@@ -1,0 +1,5 @@
+@import "@scss";
+
+.valkyr-scene-card .scene-card-preview {
+  background-color: var(--#{$prefix}-preview-background-color);
+}
