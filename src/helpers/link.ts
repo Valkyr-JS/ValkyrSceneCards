@@ -1,12 +1,20 @@
-/**
- * Create a url link to a scene page.
- *
- * TODO - Incorporate scene queue string
- * */
-export const makeSceneUrl = ({ scene }: ImakeSceneUrl) => `/scenes/${scene.id}`;
+/** Create a url link to a scene page. */
+export const makeSceneUrl = ({ cont, index, scene, queue }: ImakeSceneUrl) => {
+  const link = queue
+    ? queue.makeLink(scene.id, {
+        sceneIndex: index,
+        continue: cont,
+      })
+    : `/scenes/${scene.id}`;
+
+  return link as string;
+};
 
 interface ImakeSceneUrl {
+  cont: ConfigInterfaceResult["continuePlaylistDefault"];
+  queue: any;
   scene: Scene;
+  index?: number;
 }
 
 /** Create a url link to a studio page. */

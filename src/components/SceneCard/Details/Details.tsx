@@ -8,13 +8,22 @@ import Studio from "@components/Studio";
 import Title from "@components/Title";
 import UserData from "@components/UserData";
 import "./Details.scss";
+import { makeSceneUrl } from "@helpers";
 const { React } = window.PluginApi;
 
 const Details: React.FC<ISceneCardPropsExtended> = ({
   config,
   scene,
+  stashSettings,
   ...props
 }) => {
+  const sceneLink = makeSceneUrl({
+    cont: stashSettings?.interface.continuePlaylistDefault ?? false,
+    index: props.index,
+    scene,
+    queue: props.queue,
+  });
+
   return (
     <>
       <div className="vsc-top-line">
@@ -30,14 +39,14 @@ const Details: React.FC<ISceneCardPropsExtended> = ({
           hideRating={config.hideRating}
           hideZeroValueData={config.hideZeroValueData}
           ratingSystemOptions={
-            props.stashSettings.ui?.ratingSystemOptions as
+            stashSettings.ui?.ratingSystemOptions as
               | IratingSystemOptions
               | undefined
           }
           scene={scene}
         />
       </div>
-      <Title scene={scene} />
+      <Title scene={scene} sceneLink={sceneLink} />
       <KeyData
         durationPadding={config.durationPadding}
         hideDate={config.hideDate}
