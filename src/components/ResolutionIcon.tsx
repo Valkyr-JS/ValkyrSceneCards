@@ -1,4 +1,4 @@
-import TextUtils from "../helpers/text";
+import { TextUtils } from "@helpers";
 
 const { React } = window.PluginApi;
 

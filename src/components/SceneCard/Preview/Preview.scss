@@ -1,0 +1,17 @@
+@import "@scss";
+
+.valkyr-scene-card .scene-card-preview {
+  background-color: var(--#{$prefix}-preview-background-color);
+
+  &.blurredBackground {
+    background-position: center;
+
+    .scene-card-preview-image {
+      backdrop-filter: var(--#{$prefix}-preview-background-backdrop-filter);
+    }
+  }
+
+  .hide-cursor-on-video {
+    cursor: none !important;
+  }
+}

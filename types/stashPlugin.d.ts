@@ -1,4 +1,5 @@
 import type React from "@types/react";
+import type ReactRouterDOM from "@types/react-router-dom";
 import type { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type {
   IconDefinition,
@@ -61,11 +62,7 @@ interface IPluginApi {
     ) => void;
   };
   libraries: {
-    ReactRouterDOM: {
-      Link: React.FC<any>;
-      Route: React.FC<any>;
-      NavLink: React.FC<any>;
-    };
+    ReactRouterDOM: typeof ReactRouterDOM;
     Bootstrap: {
       Button: React.FC<any>;
       Nav: React.FC<any> & {
@@ -216,6 +213,15 @@ interface ISceneCardProps {
   selected?: boolean | undefined;
   zoomIndex?: number;
   onSelectedChanged?: (selected: boolean, shiftKey: boolean) => void;
+}
+
+interface IScenePreviewProps {
+  isPortrait: boolean;
+  image?: string;
+  video?: string;
+  soundActive: boolean;
+  vttPath?: string;
+  onScrubberClick?: (timestamp: number) => void;
 }
 
 interface IIcon {

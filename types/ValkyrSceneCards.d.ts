@@ -1,4 +1,4 @@
-import type { ISceneCardProps } from "./stashPlugin";
+import type { ISceneCardProps, IScenePreviewProps } from "./stashPlugin";
 
 /** Stash only creates config items when they are changed. By default they are
  * `undefined`. */
@@ -73,6 +73,21 @@ interface VSCConfigMap {
    * These colors can be changed via CSS variables. See the readme in the link
    * for details. */
   performerGenderColors?: boolean;
+  /** When enabled, scene preview images and videos will show a blurred copy of
+   * the thumbnail where there is letterboxing. This typically only happens for
+   * portrait thumbnails. */
+  previewBlurredBackground?: boolean;
+  /** When enabled, the progress indicator for partially-watched scenes will be
+   * disabled. */
+  previewSceneProgressDisabled?: boolean;
+  /** When enabled, the video scrubber will be disabled on scene cards. */
+  previewScrubberDisabled?: boolean;
+  /** When enabled, the video previews that play when hovering on a card will be
+   * disabled. */
+  previewVideoDisabled?: boolean;
+  /** When enabled, the cursor will be hidden when hovering over the scene
+   * preview video. */
+  previewVideoHideCursor?: boolean;
   /** When enabled, the scene resolution be displayed as an SD/HD/2K/4K/etc.
    * icon. SD and HD icons can be hovered over for the full resolution. */
   resolutionIcon?: boolean;
@@ -109,6 +124,11 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   performerAvatars: boolean;
   performerAvatarsProfile: boolean;
   performerGenderColors: boolean;
+  previewBlurredBackground: boolean;
+  previewSceneProgressDisabled: boolean;
+  previewScrubberDisabled: boolean;
+  previewVideoDisabled: boolean;
+  previewVideoHideCursor: boolean;
   resolutionIcon: boolean;
 }
 
@@ -121,6 +141,14 @@ interface ISceneCardPropsExtended extends ISceneCardProps {
   config: VSCFinalConfigMap;
   /** Custom avatar images. */
   customAvatars: Image[];
+  /** Stash configuration settings. Not to be confused with `config`, which is
+   * exclusively this plugin's settings, though also defined in Stash. */
+  stashSettings: ConfigResult;
+}
+
+interface IScenePreviewPropsExtended extends IScenePreviewProps {
+  /** The user's plugin config. */
+  config: VSCFinalConfigMap;
   /** Stash configuration settings. Not to be confused with `config`, which is
    * exclusively this plugin's settings, though also defined in Stash. */
   stashSettings: ConfigResult;

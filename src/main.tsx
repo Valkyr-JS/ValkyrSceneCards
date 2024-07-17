@@ -1,9 +1,10 @@
+import { default as cx } from "classnames";
 import type {
   ISceneCardPropsExtended,
   VSCConfigMap,
   VSCFinalConfigMap,
-} from "../types/ValkyrSceneCards";
-import { SceneCardDetails } from "./components/SceneCard";
+} from "@pluginTypes/ValkyrSceneCards";
+import { SceneCardDetails, SceneCardImage } from "@components/SceneCard";
 import "./styles.scss";
 const { PluginApi } = window;
 const { GQL, React } = PluginApi;
@@ -45,8 +46,18 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       performerAvatarsCustomTag: userConfig?.performerAvatarsCustomTag,
       performerAvatarsProfile: userConfig?.performerAvatarsProfile ?? false,
       performerGenderColors: userConfig?.performerGenderColors ?? false,
+      previewBlurredBackground: userConfig?.previewBlurredBackground ?? false,
+      previewSceneProgressDisabled:
+        userConfig?.previewSceneProgressDisabled ?? false,
+      previewScrubberDisabled: userConfig?.previewScrubberDisabled ?? false,
+      previewVideoDisabled: userConfig?.previewVideoDisabled ?? false,
+      previewVideoHideCursor: userConfig?.previewVideoHideCursor ?? false,
       resolutionIcon: userConfig?.resolutionIcon ?? false,
     };
+
+    const wrapperClasses = cx("valkyr-scene-card", {
+      ["hide-progress-bar"]: config.previewSceneProgressDisabled,
+    });
 
     // Fetch additional data as needed
     const extendedProps: ISceneCardPropsExtended = {
@@ -114,12 +125,16 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
     }
 
     return [
-      <div className="valkyr-scene-card">
+      <div className={wrapperClasses}>
         <Original {...extendedProps} />
       </div>,
     ];
   }
   return [];
+});
+
+PluginApi.patch.instead("SceneCard.Image", function (props) {
+  return [<SceneCardImage {...(props as ISceneCardPropsExtended)} />];
 });
 
 PluginApi.patch.instead("SceneCard.Details", function (props) {

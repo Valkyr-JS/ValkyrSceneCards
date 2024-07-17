@@ -1,14 +1,17 @@
 @use "sass:math";
-@import "./scss";
+@import "@scss";
 
 :root {
-  --#{$prefix}-font-sm: #{12px};
-  --#{$prefix}-performer-avatar-bg-color: #{rgba(0, 0, 0, 0.6)};
-  --#{$prefix}-performer-avatar-initials-size: #{18px};
+  --#{$prefix}-font-sm: 12px;
+  --#{$prefix}-performer-avatar-bg-color: rgba(0, 0, 0, 0.6);
+  --#{$prefix}-performer-avatar-initials-size: 18px;
   --#{$prefix}-performer-avatar-size: #{$performer-avatar-size};
   --#{$prefix}-resolution-icon-bg-color: #{$stash-body-color};
   --#{$prefix}-resolution-icon-color: #{$stash-card-bg};
-  --#{$prefix}-top-line-opacity: #{0.8};
+  --#{$prefix}-top-line-opacity: 0.8;
+
+  --#{$prefix}-preview-background-backdrop-filter: blur(10px);
+  --#{$prefix}-preview-background-color: #000;
 
   --#{$prefix}-gender-color--female: #{$stash-gender-female};
   --#{$prefix}-gender-color--intersex: #{$stash-gender-intersex};
@@ -43,6 +46,11 @@
       height: 0;
       padding-bottom: 27px;
     }
+  }
+
+  // Set by plugin user config
+  &.hide-progress-bar .progress-bar {
+    display: none !important;
   }
 }
 

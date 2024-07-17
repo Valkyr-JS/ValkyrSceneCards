@@ -1,4 +1,4 @@
-import TextUtils from "../helpers/text";
+import { TextUtils } from "@helpers";
 import ResolutionIcon from "./ResolutionIcon";
 const { React } = window.PluginApi;
 

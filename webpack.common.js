@@ -38,6 +38,13 @@ module.exports = {
     }),
   ],
   resolve: {
+    alias: {
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@helpers": path.resolve(__dirname, "./src/helpers/index"),
+      "@hooks": path.resolve(__dirname, "./src/hooks"),
+      "@scss": path.resolve(__dirname, "./src/scss"),
+      "@pluginTypes": path.resolve(__dirname, "./pluginTypes"),
+    },
     extensions: [".tsx", ".ts", ".js"],
   },
 };

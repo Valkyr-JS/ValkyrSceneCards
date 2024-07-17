@@ -1,4 +1,4 @@
-import { makeStudioUrl } from "../helpers";
+import { makeStudioUrl } from "@helpers";
 
 const { React } = window.PluginApi;
 
