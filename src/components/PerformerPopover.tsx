@@ -1,5 +1,5 @@
 import { default as cx } from "classnames";
-import TextUtils from "../helpers/text";
+import { TextUtils } from "@helpers";
 const { React } = window.PluginApi;
 const { HoverPopover } = window.PluginApi.components;
 

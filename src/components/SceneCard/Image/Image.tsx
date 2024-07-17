@@ -1,5 +1,5 @@
-import { ISceneCardPropsExtended } from "../../../../types/ValkyrSceneCards";
-import ScenePreview from "./Preview";
+import { ISceneCardPropsExtended } from "@pluginTypes/ValkyrSceneCards";
+import ScenePreview from "@components/SceneCard/Preview/Preview";
 const { React } = window.PluginApi;
 const { ReactRouterDOM } = window.PluginApi.libraries;
 

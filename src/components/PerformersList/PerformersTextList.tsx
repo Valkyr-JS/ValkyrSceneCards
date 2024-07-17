@@ -1,6 +1,6 @@
 import { default as cx } from "classnames";
-import { sortPerformers } from "../../helpers";
-import PerformerPopover from "../PerformerPopover";
+import { sortPerformers } from "@helpers";
+import PerformerPopover from "@components/PerformerPopover";
 import "./PerformerList.scss";
 
 const { React } = window.PluginApi;

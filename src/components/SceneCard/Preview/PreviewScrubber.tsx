@@ -1,6 +1,6 @@
-import TextUtils from "../../../helpers/text";
-import { useSpriteInfo } from "../../../hooks/sprite";
-import { useThrottle } from "../../../hooks/throttle";
+import { TextUtils } from "@helpers";
+import { useSpriteInfo } from "@hooks/sprite";
+import { useThrottle } from "@hooks/throttle";
 import cx from "classnames";
 
 const { React } = window.PluginApi;

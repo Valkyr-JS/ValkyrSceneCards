@@ -1,4 +1,4 @@
-import { getFilename, makeSceneUrl } from "../helpers";
+import { getFilename, makeSceneUrl } from "@helpers";
 const { React } = window.PluginApi;
 
 const Title: React.FC<TitleProps> = ({ scene }) => {

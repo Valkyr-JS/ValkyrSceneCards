@@ -1,4 +1,4 @@
-import type { IPerformerFragment } from "../../types/stashPlugin";
+import type { IPerformerFragment } from "@pluginTypes/stashPlugin";
 
 export function sortPerformers<T extends IPerformerFragment>(performers: T[]) {
   const ret = performers.slice();

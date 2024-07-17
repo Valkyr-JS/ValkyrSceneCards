@@ -2,8 +2,8 @@ import type {
   ISceneCardPropsExtended,
   VSCConfigMap,
   VSCFinalConfigMap,
-} from "../types/ValkyrSceneCards";
-import { SceneCardDetails, SceneCardImage } from "./components/SceneCard";
+} from "@pluginTypes/ValkyrSceneCards";
+import { SceneCardDetails, SceneCardImage } from "@components/SceneCard";
 import "./styles.scss";
 const { PluginApi } = window;
 const { GQL, React } = PluginApi;

@@ -1,5 +1,5 @@
-import { getPerformerGenderIcon, sortPerformers } from "../../helpers";
-import PerformerPopover from "../PerformerPopover";
+import { getPerformerGenderIcon, sortPerformers } from "@helpers";
+import PerformerPopover from "@components/PerformerPopover";
 const { React } = window.PluginApi;
 const { Icon } = window.PluginApi.components;
 

@@ -1,5 +1,5 @@
 @use "sass:math";
-@import "./scss";
+@import "@scss";
 
 :root {
   --#{$prefix}-font-sm: #{12px};

@@ -1,12 +1,12 @@
-import type { ISceneCardPropsExtended } from "../../../../types/ValkyrSceneCards";
-import Description from "../../Description";
-import Director from "../../Director";
-import KeyData from "../../KeyData";
-import PerformersAvatarList from "../../PerformersList/PerformersAvatarList";
-import PerformersTextList from "../../PerformersList/PerformersTextList";
-import Studio from "../../Studio";
-import Title from "../../Title";
-import UserData from "../../UserData";
+import type { ISceneCardPropsExtended } from "@pluginTypes/ValkyrSceneCards";
+import Description from "@components/Description";
+import Director from "@components/Director";
+import KeyData from "@components/KeyData";
+import PerformersAvatarList from "@components/PerformersList/PerformersAvatarList";
+import PerformersTextList from "@components/PerformersList/PerformersTextList";
+import Studio from "@components/Studio";
+import Title from "@components/Title";
+import UserData from "@components/UserData";
 import "./Details.scss";
 const { React } = window.PluginApi;
 

@@ -1,6 +1,6 @@
 import { default as cx } from "classnames";
 import PreviewScrubber from "./PreviewScrubber";
-import type { IScenePreviewProps } from "../../../../types/stashPlugin";
+import type { IScenePreviewProps } from "@pluginTypes/stashPlugin";
 const { React } = window.PluginApi;
 
 const ScenePreview: React.FC<IScenePreviewProps> = ({
