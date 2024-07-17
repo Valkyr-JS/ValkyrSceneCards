@@ -49,6 +49,10 @@ const ScenePreview: React.FC<IScenePreviewPropsExtended> = ({
     backgroundImage: backgroundImage,
   };
 
+  const scrubber = !config.previewScrubberDisabled ? (
+    <PreviewScrubber vttPath={vttPath} onClick={onScrubberClick} />
+  ) : null;
+
   /* -------------------------------- Component ------------------------------- */
 
   return (
@@ -69,7 +73,7 @@ const ScenePreview: React.FC<IScenePreviewPropsExtended> = ({
         ref={videoEl}
         src={video}
       />
-      <PreviewScrubber vttPath={vttPath} onClick={onScrubberClick} />
+      {scrubber}
     </div>
   );
 };
