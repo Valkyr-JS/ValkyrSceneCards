@@ -73,6 +73,15 @@ interface VSCConfigMap {
    * These colors can be changed via CSS variables. See the readme in the link
    * for details. */
   performerGenderColors?: boolean;
+  /** When enabled, scene preview images and videos will show a blurred copy of
+   * the thumbnail where there is letterboxing. This typically only happens for
+   * portrait thumbnails. */
+  previewBlurredBackground?: boolean;
+  /** When enabled, the video scrubber will be disabled on scene cards. */
+  previewScrubberDisabled?: boolean;
+  /** When enabled, the video previews that play when hovering on a card will be
+   * disabled. */
+  previewVideoDisabled?: boolean;
   /** When enabled, the scene resolution be displayed as an SD/HD/2K/4K/etc.
    * icon. SD and HD icons can be hovered over for the full resolution. */
   resolutionIcon?: boolean;
@@ -109,6 +118,9 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   performerAvatars: boolean;
   performerAvatarsProfile: boolean;
   performerGenderColors: boolean;
+  previewBlurredBackground: boolean;
+  previewScrubberDisabled: boolean;
+  previewVideoDisabled: boolean;
   resolutionIcon: boolean;
 }
 
