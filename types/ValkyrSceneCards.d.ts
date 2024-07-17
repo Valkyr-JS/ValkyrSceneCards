@@ -85,6 +85,9 @@ interface VSCConfigMap {
   /** When enabled, the video previews that play when hovering on a card will be
    * disabled. */
   previewVideoDisabled?: boolean;
+  /** When enabled, the cursor will be hidden when hovering over the scene
+   * preview video. */
+  previewVideoHideCursor?: boolean;
   /** When enabled, the scene resolution be displayed as an SD/HD/2K/4K/etc.
    * icon. SD and HD icons can be hovered over for the full resolution. */
   resolutionIcon?: boolean;
@@ -125,6 +128,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   previewSceneProgressDisabled: boolean;
   previewScrubberDisabled: boolean;
   previewVideoDisabled: boolean;
+  previewVideoHideCursor: boolean;
   resolutionIcon: boolean;
 }
 

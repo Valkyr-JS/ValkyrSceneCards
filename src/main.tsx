@@ -51,6 +51,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
         userConfig?.previewSceneProgressDisabled ?? false,
       previewScrubberDisabled: userConfig?.previewScrubberDisabled ?? false,
       previewVideoDisabled: userConfig?.previewVideoDisabled ?? false,
+      previewVideoHideCursor: userConfig?.previewVideoHideCursor ?? false,
       resolutionIcon: userConfig?.resolutionIcon ?? false,
     };
 

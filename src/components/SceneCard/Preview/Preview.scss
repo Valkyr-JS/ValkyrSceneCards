@@ -10,4 +10,8 @@
       backdrop-filter: var(--#{$prefix}-preview-background-backdrop-filter);
     }
   }
+
+  .hide-cursor-on-video {
+    cursor: none !important;
+  }
 }

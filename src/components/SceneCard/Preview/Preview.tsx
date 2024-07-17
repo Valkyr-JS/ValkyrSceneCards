@@ -54,12 +54,15 @@ const ScenePreview: React.FC<IScenePreviewPropsExtended> = ({
   ) : null;
 
   const showVideo = !config.previewVideoDisabled;
+  const videoClasses = cx("scene-card-preview-video", {
+    ["hide-cursor-on-video"]: config.previewVideoHideCursor,
+  });
   const videoPreview = showVideo ? (
     <video
       disableRemotePlayback
       playsInline
       muted={!soundActive}
-      className="scene-card-preview-video"
+      className={videoClasses}
       loop
       preload="none"
       ref={videoEl}
