@@ -2,4 +2,12 @@
 
 .valkyr-scene-card .scene-card-preview {
   background-color: var(--#{$prefix}-preview-background-color);
+
+  &.blurredBackground {
+    background-position: center;
+
+    .scene-card-preview-image {
+      backdrop-filter: var(--#{$prefix}-preview-background-backdrop-filter);
+    }
+  }
 }

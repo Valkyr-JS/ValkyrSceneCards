@@ -1,4 +1,4 @@
-import type { ISceneCardProps } from "./stashPlugin";
+import type { ISceneCardProps, IScenePreviewProps } from "./stashPlugin";
 
 /** Stash only creates config items when they are changed. By default they are
  * `undefined`. */
@@ -139,6 +139,8 @@ interface ISceneCardPropsExtended extends ISceneCardProps {
 }
 
 interface IScenePreviewPropsExtended extends IScenePreviewProps {
+  /** The user's plugin config. */
+  config: VSCFinalConfigMap;
   /** Stash configuration settings. Not to be confused with `config`, which is
    * exclusively this plugin's settings, though also defined in Stash. */
   stashSettings: ConfigResult;

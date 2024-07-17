@@ -63,9 +63,8 @@ I've tried to minimize the amount of theme-based styling such as colors, font ap
     --vsc-resolution-icon-bg-color: #f5f8fa;
     --vsc-resolution-icon-color: #30404d;
     --vsc-top-line-opacity: 0.8;
-
+    --vsc-preview-background-backdrop-filter: blur(10px);
     --vsc-preview-background-color: #000;
-
     --vsc-gender-color--female: #f38cac;
     --vsc-gender-color--intersex: #c8a2c8;
     --vsc-gender-color--male: #89cff0;
