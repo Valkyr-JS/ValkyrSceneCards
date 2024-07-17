@@ -1,5 +1,5 @@
 import { TextUtils } from "@helpers";
-import ResolutionIcon from "./ResolutionIcon";
+import ResolutionIcon from "./Icons/ResolutionIcon";
 const { React } = window.PluginApi;
 
 const KeyData: React.FC<KeyDataProps> = ({
