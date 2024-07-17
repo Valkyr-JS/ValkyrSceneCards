@@ -77,6 +77,9 @@ interface VSCConfigMap {
    * the thumbnail where there is letterboxing. This typically only happens for
    * portrait thumbnails. */
   previewBlurredBackground?: boolean;
+  /** When enabled, the progress indicator for partially-watched scenes will be
+   * disabled. */
+  previewSceneProgressDisabled?: boolean;
   /** When enabled, the video scrubber will be disabled on scene cards. */
   previewScrubberDisabled?: boolean;
   /** When enabled, the video previews that play when hovering on a card will be
@@ -119,6 +122,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   performerAvatarsProfile: boolean;
   performerGenderColors: boolean;
   previewBlurredBackground: boolean;
+  previewSceneProgressDisabled: boolean;
   previewScrubberDisabled: boolean;
   previewVideoDisabled: boolean;
   resolutionIcon: boolean;

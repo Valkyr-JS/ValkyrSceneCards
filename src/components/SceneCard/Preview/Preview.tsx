@@ -12,7 +12,6 @@ const ScenePreview: React.FC<IScenePreviewPropsExtended> = ({
   soundActive,
   vttPath,
   onScrubberClick,
-  ...props
 }) => {
   const videoEl = React.useRef<HTMLVideoElement>(null);
 

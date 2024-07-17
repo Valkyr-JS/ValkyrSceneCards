@@ -47,6 +47,11 @@
       padding-bottom: 27px;
     }
   }
+
+  // Set by plugin user config
+  &.hide-progress-bar .progress-bar {
+    display: none !important;
+  }
 }
 
 .slick-slider .valkyr-scene-card {
