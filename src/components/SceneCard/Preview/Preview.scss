@@ -5,6 +5,7 @@
 
   &.blurredBackground {
     background-position: center;
+    background-size: cover;
 
     .scene-card-preview-image {
       backdrop-filter: var(--#{$prefix}-preview-background-backdrop-filter);
