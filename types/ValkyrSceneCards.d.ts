@@ -73,6 +73,11 @@ interface VSCConfigMap {
    * These colors can be changed via CSS variables. See the readme in the link
    * for details. */
   performerGenderColors?: boolean;
+  /** Enter a comma-separated list of the genders that should be included in the
+   * performer list. An empty list will show all performers. Acceptable values
+   * are; MALE, FEMALE, TRANSGENDER MALE, TRANSGENDER FEMALE, INTERSEX, and NON
+   * BINARY. Case is insensitive. */
+  performerGenderFilter?: string;
   /** When enabled, scene preview images and videos will show a blurred copy of
    * the thumbnail where there is letterboxing. This typically only happens for
    * portrait thumbnails. */
@@ -124,6 +129,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   performerAvatars: boolean;
   performerAvatarsProfile: boolean;
   performerGenderColors: boolean;
+  performerGenderFilter: string;
   previewBlurredBackground: boolean;
   previewSceneProgressDisabled: boolean;
   previewScrubberDisabled: boolean;
