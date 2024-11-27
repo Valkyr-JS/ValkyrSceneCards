@@ -2,10 +2,12 @@ import { default as cx } from "classnames";
 import { sortPerformers } from "@helpers";
 import PerformerPopover from "@components/PerformerPopover";
 import "./PerformerList.scss";
+import OverflowPopover from "@components/OverflowPopover";
 
 const { React } = window.PluginApi;
 
 const PerformersTextList: React.FC<PerformersTextListProps> = ({
+  performerLimit,
   scene,
   ...props
 }) => {
@@ -22,22 +24,32 @@ const PerformersTextList: React.FC<PerformersTextListProps> = ({
     scene.performers,
     props.performerGenderFilter
   );
-  const totalPerformers = sortedPerformers.length;
+  const visiblePerformers = performerLimit
+    ? sortedPerformers.slice(0, performerLimit)
+    : sortedPerformers;
+  const overflowPerformers = performerLimit
+    ? sortedPerformers.slice(performerLimit, sortedPerformers.length)
+    : [];
 
   return (
     <div className="vsc-performers-list vsc-performers-list__text">
-      {sortedPerformers.map((pf, i) => {
-        const isOneBeforeLast = i === totalPerformers - 2;
-        const isAnyBeforeLast = i < totalPerformers - 1;
+      {visiblePerformers.map((pf, i) => {
+        const isOneBeforeLast = i === sortedPerformers.length - 2;
+        const isAnyBeforeLast = i < sortedPerformers.length - 1;
         const classes = cx("vsc-performer", {
           [`vsc-gender-color--${pf.gender?.toLowerCase() || "unknown"}`]:
             props.performerGenderColors,
         });
         let suffix = null;
-        if (totalPerformers === 2 && isOneBeforeLast) suffix = " and ";
+        if (
+          visiblePerformers.length === 2 &&
+          isOneBeforeLast &&
+          !overflowPerformers.length
+        )
+          suffix = " and ";
         else {
           if (isAnyBeforeLast) suffix = ", ";
-          if (isOneBeforeLast) suffix += "and ";
+          if (isOneBeforeLast && !overflowPerformers.length) suffix += "and ";
         }
         return (
           <PerformerPopover
@@ -56,6 +68,7 @@ const PerformersTextList: React.FC<PerformersTextListProps> = ({
           </PerformerPopover>
         );
       })}
+      <OverflowPerformers performers={overflowPerformers} />
     </div>
   );
 };
@@ -83,6 +96,37 @@ interface PerformersTextListProps {
    * performer list. An empty list will show all performers. Case is
    * insensitive. */
   performerGenderFilter: string;
+  /** If the number of scene performers exceeds this number, the remaining
+   * performers will be replaced with overflow text. If undefined, all
+   * performers will be listed. */
+  performerLimit: number | undefined;
   /** The scene data. */
   scene: Scene;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*                                       Overflow performer                                       */
+/* ---------------------------------------------------------------------------------------------- */
+
+const OverflowPerformers: React.FC<OverflowPerformersProps> = ({
+  performers,
+}) => {
+  if (performers.length === 0) return null;
+
+  const items = performers.map((p) => ({
+    data: p,
+    link: `/performers/${p.id}`,
+  }));
+
+  return (
+    <OverflowPopover items={items} type="performer">
+      <span className="top-meta-overflow hoverable">
+        and {performers.length} more
+      </span>
+    </OverflowPopover>
+  );
+};
+
+interface OverflowPerformersProps {
+  performers: Performer[];
 }
