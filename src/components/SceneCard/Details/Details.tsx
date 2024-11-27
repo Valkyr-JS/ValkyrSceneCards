@@ -69,6 +69,7 @@ const Details: React.FC<ISceneCardPropsExtended> = ({
         performerAvatars={config.performerAvatars}
         performerGenderColors={config.performerGenderColors}
         performerGenderFilter={config.performerGenderFilter}
+        performerLimit={config.performerLimit}
         scene={scene}
       />
       <PerformersAvatarList

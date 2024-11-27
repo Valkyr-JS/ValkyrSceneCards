@@ -20,6 +20,8 @@
   --#{$prefix}-gender-color--transfemale: #{$stash-gender-transfemale};
   --#{$prefix}-gender-color--transmale: #{$stash-gender-transmale};
   --#{$prefix}-gender-color--unknown: #{$stash-gender-unknown};
+
+  --#{$prefix}-performer-overflow-border-bottom: 1px dotted #f5f8fa;
 }
 
 .valkyr-scene-card {

@@ -77,6 +77,10 @@
         display: inline;
       }
     }
+
+    .hoverable {
+      border-bottom: var(--#{$prefix}-performer-overflow-border-bottom);
+    }
   }
 }
 
