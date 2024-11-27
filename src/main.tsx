@@ -46,6 +46,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       performerAvatarsCustomTag: userConfig?.performerAvatarsCustomTag,
       performerAvatarsProfile: userConfig?.performerAvatarsProfile ?? false,
       performerGenderColors: userConfig?.performerGenderColors ?? false,
+      performerGenderFilter: userConfig?.performerGenderFilter ?? "",
       previewBlurredBackground: userConfig?.previewBlurredBackground ?? false,
       previewSceneProgressDisabled:
         userConfig?.previewSceneProgressDisabled ?? false,

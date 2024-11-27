@@ -16,7 +16,10 @@ const PerformersAvatarList: React.FC<PerformersAvatarListProps> = ({
   )
     return null;
 
-  const sortedPerformers = sortPerformers(scene.performers);
+  const sortedPerformers = sortPerformers(
+    scene.performers,
+    props.performerGenderFilter
+  );
 
   return (
     <ul className="vsc-performers-list vsc-performers-list__avatars">
@@ -83,6 +86,10 @@ interface PerformersAvatarListProps {
   performerAvatarsProfile: boolean;
   /** When `true`, performer names will be colored according to their gender. */
   performerGenderColors: boolean;
+  /** A comma-separated list of the genders that should be included in the
+   * performer list. An empty list will show all performers. Case is
+   * insensitive. */
+  performerGenderFilter: string;
   /** The scene data. */
   scene: Scene;
   /** When set, performer avatars will use images tagged with this tag ID. */

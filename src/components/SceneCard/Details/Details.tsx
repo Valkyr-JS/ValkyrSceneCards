@@ -68,6 +68,7 @@ const Details: React.FC<ISceneCardPropsExtended> = ({
         hidePerformerHoverNationality={config.hidePerformerHoverNationality}
         performerAvatars={config.performerAvatars}
         performerGenderColors={config.performerGenderColors}
+        performerGenderFilter={config.performerGenderFilter}
         scene={scene}
       />
       <PerformersAvatarList
@@ -78,6 +79,7 @@ const Details: React.FC<ISceneCardPropsExtended> = ({
         performerAvatars={config.performerAvatars}
         performerAvatarsProfile={config.performerAvatarsProfile}
         performerGenderColors={config.performerGenderColors}
+        performerGenderFilter={config.performerGenderFilter}
         scene={scene}
         sceneCustomAvatars={props.customAvatars}
       />
