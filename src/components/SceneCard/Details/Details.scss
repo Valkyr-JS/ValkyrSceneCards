@@ -63,10 +63,19 @@
     grid-row: key-data-top / key-data-bottom;
 
     display: flex;
-    column-gap: $column-gap;
     margin-top: 3px;
 
     font-size: var(--#{$prefix}-font-sm);
+  }
+
+  .vsc-shared-file-data,
+  .vsc-unique-file-data {
+    display: flex;
+    column-gap: $column-gap;
+  }
+
+  .vsc-shared-file-data {
+    margin-right: auto;
   }
 
   .vsc-resolution {
