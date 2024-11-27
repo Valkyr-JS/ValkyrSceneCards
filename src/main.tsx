@@ -25,6 +25,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       hideDescription: userConfig?.hideDescription ?? false,
       hideDirector: userConfig?.hideDirector ?? false,
       hideDuration: userConfig?.hideDuration ?? false,
+      hideFilesize: userConfig?.hideFilesize ?? false,
       hideGalleries: userConfig?.hideGalleries ?? false,
       hideGroups: userConfig?.hideGroups ?? false,
       hideMarkers: userConfig?.hideMarkers ?? false,

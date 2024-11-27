@@ -13,13 +13,38 @@ const KeyData: React.FC<KeyDataProps> = ({
 
   const showDate = !!scene.date && !props.hideDate;
   const showDuration = !!primaryFile && !props.hideDuration;
+  const showFilesize = !!primaryFile && !props.hideFilesize;
   const showResolution = !!primaryFile && !hideResolution;
 
   // Render nothing if there is no data at all to render
-  if (!showDate && !showDuration && hideResolution) return null;
+  if (!showDate && !showDuration && !showFilesize && hideResolution)
+    return null;
 
   // Date
   const date = showDate ? <span className="vsc-date">{scene.date}</span> : null;
+
+  // File size
+  const sizeData = TextUtils.fileSize(primaryFile.size);
+
+  // If the file is less than a gigabyte, round it to the nerest integer.
+  // Otherwise, round to two decimal places.
+  let size = 0;
+  switch (sizeData.unit) {
+    case "byte":
+    case "kilobyte":
+    case "megabyte":
+      size = Math.round(sizeData.size);
+      break;
+    default:
+      size = Math.round(sizeData.size * 100) / 100;
+      break;
+  }
+  const filesize = showFilesize ? (
+    <span className="vsc-date">
+      {size}
+      {TextUtils.formatFileSizeUnit(sizeData.unit)}
+    </span>
+  ) : null;
 
   // Resolution
   const showResolutionAsIcon = showResolution && resolutionIcon;
@@ -54,6 +79,7 @@ const KeyData: React.FC<KeyDataProps> = ({
       {date}
       {duration}
       {resolutionText}
+      {filesize}
     </div>
   );
 };
@@ -68,6 +94,8 @@ interface KeyDataProps {
   hideDate: boolean;
   /** When `true`, the scene duration will not be displayed. */
   hideDuration: boolean;
+  /** When `true`, the file size will not be displayed. */
+  hideFilesize: boolean;
   /** When `true`, the scene resolution will not be displayed. */
   hideResolution: boolean;
   /** When `true`, the scene resolution be displayed as an SD/HD/2K/4K/etc.
