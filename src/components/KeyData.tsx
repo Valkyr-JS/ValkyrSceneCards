@@ -31,6 +31,7 @@ const KeyData: React.FC<KeyDataProps> = ({
       <UniqueFileData
         file={primaryFile}
         hideFilesize={props.hideFilesize}
+        hideFramerate={props.hideFramerate}
         hideResolution={hideResolution}
         resolutionIcon={resolutionIcon}
       />
@@ -50,6 +51,8 @@ interface KeyDataProps {
   hideDuration: boolean;
   /** When `true`, the file size will not be displayed. */
   hideFilesize: boolean;
+  /** When `true`, the frame rate will not be displayed. */
+  hideFramerate: boolean;
   /** When `true`, the scene resolution will not be displayed. */
   hideResolution: boolean;
   /** When `true`, the scene resolution be displayed as an SD/HD/2K/4K/etc.
@@ -116,7 +119,11 @@ interface SharedFileProps {
 /* ---------------------------------------------------------------------------------------------- */
 
 const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
-  if (!file || (props.hideFilesize && props.hideResolution)) return null;
+  if (
+    !file ||
+    (props.hideFilesize && props.hideFramerate && props.hideResolution)
+  )
+    return null;
 
   // File size
   const sizeData = TextUtils.fileSize(file.size);
@@ -141,6 +148,11 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
     </span>
   ) : null;
 
+  // Frame rate
+  const framerate = !props.hideFramerate ? (
+    <span className="vsc-framerate">{file.frame_rate}fps</span>
+  ) : null;
+
   // Resolution
   const showResolutionAsIcon = !props.hideResolution && props.resolutionIcon;
   const showResolutionAsText = !props.hideResolution && !props.resolutionIcon;
@@ -153,6 +165,7 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
   return (
     <div className="vsc-unique-file-data">
       {filesize}
+      {framerate}
       {resolutionText}
       <ResolutionIcon file={file} hide={!showResolutionAsIcon} />
     </div>
@@ -164,6 +177,8 @@ type UniqueFileProps = {
   file?: VideoFile;
   /** When `true`, the file size will not be displayed. */
   hideFilesize: boolean;
+  /** When `true`, the frame rate will not be displayed. */
+  hideFramerate: boolean;
   /** When `true`, the scene resolution will not be displayed. */
   hideResolution: boolean;
   /** When `true`, the scene resolution be displayed as an SD/HD/2K/4K/etc.
