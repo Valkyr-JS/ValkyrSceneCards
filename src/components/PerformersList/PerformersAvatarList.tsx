@@ -1,9 +1,11 @@
 import { getPerformerGenderIcon, sortPerformers } from "@helpers";
 import PerformerPopover from "@components/PerformerPopover";
+import OverflowPopover from "@components/OverflowPopover";
 const { React } = window.PluginApi;
 const { Icon } = window.PluginApi.components;
 
 const PerformersAvatarList: React.FC<PerformersAvatarListProps> = ({
+  performerLimit,
   scene,
   ...props
 }) => {
@@ -20,48 +22,57 @@ const PerformersAvatarList: React.FC<PerformersAvatarListProps> = ({
     scene.performers,
     props.performerGenderFilter
   );
+  const visiblePerformers = performerLimit
+    ? sortedPerformers.slice(0, performerLimit)
+    : sortedPerformers;
+  const overflowPerformers = performerLimit
+    ? sortedPerformers.slice(performerLimit, sortedPerformers.length)
+    : [];
 
   return (
-    <ul className="vsc-performers-list vsc-performers-list__avatars">
-      {sortedPerformers.map((pf) => {
-        let avatar: React.JSX.Element;
+    <>
+      <ul className="vsc-performers-list vsc-performers-list__avatars">
+        {visiblePerformers.map((pf) => {
+          let avatar: React.JSX.Element;
 
-        const customAvatar = props.sceneCustomAvatars.find((img) =>
-          img.performers.find((p) => p.id === pf.id)
-        );
+          const customAvatar = props.sceneCustomAvatars.find((img) =>
+            img.performers.find((p) => p.id === pf.id)
+          );
 
-        switch (true) {
-          case !!customAvatar:
-            avatar = <CustomAvatar performer={pf} image={customAvatar} />;
-            break;
-          case props.performerAvatarsProfile:
-            avatar = <ProfileAvatar performer={pf} />;
-            break;
-          default:
-            avatar = <DefaultAvatar performer={pf} />;
-            break;
-        }
+          switch (true) {
+            case !!customAvatar:
+              avatar = <CustomAvatar performer={pf} image={customAvatar} />;
+              break;
+            case props.performerAvatarsProfile:
+              avatar = <ProfileAvatar performer={pf} />;
+              break;
+            default:
+              avatar = <DefaultAvatar performer={pf} />;
+              break;
+          }
 
-        // Get the appropriate gender icon
-        return (
-          <li className="vsc-performer">
-            <PerformerPopover
-              hidePerformerHoverAge={props.hidePerformerHoverAge}
-              hidePerformerHoverImage={props.hidePerformerHoverImage}
-              hidePerformerHoverNationality={
-                props.hidePerformerHoverNationality
-              }
-              hidePerformerHoverName={false}
-              performer={pf}
-              performerGenderColors={props.performerGenderColors}
-              sceneDate={scene.date}
-            >
-              {avatar}
-            </PerformerPopover>
-          </li>
-        );
-      })}
-    </ul>
+          // Get the appropriate gender icon
+          return (
+            <li className="vsc-performer">
+              <PerformerPopover
+                hidePerformerHoverAge={props.hidePerformerHoverAge}
+                hidePerformerHoverImage={props.hidePerformerHoverImage}
+                hidePerformerHoverNationality={
+                  props.hidePerformerHoverNationality
+                }
+                hidePerformerHoverName={false}
+                performer={pf}
+                performerGenderColors={props.performerGenderColors}
+                sceneDate={scene.date}
+              >
+                {avatar}
+              </PerformerPopover>
+            </li>
+          );
+        })}
+        <OverflowPerformers performers={overflowPerformers} />
+      </ul>
+    </>
   );
 };
 
@@ -90,6 +101,10 @@ interface PerformersAvatarListProps {
    * performer list. An empty list will show all performers. Case is
    * insensitive. */
   performerGenderFilter: string;
+  /** If the number of scene performers exceeds this number, the remaining
+   * performers will be replaced with overflow text. If undefined, all
+   * performers will be listed. */
+  performerLimit: number | undefined;
   /** The scene data. */
   scene: Scene;
   /** When set, performer avatars will use images tagged with this tag ID. */
@@ -161,4 +176,35 @@ const CustomAvatar: React.FC<CustomAvatarProps> = ({ image, performer }) => {
 interface CustomAvatarProps extends AvatarProps {
   /** The performer details. */
   image: Image;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*                                       Overflow performer                                       */
+/* ---------------------------------------------------------------------------------------------- */
+
+const OverflowPerformers: React.FC<OverflowPerformersProps> = ({
+  performers,
+}) => {
+  if (performers.length === 0) return null;
+
+  const items = performers.map((p) => ({
+    data: p,
+    link: `/performers/${p.id}`,
+  }));
+
+  return (
+    <li className="vsc-performer">
+      <OverflowPopover items={items} type="performer">
+        <div className="vsc-performer-avatar vsc-performer-overflow">
+          <span aria-label={`and ${performers.length} more`}>
+            +{performers.length}
+          </span>
+        </div>
+      </OverflowPopover>
+    </li>
+  );
+};
+
+interface OverflowPerformersProps {
+  performers: Performer[];
 }
