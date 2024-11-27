@@ -14,72 +14,26 @@ const KeyData: React.FC<KeyDataProps> = ({
   const showDate = !!scene.date && !props.hideDate;
   const showDuration = !!primaryFile && !props.hideDuration;
   const showFilesize = !!primaryFile && !props.hideFilesize;
-  const showResolution = !!primaryFile && !hideResolution;
 
   // Render nothing if there is no data at all to render
   if (!showDate && !showDuration && !showFilesize && hideResolution)
     return null;
 
-  // Date
-  const date = showDate ? <span className="vsc-date">{scene.date}</span> : null;
-
-  // File size
-  const sizeData = TextUtils.fileSize(primaryFile.size);
-
-  // If the file is less than a gigabyte, round it to the nerest integer.
-  // Otherwise, round to two decimal places.
-  let size = 0;
-  switch (sizeData.unit) {
-    case "byte":
-    case "kilobyte":
-    case "megabyte":
-      size = Math.round(sizeData.size);
-      break;
-    default:
-      size = Math.round(sizeData.size * 100) / 100;
-      break;
-  }
-  const filesize = showFilesize ? (
-    <span className="vsc-date">
-      {size}
-      {TextUtils.formatFileSizeUnit(sizeData.unit)}
-    </span>
-  ) : null;
-
-  // Resolution
-  const showResolutionAsIcon = showResolution && resolutionIcon;
-  const showResolutionAsText = showResolution && !resolutionIcon;
-  const resolutionText = showResolutionAsText ? (
-    <span className="vsc-resolution">
-      {TextUtils.resolution(primaryFile.width, primaryFile.height)}
-    </span>
-  ) : null;
-
-  // Duration
-  let duration: React.JSX.Element | null = null;
-
-  if (showDuration) {
-    let timestamp = TextUtils.secondsToTimestamp(primaryFile.duration ?? 0);
-    if (props.durationPadding) {
-      const reverseTimes = timestamp.split(":").reverse();
-      if (reverseTimes.length === 1) reverseTimes.push("00", "00");
-      if (reverseTimes.length === 2) reverseTimes.push("00");
-
-      timestamp = reverseTimes
-        .map((v) => (v.length < 2 ? "0" + v : v))
-        .reverse()
-        .join(":");
-    }
-    duration = <span className="vsc-duration">{timestamp}</span>;
-  }
-
   return (
     <div className="vsc-key-data">
-      <ResolutionIcon file={primaryFile} hide={!showResolutionAsIcon} />
-      {date}
-      {duration}
-      {resolutionText}
-      {filesize}
+      <SharedFileData
+        durationPadding={props.durationPadding}
+        file={primaryFile}
+        hideDate={props.hideDate}
+        hideDuration={props.hideDuration}
+        scene={scene}
+      />
+      <UniqueFileData
+        file={primaryFile}
+        hideFilesize={props.hideFilesize}
+        hideResolution={hideResolution}
+        resolutionIcon={resolutionIcon}
+      />
     </div>
   );
 };
@@ -104,3 +58,115 @@ interface KeyDataProps {
   /** The scene data. */
   scene: Scene;
 }
+
+/* ---------------------------------------------------------------------------------------------- */
+/*                                        Shared file data                                        */
+/* ---------------------------------------------------------------------------------------------- */
+
+const SharedFileData: React.FC<SharedFileProps> = (props) => {
+  if (props.hideDate && props.hideDuration) return null;
+
+  // Date
+  const date = !props.hideDate ? (
+    <span className="vsc-date">{props.scene.date}</span>
+  ) : null;
+
+  // Duration
+  let duration: React.JSX.Element | null = null;
+
+  if (!props.hideDuration) {
+    let timestamp = TextUtils.secondsToTimestamp(props.file?.duration ?? 0);
+    if (props.durationPadding) {
+      const reverseTimes = timestamp.split(":").reverse();
+      if (reverseTimes.length === 1) reverseTimes.push("00", "00");
+      if (reverseTimes.length === 2) reverseTimes.push("00");
+
+      timestamp = reverseTimes
+        .map((v) => (v.length < 2 ? "0" + v : v))
+        .reverse()
+        .join(":");
+    }
+    duration = <span className="vsc-duration">{timestamp}</span>;
+  }
+
+  return (
+    <div className="vsc-shared-file-data">
+      {date}
+      {duration}
+    </div>
+  );
+};
+
+interface SharedFileProps {
+  /** When `true`, the scene duration will be padded out to HH:MM:SS. For
+   * example, 6:37 would appear as 00:06:37. */
+  durationPadding: boolean;
+  /** The file referenced for this data. */
+  file?: VideoFile;
+  /** When `true`, the scene date will not be displayed. */
+  hideDate: boolean;
+  /** When `true`, the scene duration will not be displayed. */
+  hideDuration: boolean;
+  /** The scene data. */
+  scene: Scene;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*                                        Unique file data                                        */
+/* ---------------------------------------------------------------------------------------------- */
+
+const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
+  if (!file || (props.hideFilesize && props.hideResolution)) return null;
+
+  // File size
+  const sizeData = TextUtils.fileSize(file.size);
+
+  // If the file is less than a gigabyte, round it to the nerest integer.
+  // Otherwise, round to two decimal places.
+  let size = 0;
+  switch (sizeData.unit) {
+    case "byte":
+    case "kilobyte":
+    case "megabyte":
+      size = Math.round(sizeData.size);
+      break;
+    default:
+      size = Math.round(sizeData.size * 100) / 100;
+      break;
+  }
+  const filesize = !props.hideFilesize ? (
+    <span className="vsc-filesize">
+      {size}
+      {TextUtils.formatFileSizeUnit(sizeData.unit)}
+    </span>
+  ) : null;
+
+  // Resolution
+  const showResolutionAsIcon = !props.hideResolution && props.resolutionIcon;
+  const showResolutionAsText = !props.hideResolution && !props.resolutionIcon;
+  const resolutionText = showResolutionAsText ? (
+    <span className="vsc-resolution">
+      {TextUtils.resolution(file.width, file.height)}
+    </span>
+  ) : null;
+
+  return (
+    <div className="vsc-unique-file-data">
+      {filesize}
+      {resolutionText}
+      <ResolutionIcon file={file} hide={!showResolutionAsIcon} />
+    </div>
+  );
+};
+
+type UniqueFileProps = {
+  /** The file referenced for this data. */
+  file?: VideoFile;
+  /** When `true`, the file size will not be displayed. */
+  hideFilesize: boolean;
+  /** When `true`, the scene resolution will not be displayed. */
+  hideResolution: boolean;
+  /** When `true`, the scene resolution be displayed as an SD/HD/2K/4K/etc.
+   * icon. SD and HD icons can be hovered over for the full resolution. */
+  resolutionIcon: boolean;
+};
