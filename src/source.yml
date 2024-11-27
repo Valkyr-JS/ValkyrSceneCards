@@ -36,6 +36,10 @@ settings:
     displayName: Hide file size
     description: When enabled, the file size will not be displayed.
     type: BOOLEAN
+  hideFramerate:
+    displayName: Hide frame rate
+    description: When enabled, the frame rate will not be displayed.
+    type: BOOLEAN
   hideGalleries:
     displayName: Hide galleries
     description: When enabled, the scene galleries count will not be displayed.

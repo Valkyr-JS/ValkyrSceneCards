@@ -19,6 +19,8 @@ interface VSCConfigMap {
   hideDuration?: boolean;
   /** When enabled, the file size will not be displayed. */
   hideFilesize?: boolean;
+  /** When enabled, the frame rate will not be displayed. */
+  hideFramerate?: boolean;
   /** When enabled, the scene galleries count will not be displayed. */
   hideGalleries?: boolean;
   /** When enabled, the scene groups (movies in Stash 0.26 and older) count will not be displayed. */
@@ -118,6 +120,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   hideDirector: boolean;
   hideDuration: boolean;
   hideFilesize: boolean;
+  hideFramerate: boolean;
   hideGalleries: boolean;
   hideGroups: boolean;
   hideMarkers: boolean;
