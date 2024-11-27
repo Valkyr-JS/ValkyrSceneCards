@@ -1,7 +1,7 @@
 {
   "name": "valkyrscenecards",
   "version": "1.1.1",
-  "description": "A rework of the scene cards for Stash.",
+  "description": "A customisable redesign of the scene cards for Stash.",
   "main": "./src/main.ts",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
