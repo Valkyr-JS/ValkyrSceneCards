@@ -18,7 +18,10 @@ const PerformersTextList: React.FC<PerformersTextListProps> = ({
   )
     return null;
 
-  const sortedPerformers = sortPerformers(scene.performers);
+  const sortedPerformers = sortPerformers(
+    scene.performers,
+    props.performerGenderFilter
+  );
   const totalPerformers = sortedPerformers.length;
 
   return (
@@ -76,6 +79,10 @@ interface PerformersTextListProps {
   performerAvatars: boolean;
   /** When `true`, performer names will be colored according to their gender. */
   performerGenderColors: boolean;
+  /** A comma-separated list of the genders that should be included in the
+   * performer list. An empty list will show all performers. Case is
+   * insensitive. */
+  performerGenderFilter: string;
   /** The scene data. */
   scene: Scene;
 }
