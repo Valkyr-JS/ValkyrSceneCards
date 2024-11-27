@@ -78,6 +78,10 @@ interface VSCConfigMap {
    * are; MALE, FEMALE, TRANSGENDER MALE, TRANSGENDER FEMALE, INTERSEX, and NON
    * BINARY. Case is insensitive. */
   performerGenderFilter?: string;
+  /** If the number of scene performers exceeds this number, the remaining
+   * performers will be replaced with overflow text. If empty, all performers
+   * will be listed. */
+  performerLimit?: number;
   /** When enabled, scene preview images and videos will show a blurred copy of
    * the thumbnail where there is letterboxing. This typically only happens for
    * portrait thumbnails. */
