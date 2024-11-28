@@ -14,7 +14,10 @@ interface IgetFilename {
   scene: Scene;
 }
 
+/** Converts a string into an array of tag banner data */
 export const stringToTagBannerData = (str: string): ITagBanner[] => {
+  if (!str.length) return [];
+
   const parsed = JSON.parse(str);
   if (!Array.isArray(parsed)) return [];
 
