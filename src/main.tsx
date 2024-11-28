@@ -6,6 +6,7 @@ import type {
 } from "@pluginTypes/ValkyrSceneCards";
 import { SceneCardDetails, SceneCardImage } from "@components/SceneCard";
 import "./styles.scss";
+import { stringToTagBannerData } from "@helpers";
 const { PluginApi } = window;
 const { GQL, React } = PluginApi;
 
@@ -57,6 +58,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       previewVideoDisabled: userConfig?.previewVideoDisabled ?? false,
       previewVideoHideCursor: userConfig?.previewVideoHideCursor ?? false,
       resolutionIcon: userConfig?.resolutionIcon ?? false,
+      tagBanners: stringToTagBannerData(userConfig?.tagBanners ?? ""),
     };
 
     const wrapperClasses = cx("valkyr-scene-card", {
