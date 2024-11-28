@@ -70,6 +70,111 @@
   padding: math.div($column-gap, 2);
 }
 
+/* ---------------------------------------------------------------------------------------------- */
+/*                                           Tag banners                                          */
+/* ---------------------------------------------------------------------------------------------- */
+
+@mixin vsc-tag-banner-common {
+  box-shadow: 0 8px 6px -6px black;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.vsc-tag-banner {
+  padding: 0.3rem 0.5rem;
+  text-align: center;
+  margin: 0.75rem 1rem 0.5rem;
+  border-radius: 3px;
+
+  /* --------------------------------------- Banner options --------------------------------------- */
+  &--female {
+    @include vsc-tag-banner-common;
+    background-color: #ee638f;
+    color: white;
+  }
+  &--intersex {
+    @include vsc-tag-banner-common;
+    background-color: var(--#{$prefix}-gender-color--intersex);
+    color: #212529;
+  }
+  &--male {
+    @include vsc-tag-banner-common;
+    background-color: var(--#{$prefix}-gender-color--male);
+    color: #212529;
+  }
+  &--nonbinary {
+    @include vsc-tag-banner-common;
+    background-color: var(--#{$prefix}-gender-color--nonbinary);
+    color: #212529;
+  }
+  &--transfemale {
+    @include vsc-tag-banner-common;
+    background-color: var(--#{$prefix}-gender-color--transfemale);
+    color: #212529;
+  }
+  &--transmale {
+    @include vsc-tag-banner-common;
+    background-color: var(--#{$prefix}-gender-color--transmale);
+    color: #212529;
+  }
+  &--unknown {
+    @include vsc-tag-banner-common;
+    background-color: var(--#{$prefix}-gender-color--unknown);
+    color: #212529;
+  }
+
+  &--light-blue-stripes {
+    @include vsc-tag-banner-common;
+    background-color: #f5f8fa;
+    background-image: linear-gradient(
+      45deg,
+      #c7ecff 25%,
+      #f5f8fa 25%,
+      #f5f8fa 50%,
+      #c7ecff 50%,
+      #c7ecff 75%,
+      #f5f8fa 75%,
+      #f5f8fa 100%
+    );
+    background-size: 56.57px 56.57px;
+    color: #000000;
+  }
+
+  &--pink-champagne {
+    @include vsc-tag-banner-common;
+    background-color: #f5f8fa;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f5ccdf' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    color: #8d164c;
+  }
+
+  &--warning-tape {
+    @include vsc-tag-banner-common;
+    background-color: black;
+    background-image: linear-gradient(
+      135deg,
+      #000000 25%,
+      #ffd900 25%,
+      #ffd900 50%,
+      #000000 50%,
+      #000000 75%,
+      #ffd900 75%,
+      #ffd900 100%
+    );
+    background-size: 56.57px 56.57px;
+    color: #f5f8fa;
+
+    span {
+      background-color: #000000;
+      padding: 1px 3px 3px;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*                                            Utilities                                           */
+/* ---------------------------------------------------------------------------------------------- */
+
 .vsc-gender-color--female {
   color: var(--#{$prefix}-gender-color--female) !important;
 }

@@ -7,6 +7,7 @@ import type {
 import { SceneCardDetails, SceneCardImage } from "@components/SceneCard";
 import "./styles.scss";
 import { stringToTagBannerData } from "@helpers";
+import TagBanner from "@components/TagBanner";
 const { PluginApi } = window;
 const { GQL, React } = PluginApi;
 
@@ -65,7 +66,8 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       ["hide-progress-bar"]: config.previewSceneProgressDisabled,
     });
 
-    // Fetch additional data as needed
+    /* ------------------------------------ Fetch additional data ----------------------------------- */
+
     const extendedProps: ISceneCardPropsExtended = {
       ...props,
       config,
@@ -105,7 +107,8 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
         };
     }
 
-    // Custom avatars
+    /* -------------------------------------- Performer avatars ------------------------------------- */
+
     if (
       config.performerAvatars &&
       !!config.performerAvatarsCustomTag &&
@@ -140,7 +143,26 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
 });
 
 PluginApi.patch.instead("SceneCard.Image", function (props) {
-  return [<SceneCardImage {...(props as ISceneCardPropsExtended)} />];
+  const extendedProps = props as ISceneCardPropsExtended;
+  const tagBanner = extendedProps.config.tagBanners.find((t) =>
+    props.scene.tags.find((x) => x.id === t.tagID.toString())
+  );
+  const tagData = props.scene.tags.find(
+    (x) => x.id === tagBanner?.tagID.toString()
+  );
+
+  // If there is no tag banner data, return the original element
+  if (!tagBanner || !tagData) return [<SceneCardImage {...extendedProps} />];
+
+  // Replace the tag name with the display name if one is provided.
+  const displayName = tagBanner.displayName ?? tagData.name;
+
+  return [
+    <>
+      <SceneCardImage {...extendedProps} />
+      <TagBanner className={tagBanner.classname} displayName={displayName} />
+    </>,
+  ];
 });
 
 PluginApi.patch.instead("SceneCard.Details", function (props) {

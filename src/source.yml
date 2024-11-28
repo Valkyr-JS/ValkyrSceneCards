@@ -153,6 +153,6 @@ settings:
     description: When enabled, the scene resolution be displayed as an SD/HD/2K/4K/etc. icon. SD and HD icons can be hovered over to see the full resolution.
     type: BOOLEAN
   tagBanners:
-    display: Tag banners
-    description: Add customisable banners to display certain tags. Data must be structured in a JSON object - see XXXXX for more information.
+    displayName: Tag banners
+    description: "Add customisable banners to display certain tags. Data must be structured in a JSON object - see XXXXX for more information."
     type: STRING
