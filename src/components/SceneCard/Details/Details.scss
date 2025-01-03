@@ -55,6 +55,7 @@
 
   .vsc-title {
     grid-row: title-top / title-bottom;
+    overflow-wrap: anywhere;
   }
 
   /* -------------------------------- Key data -------------------------------- */
