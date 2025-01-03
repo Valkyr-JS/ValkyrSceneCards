@@ -1,6 +1,6 @@
 {
   "name": "valkyrscenecards",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A customisable redesign of the scene cards for Stash.",
   "main": "./src/main.ts",
   "scripts": {
