@@ -100,6 +100,10 @@ settings:
     displayName: Hide zero-value data
     description: When enabled, numerical data that has a value of 0 will not be displayed, irrespective of other settings.
     type: BOOLEAN
+  parentStudioPosition:
+    displayName: Parent studio before studio
+    description: When enabled, the parent studio appears before the studio.
+    type: BOOLEAN
   parentStudioSeparator:
     displayName: Studio / parent studio separator
     description: Set the separator character that appears between the studio and parent studio. Leave this blank to wrap the parent studio in brackets.
