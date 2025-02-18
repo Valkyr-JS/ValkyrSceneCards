@@ -29,6 +29,7 @@ const Details: React.FC<ISceneCardPropsExtended> = ({
       <div className="vsc-top-line">
         <Studio
           hideParentStudio={config.hideParentStudio}
+          parentStudioFirst={config.parentStudioFirst}
           parentStudioSeparator={config.parentStudioSeparator}
           scene={scene}
         />
