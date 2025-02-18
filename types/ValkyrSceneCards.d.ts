@@ -57,7 +57,7 @@ interface VSCConfigMap {
    * irrespective of other settings. */
   hideZeroValueData?: boolean;
   /** When enabled, the parent studio appears before the studio. */
-  parentStudioPosition?: boolean;
+  parentStudioFirst?: boolean;
   /** Set the separator character that appears between the studio and parent
    * studio. Leave this blank to wrap the parent studio in brackets. */
   parentStudioSeparator?: string;
@@ -138,7 +138,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   hideResolution: boolean;
   hideTags: boolean;
   hideZeroValueData: boolean;
-  parentStudioPosition: boolean;
+  parentStudioFirst: boolean;
   performerAvatars: boolean;
   performerAvatarsProfile: boolean;
   performerGenderColors: boolean;

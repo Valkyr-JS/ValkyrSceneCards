@@ -43,7 +43,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       hideResolution: userConfig?.hideResolution ?? false,
       hideTags: userConfig?.hideTags ?? false,
       hideZeroValueData: userConfig?.hideZeroValueData ?? false,
-      parentStudioPosition: userConfig?.parentStudioPosition ?? false,
+      parentStudioFirst: userConfig?.parentStudioFirst ?? false,
       parentStudioSeparator: userConfig?.parentStudioSeparator,
       performerAvatars: userConfig?.performerAvatars ?? false,
       performerAvatarsCustomTag: userConfig?.performerAvatarsCustomTag,

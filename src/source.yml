@@ -100,7 +100,7 @@ settings:
     displayName: Hide zero-value data
     description: When enabled, numerical data that has a value of 0 will not be displayed, irrespective of other settings.
     type: BOOLEAN
-  parentStudioPosition:
+  parentStudioFirst:
     displayName: Parent studio before studio
     description: When enabled, the parent studio appears before the studio.
     type: BOOLEAN
