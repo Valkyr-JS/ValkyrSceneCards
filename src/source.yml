@@ -136,6 +136,10 @@ settings:
     displayName: Enable image backgrounds for previews
     description: When enabled, scene preview images and videos will show a blurred copy of the thumbnail where there is letterboxing. This typically only happens for portrait thumbnails.
     type: BOOLEAN
+  previewContained:
+    displayName: Contain the thumbnail and preview to the available space
+    description: When enabled, the thumbnail image and preview video are contained to, and centered within, the space available, as opposed to filling it as per the default. This may cause letterboxing.
+    type: BOOLEAN
   previewSceneProgressDisabled:
     displayName: Disable scene progress indicator
     description: When enabled, the progress indicator for partially-watched scenes will be disabled.
