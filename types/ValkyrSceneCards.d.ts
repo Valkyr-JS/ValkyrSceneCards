@@ -92,6 +92,10 @@ interface VSCConfigMap {
    * the thumbnail where there is letterboxing. This typically only happens for
    * portrait thumbnails. */
   previewBlurredBackground?: boolean;
+  /** When enabled, the thumbnail image and preview video are contained to, and
+   * centered within, the space available, as opposed to filling it as per the
+   * default. This may cause letterboxing. */
+  previewContained?: boolean;
   /** When enabled, the progress indicator for partially-watched scenes will be
    * disabled. */
   previewSceneProgressDisabled?: boolean;
@@ -144,6 +148,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   performerGenderColors: boolean;
   performerGenderFilter: string;
   previewBlurredBackground: boolean;
+  previewContained: boolean;
   previewSceneProgressDisabled: boolean;
   previewScrubberDisabled: boolean;
   previewVideoDisabled: boolean;

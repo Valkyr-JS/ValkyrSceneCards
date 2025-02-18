@@ -52,6 +52,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       performerGenderFilter: userConfig?.performerGenderFilter ?? "",
       performerLimit: userConfig?.performerLimit,
       previewBlurredBackground: userConfig?.previewBlurredBackground ?? false,
+      previewContained: userConfig?.previewContained ?? false,
       previewSceneProgressDisabled:
         userConfig?.previewSceneProgressDisabled ?? false,
       previewScrubberDisabled: userConfig?.previewScrubberDisabled ?? false,
