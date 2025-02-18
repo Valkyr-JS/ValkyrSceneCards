@@ -63,6 +63,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
 
     const wrapperClasses = cx("valkyr-scene-card", {
       ["hide-progress-bar"]: config.previewSceneProgressDisabled,
+      ["contain-preview"]: config.previewContained,
     });
 
     // Fetch additional data as needed
