@@ -132,7 +132,21 @@ To update the tag banner configuration:
 4. At the bottom of the options list, click "Edit" under _Tag banners_.
 5. Replace any existing data with your new data and click confirm.
 
-### TO DO - CSS classes
+### CSS classes
+
+The plugin comes bundled with several simple CSS classes created to work with tag banners:
+
+- `vsc-tag-banner--female`
+- `vsc-tag-banner--intersex`
+- `vsc-tag-banner--male`
+- `vsc-tag-banner--nonbinary`
+- `vsc-tag-banner--transfemale`
+- `vsc-tag-banner--transmale`
+- `vsc-tag-banner--unknown`
+
+These are named for the gender options in Stash, and use the associated CSS variable for their background color. For example, the `vsc-tag-banner--female` class uses the value of the `--vsc-gender-color--female` CSS variable.
+
+You can create and use your own classes by adding them to _Custom CSS_ under Settings > Interface.
 
 ## Screenshots
 
