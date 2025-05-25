@@ -1,4 +1,4 @@
-import { TextUtils } from "@helpers";
+import { gcd, TextUtils } from "@helpers";
 import ResolutionIcon from "./Icons/ResolutionIcon";
 const { React } = window.PluginApi;
 
@@ -30,6 +30,7 @@ const KeyData: React.FC<KeyDataProps> = ({
       />
       <UniqueFileData
         file={primaryFile}
+        hideAspectRatio={props.hideAspectRatio}
         hideFilesize={props.hideFilesize}
         hideFramerate={props.hideFramerate}
         hideResolution={hideResolution}
@@ -45,6 +46,8 @@ interface KeyDataProps {
   /** When `true`, the scene duration will be padded out to HH:MM:SS. For
    * example, 6:37 would appear as 00:06:37. */
   durationPadding: boolean;
+  /** When enabled, the scene aspect ratio will not be displayed. */
+  hideAspectRatio: boolean;
   /** When `true`, the scene date will not be displayed. */
   hideDate: boolean;
   /** When `true`, the scene duration will not be displayed. */
@@ -162,10 +165,21 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
     </span>
   ) : null;
 
+  // Aspect ratio
+  const commonDenom = gcd(file.width, file.height);
+  const width = Math.round(file.width / commonDenom);
+  const height = Math.round(file.height / commonDenom);
+  const aspectRatio = (
+    <span className="vsc-aspect-ratio">
+      {width}&thinsp;:&thinsp;{height}
+    </span>
+  );
+
   return (
     <div className="vsc-unique-file-data">
       {filesize}
       {framerate}
+      {aspectRatio}
       {resolutionText}
       <ResolutionIcon file={file} hide={!showResolutionAsIcon} />
     </div>
@@ -175,6 +189,8 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
 type UniqueFileProps = {
   /** The file referenced for this data. */
   file?: VideoFile;
+  /** When enabled, the scene aspect ratio will not be displayed. */
+  hideAspectRatio: boolean;
   /** When `true`, the file size will not be displayed. */
   hideFilesize: boolean;
   /** When `true`, the frame rate will not be displayed. */
