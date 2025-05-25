@@ -43,6 +43,12 @@ const SceneCardImage: React.FC<ISceneCardPropsExtended> = ({
     return height > width;
   }
 
+  function maybeRenderRatingBanner() {
+    return props.config.ratingBanner ? (
+      <RatingBanner rating={scene.rating100} stashSettings={stashSettings} />
+    ) : null;
+  }
+
   /* ------------------------------------------ Component ----------------------------------------- */
 
   return (
@@ -57,7 +63,7 @@ const SceneCardImage: React.FC<ISceneCardPropsExtended> = ({
         config={props.config}
         stashSettings={stashSettings}
       />
-      <RatingBanner stashSettings={stashSettings} />
+      {maybeRenderRatingBanner()}
       {maybeRenderInteractiveSpeedOverlay()}
     </>
   );

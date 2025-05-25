@@ -1,11 +1,11 @@
-import React from "react";
-import { FormattedMessage } from "react-intl";
 import {
   convertToRatingFormat,
   defaultRatingSystemOptions,
   RatingStarPrecision,
   RatingSystemType,
 } from "@utils/rating";
+const { React } = window.PluginApi;
+const { FormattedMessage } = window.PluginApi.libraries.Intl;
 
 interface IProps {
   stashSettings: ConfigResult;
