@@ -170,5 +170,5 @@ settings:
     type: BOOLEAN
   tagBanners:
     displayName: Tag banners
-    description: "Add customisable banners to display certain tags. Data must be structured in a JSON object - see XXXXX for more information."
+    description: "Add customisable banners to display certain tags. Data must be structured in a JSON object - see the repository readme for more information."
     type: STRING
