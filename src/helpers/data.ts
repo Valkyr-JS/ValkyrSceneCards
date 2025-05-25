@@ -22,7 +22,7 @@ export const stringToTagBannerData = (str: string): ITagBanner[] => {
   if (!Array.isArray(parsed)) return [];
 
   const arr: ITagBanner[] = parsed.filter((p) => {
-    return !!p.tagID && !!p.classname;
+    return !!p.tagID && !!p.className;
   });
 
   return arr;
