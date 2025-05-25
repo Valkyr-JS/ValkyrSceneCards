@@ -27,12 +27,6 @@
 .valkyr-scene-card {
   display: flex;
 
-  // Hide resolution, duration, and ratings banner from preview thumbnail.
-  .scene-specs-overlay,
-  .rating-banner {
-    display: none !important;
-  }
-
   .card-section {
     // Match native top padding
     padding-bottom: 0.5rem;
