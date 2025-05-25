@@ -8,11 +8,12 @@ $ar-padding-x: $ar-padding-y + 2px;
 
 .valkyr-scene-card .card-section {
   display: grid;
-  grid-template-rows: [details-top top-line-top] auto [top-line-bottom title-top] auto [title-bottom key-data-top] auto [key-data-bottom description-top] 1fr [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
+  grid-template-rows: [details-top tag-banner-top] auto [tag-banner-bottom top-line-top] auto [top-line-bottom title-top] auto [title-bottom key-data-top] auto [key-data-bottom description-top] 1fr [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
   height: 100%;
 
   /* -------------------------------- Top line -------------------------------- */
   .vsc-top-line {
+    grid-row: top-line-top / top-line-bottom;
     display: grid;
     grid-template-columns: [top-line-start studio-start] 1fr [studio-end user-data-start] max-content [user-data-end top-line-end];
     column-gap: $column-gap;
@@ -30,13 +31,10 @@ $ar-padding-x: $ar-padding-y + 2px;
 
   .vsc-studio {
     grid-column: studio-start / studio-end;
-    grid-row: top-line-top / top-line-bottom;
   }
 
   .vsc-user-data {
     grid-column: user-data-start / user-data-end;
-    grid-row: top-line-top / top-line-bottom;
-
     display: flex;
     column-gap: $column-gap;
   }
@@ -111,6 +109,7 @@ $ar-padding-x: $ar-padding-y + 2px;
 
   // Fill available space to match card heights
   .vsc-description {
+    grid-row: description-top / description-bottom;
     flex-grow: 1;
   }
 
@@ -128,5 +127,22 @@ $ar-padding-x: $ar-padding-y + 2px;
 
   .vsc-director {
     margin-top: $row-gap;
+  }
+
+  /* ----------------------------------------- Tag banner ----------------------------------------- */
+
+  .vsc-tag-banner {
+    grid-row: tag-banner-top / tag-banner-bottom;
+    padding: 0.3rem 0.5rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    border-radius: 3px;
+    user-select: none;
+  }
+
+  /* --------------------------------------- Performers list -------------------------------------- */
+
+  .vsc-performers-list {
+    grid-row: performers-top / performers-bottom;
   }
 }

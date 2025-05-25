@@ -91,6 +91,63 @@ To adapt them, copy and paste the above into Settings > Interface > Custom CSS (
 
 If other variables are required, please [raise an issue on the Github page](https://github.com/Valkyr-JS/ValkyrSceneCards/issues). Variables will only be created where beneficial. For example, this plugin does not change the card's native `border-radius`, so adding a variable here serves no purpose.
 
+## Tag banner configuration
+
+Tag banners can display a particular tag as a banner below the scene cover to make them stand out. See the screenshots section below for an example.
+
+### Configuration data
+
+The tag banner configuration data is structured as an array of JSON objects, and example of which is as follows;
+
+```
+[
+  { "tagID": 1, "className": "vsc-tag-banner--male" },
+  { "tagID": 2, "className": "vsc-tag-banner--male", "displayName": "MMF" },
+  { "tagID": 3, "className": "vsc-tag-banner--female" },
+  {
+    "tagID": 4,
+    "className": "vsc-tag-banner--unknown",
+    "displayName": "FFF"
+  }
+]
+```
+
+Each object has the following key/value pairs;
+
+|  Property       | Required  |  Description                                          |
+| --------------- | --------- | ----------------------------------------------------- |
+| `"tagID"`       | **Yes**   | The ID of the tag you want to display.                |
+| `"className"`   | **Yes**   | The CSS class to apply to the tag for custom styling. |
+| `"displayName"` | No        | Replaces the tag name with the provided text.         |
+
+If you are unfamiliar with JSON, use the example above as a starting point and modify it to your requirements. All property keys, as well as the values for `"className"` and `"displayName"`, must be wrapped in double-quotation marks. The only one that isn't is the `"tagID"` value.
+
+The order of objects is important, as the object closest to the top will take precedence over others. For example, if using the configuration data above and a scene has tags 2 and 3, the scene card will display the information for tag 2 as it appears first in the configuration data list.
+
+To update the tag banner configuration:
+
+1. Minify (i.e. place on one long line) your configuration data. You can use a free tool like [JSON Formatter](https://jsonformatter.org/json-minify) for this.
+2. Navigate to Settings > Plugins.
+3. Under _Plugins_, scroll down to _Valkyr Scene Cards_.
+4. At the bottom of the options list, click "Edit" under _Tag banners_.
+5. Replace any existing data with your new data and click confirm.
+
+### CSS classes
+
+The plugin comes bundled with several simple CSS classes created to work with tag banners:
+
+- `vsc-tag-banner--female`
+- `vsc-tag-banner--intersex`
+- `vsc-tag-banner--male`
+- `vsc-tag-banner--nonbinary`
+- `vsc-tag-banner--transfemale`
+- `vsc-tag-banner--transmale`
+- `vsc-tag-banner--unknown`
+
+These are named for the gender options in Stash, and use the associated CSS variable for their background color. For example, the `vsc-tag-banner--female` class uses the value of the `--vsc-gender-color--female` CSS variable.
+
+You can create and use your own classes by adding them to _Custom CSS_ under Settings > Interface.
+
 ## Screenshots
 
 ![default](https://github.com/user-attachments/assets/fcd06dc9-4af8-420c-a9d9-b53f0ce5a35e)
@@ -104,3 +161,6 @@ Another customised layout featuring a profile image avatar performer list and hi
 
 ![minimal](https://github.com/user-attachments/assets/d77a3188-135c-420c-b2f7-2ac3d6f9be10)
 A minimal layout featuring only non-hidable info.
+
+![tag-banners](https://github.com/user-attachments/assets/a3b2ecfd-f720-4872-986e-519232a764a4)
+Tag banners.

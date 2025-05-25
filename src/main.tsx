@@ -6,6 +6,8 @@ import type {
 } from "@pluginTypes/ValkyrSceneCards";
 import { SceneCardDetails, SceneCardImage } from "@components/SceneCard";
 import "./styles.scss";
+import { stringToTagBannerData } from "@helpers";
+import TagBanner from "@components/TagBanner";
 const { PluginApi } = window;
 const { GQL, React } = PluginApi;
 
@@ -61,6 +63,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       previewVideoHideCursor: userConfig?.previewVideoHideCursor ?? false,
       ratingBanner: userConfig?.ratingBanner ?? false,
       resolutionIcon: userConfig?.resolutionIcon ?? false,
+      tagBanners: stringToTagBannerData(userConfig?.tagBanners ?? ""),
     };
 
     const wrapperClasses = cx("valkyr-scene-card", {
@@ -68,7 +71,8 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       ["contain-preview"]: config.previewContained,
     });
 
-    // Fetch additional data as needed
+    /* ------------------------------------ Fetch additional data ----------------------------------- */
+
     const extendedProps: ISceneCardPropsExtended = {
       ...props,
       config,
@@ -108,7 +112,8 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
         };
     }
 
-    // Custom avatars
+    /* -------------------------------------- Performer avatars ------------------------------------- */
+
     if (
       config.performerAvatars &&
       !!config.performerAvatarsCustomTag &&
@@ -147,8 +152,27 @@ PluginApi.patch.instead("SceneCard.Image", function (props) {
 });
 
 PluginApi.patch.instead("SceneCard.Details", function (props) {
+  const extendedProps = props as ISceneCardPropsExtended;
+  const tagBanner = extendedProps.config.tagBanners.find((t) =>
+    props.scene.tags.find((x) => x.id === t.tagID.toString())
+  );
+  const tagData = props.scene.tags.find(
+    (x) => x.id === tagBanner?.tagID.toString()
+  );
+
+  // If there is no tag banner data, return the original element
+  if (!tagBanner || !tagData) return [<SceneCardDetails {...extendedProps} />];
+
+  // Replace the tag name with the display name if one is provided.
+  const displayName = tagBanner.displayName ?? tagData.name;
+
   // Render without additional data while waiting.
-  return [<SceneCardDetails {...(props as ISceneCardPropsExtended)} />];
+  return [
+    <>
+      <TagBanner className={tagBanner.className} displayName={displayName} />
+      <SceneCardDetails {...extendedProps} />
+    </>,
+  ];
 });
 
 // Remove overlays

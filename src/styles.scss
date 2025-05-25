@@ -82,6 +82,58 @@
   padding: math.div($column-gap, 2);
 }
 
+/* ---------------------------------------------------------------------------------------------- */
+/*                                           Tag banners                                          */
+/* ---------------------------------------------------------------------------------------------- */
+
+@mixin vsc-tag-banner-common {
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.vsc-tag-banner {
+  &--female {
+    @include vsc-tag-banner-common;
+    background-color: #ee638f;
+    color: white;
+  }
+  &--intersex {
+    @include vsc-tag-banner-common;
+    background-color: var(--#{$prefix}-gender-color--intersex);
+    color: #212529;
+  }
+  &--male {
+    @include vsc-tag-banner-common;
+    background-color: var(--#{$prefix}-gender-color--male);
+    color: #212529;
+  }
+  &--nonbinary {
+    @include vsc-tag-banner-common;
+    background-color: var(--#{$prefix}-gender-color--nonbinary);
+    color: #212529;
+  }
+  &--transfemale {
+    @include vsc-tag-banner-common;
+    background-color: var(--#{$prefix}-gender-color--transfemale);
+    color: #212529;
+  }
+  &--transmale {
+    @include vsc-tag-banner-common;
+    background-color: var(--#{$prefix}-gender-color--transmale);
+    color: #212529;
+  }
+  &--unknown {
+    @include vsc-tag-banner-common;
+    background-color: var(--#{$prefix}-gender-color--unknown);
+    color: #212529;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*                                            Utilities                                           */
+/* ---------------------------------------------------------------------------------------------- */
+
 .vsc-gender-color--female {
   color: var(--#{$prefix}-gender-color--female) !important;
 }

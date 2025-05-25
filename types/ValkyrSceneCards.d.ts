@@ -116,6 +116,8 @@ interface VSCConfigMap {
   /** When enabled, the scene resolution be displayed as an SD/HD/2K/4K/etc.
    * icon. SD and HD icons can be hovered over for the full resolution. */
   resolutionIcon?: boolean;
+  /** Add customisable banners to display certain tags. */
+  tagBanners?: string;
 }
 
 interface VSCConfigResult extends ConfigResult {
@@ -162,6 +164,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   previewVideoHideCursor: boolean;
   ratingBanner: boolean;
   resolutionIcon: boolean;
+  tagBanners: ITagBanner[];
 }
 
 interface PluginsConfig {
@@ -184,4 +187,13 @@ interface IScenePreviewPropsExtended extends IScenePreviewProps {
   /** Stash configuration settings. Not to be confused with `config`, which is
    * exclusively this plugin's settings, though also defined in Stash. */
   stashSettings: ConfigResult;
+}
+
+interface ITagBanner {
+  /** The tag ID that the banner refers to. */
+  tagID: number;
+  /** The name of the class to apply to the banner.  */
+  className: string;
+  /** An optional name to show on the banner in place of the original tag name. */
+  displayName?: string;
 }
