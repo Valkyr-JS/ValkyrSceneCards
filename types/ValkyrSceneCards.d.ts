@@ -193,7 +193,7 @@ interface ITagBanner {
   /** The tag ID that the banner refers to. */
   tagID: number;
   /** The name of the class to apply to the banner.  */
-  classname: string;
+  className: string;
   /** An optional name to show on the banner in place of the original tag name. */
   displayName?: string;
 }

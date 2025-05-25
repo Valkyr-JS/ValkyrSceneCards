@@ -169,7 +169,7 @@ PluginApi.patch.instead("SceneCard.Details", function (props) {
   // Render without additional data while waiting.
   return [
     <>
-      <TagBanner className={tagBanner.classname} displayName={displayName} />
+      <TagBanner className={tagBanner.className} displayName={displayName} />
       <SceneCardDetails {...extendedProps} />
     </>,
   ];
