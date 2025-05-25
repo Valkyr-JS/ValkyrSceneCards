@@ -27,12 +27,6 @@
 .valkyr-scene-card {
   display: flex;
 
-  // Hide resolution, duration, and ratings banner from preview thumbnail.
-  .scene-specs-overlay,
-  .rating-banner {
-    display: none !important;
-  }
-
   .card-section {
     // Match native top padding
     padding-bottom: 0.5rem;
@@ -53,6 +47,24 @@
   // Set by plugin user config
   &.hide-progress-bar .progress-bar {
     display: none !important;
+  }
+
+  &.contain-preview {
+    .scene-card-preview-image,
+    .scene-card-preview-video {
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .scene-card-preview-video {
+      object-fit: contain;
+      object-position: center;
+
+      // The video sometimes doesn't fill the space, leaving up to 1px of space
+      // to show the thumbnail behind it. Fill with black to make this less
+      // noticeable.
+      background-color: black;
+    }
   }
 }
 

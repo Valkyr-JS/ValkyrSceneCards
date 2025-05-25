@@ -45,6 +45,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       hideResolution: userConfig?.hideResolution ?? false,
       hideTags: userConfig?.hideTags ?? false,
       hideZeroValueData: userConfig?.hideZeroValueData ?? false,
+      parentStudioFirst: userConfig?.parentStudioFirst ?? false,
       parentStudioSeparator: userConfig?.parentStudioSeparator,
       performerAvatars: userConfig?.performerAvatars ?? false,
       performerAvatarsCustomTag: userConfig?.performerAvatarsCustomTag,
@@ -53,17 +54,20 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       performerGenderFilter: userConfig?.performerGenderFilter ?? "",
       performerLimit: userConfig?.performerLimit,
       previewBlurredBackground: userConfig?.previewBlurredBackground ?? false,
+      previewContained: userConfig?.previewContained ?? false,
       previewSceneProgressDisabled:
         userConfig?.previewSceneProgressDisabled ?? false,
       previewScrubberDisabled: userConfig?.previewScrubberDisabled ?? false,
       previewVideoDisabled: userConfig?.previewVideoDisabled ?? false,
       previewVideoHideCursor: userConfig?.previewVideoHideCursor ?? false,
+      ratingBanner: userConfig?.ratingBanner ?? false,
       resolutionIcon: userConfig?.resolutionIcon ?? false,
       tagBanners: stringToTagBannerData(userConfig?.tagBanners ?? ""),
     };
 
     const wrapperClasses = cx("valkyr-scene-card", {
       ["hide-progress-bar"]: config.previewSceneProgressDisabled,
+      ["contain-preview"]: config.previewContained,
     });
 
     /* ------------------------------------ Fetch additional data ----------------------------------- */

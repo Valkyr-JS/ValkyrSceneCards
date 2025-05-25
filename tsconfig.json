@@ -35,6 +35,7 @@
       "@helpers": ["./src/helpers/index"],
       "@hooks/*": ["./src/hooks/*"],
       "@scss/*": ["./src/scss/*"],
+      "@utils/*": ["./src/utils/*"],
       "@pluginTypes/*": ["./types/*"]
     },
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */

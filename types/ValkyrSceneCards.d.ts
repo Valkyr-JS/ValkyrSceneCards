@@ -56,6 +56,8 @@ interface VSCConfigMap {
   /** When enabled, numerical data that has a value of 0 will not be displayed,
    * irrespective of other settings. */
   hideZeroValueData?: boolean;
+  /** When enabled, the parent studio appears before the studio. */
+  parentStudioFirst?: boolean;
   /** Set the separator character that appears between the studio and parent
    * studio. Leave this blank to wrap the parent studio in brackets. */
   parentStudioSeparator?: string;
@@ -90,6 +92,10 @@ interface VSCConfigMap {
    * the thumbnail where there is letterboxing. This typically only happens for
    * portrait thumbnails. */
   previewBlurredBackground?: boolean;
+  /** When enabled, the thumbnail image and preview video are contained to, and
+   * centered within, the space available, as opposed to filling it as per the
+   * default. This may cause letterboxing. */
+  previewContained?: boolean;
   /** When enabled, the progress indicator for partially-watched scenes will be
    * disabled. */
   previewSceneProgressDisabled?: boolean;
@@ -101,6 +107,9 @@ interface VSCConfigMap {
   /** When enabled, the cursor will be hidden when hovering over the scene
    * preview video. */
   previewVideoHideCursor?: boolean;
+  /** When enabled, the scene rating is displayed as a banner in the same way as
+   * the default Stash experience. */
+  ratingBanner?: boolean;
   /** When enabled, the scene resolution be displayed as an SD/HD/2K/4K/etc.
    * icon. SD and HD icons can be hovered over for the full resolution. */
   resolutionIcon?: boolean;
@@ -138,15 +147,18 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   hideResolution: boolean;
   hideTags: boolean;
   hideZeroValueData: boolean;
+  parentStudioFirst: boolean;
   performerAvatars: boolean;
   performerAvatarsProfile: boolean;
   performerGenderColors: boolean;
   performerGenderFilter: string;
   previewBlurredBackground: boolean;
+  previewContained: boolean;
   previewSceneProgressDisabled: boolean;
   previewScrubberDisabled: boolean;
   previewVideoDisabled: boolean;
   previewVideoHideCursor: boolean;
+  ratingBanner: boolean;
   resolutionIcon: boolean;
   tagBanners: ITagBanner[];
 }
