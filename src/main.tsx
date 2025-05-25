@@ -148,6 +148,10 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
 });
 
 PluginApi.patch.instead("SceneCard.Image", function (props) {
+  return [<SceneCardImage {...(props as ISceneCardPropsExtended)} />];
+});
+
+PluginApi.patch.instead("SceneCard.Details", function (props) {
   const extendedProps = props as ISceneCardPropsExtended;
   const tagBanner = extendedProps.config.tagBanners.find((t) =>
     props.scene.tags.find((x) => x.id === t.tagID.toString())
@@ -157,22 +161,18 @@ PluginApi.patch.instead("SceneCard.Image", function (props) {
   );
 
   // If there is no tag banner data, return the original element
-  if (!tagBanner || !tagData) return [<SceneCardImage {...extendedProps} />];
+  if (!tagBanner || !tagData) return [<SceneCardDetails {...extendedProps} />];
 
   // Replace the tag name with the display name if one is provided.
   const displayName = tagBanner.displayName ?? tagData.name;
 
+  // Render without additional data while waiting.
   return [
     <>
-      <SceneCardImage {...extendedProps} />
       <TagBanner className={tagBanner.classname} displayName={displayName} />
+      <SceneCardDetails {...extendedProps} />
     </>,
   ];
-});
-
-PluginApi.patch.instead("SceneCard.Details", function (props) {
-  // Render without additional data while waiting.
-  return [<SceneCardDetails {...(props as ISceneCardPropsExtended)} />];
 });
 
 // Remove overlays
