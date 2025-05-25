@@ -23,6 +23,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
     const config: VSCFinalConfigMap = {
       descriptionMaxLines: userConfig?.descriptionMaxLines || 3, // If config returns undefined or 0, set to default
       durationPadding: userConfig?.durationPadding ?? false,
+      hideAspectRatio: userConfig?.hideAspectRatio ?? false,
       hideDate: userConfig?.hideDate ?? false,
       hideDescription: userConfig?.hideDescription ?? false,
       hideDirector: userConfig?.hideDirector ?? false,

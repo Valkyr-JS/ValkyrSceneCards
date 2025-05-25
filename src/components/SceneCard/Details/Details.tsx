@@ -50,6 +50,7 @@ const Details: React.FC<ISceneCardPropsExtended> = ({
       <Title scene={scene} sceneLink={sceneLink} />
       <KeyData
         durationPadding={config.durationPadding}
+        hideAspectRatio={config.hideAspectRatio}
         hideDate={config.hideDate}
         hideDuration={config.hideDuration}
         hideFilesize={config.hideFilesize}

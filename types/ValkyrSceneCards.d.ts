@@ -9,6 +9,8 @@ interface VSCConfigMap {
   /** When enabled, the scene duration will be padded out to HH:MM:SS. For
    * example, 6:37 would appear as 00:06:37. */
   durationPadding?: boolean;
+  /** When enabled, the scene aspect ratio will not be displayed. */
+  hideAspectRatio?: boolean;
   /** When enabled, the scene date will not be displayed. */
   hideDate?: boolean;
   /** When enabled, the scene description will not be displayed. */
@@ -23,7 +25,8 @@ interface VSCConfigMap {
   hideFramerate?: boolean;
   /** When enabled, the scene galleries count will not be displayed. */
   hideGalleries?: boolean;
-  /** When enabled, the scene groups (movies in Stash 0.26 and older) count will not be displayed. */
+  /** When enabled, the scene groups (movies in Stash 0.26 and older) count will
+   * not be displayed. */
   hideGroups?: boolean;
   /** When enabled, the scene markers count will not be displayed. */
   hideMarkers?: boolean;
@@ -126,6 +129,7 @@ interface VSCConfigResult extends ConfigResult {
 interface VSCFinalConfigMap extends VSCConfigMap {
   descriptionMaxLines: number;
   durationPadding: boolean;
+  hideAspectRatio: boolean;
   hideDate: boolean;
   hideDescription: boolean;
   hideDirector: boolean;

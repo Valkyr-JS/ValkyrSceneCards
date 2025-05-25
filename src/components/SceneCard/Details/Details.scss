@@ -1,5 +1,11 @@
 @import "@scss/";
 
+$ar-size: 5px;
+$ar-thickness: 2px;
+$ar-gap: 2px;
+$ar-padding-y: $ar-gap + $ar-thickness;
+$ar-padding-x: $ar-padding-y + 2px;
+
 .valkyr-scene-card .card-section {
   display: grid;
   grid-template-rows: [details-top top-line-top] auto [top-line-bottom title-top] auto [title-bottom key-data-top] auto [key-data-bottom description-top] 1fr [description-bottom director-top] auto [director-bottom performers-top] auto [performers-bottom stash-info-top] auto [stash-info-bottom details-bottom];
@@ -73,6 +79,7 @@
   .vsc-unique-file-data {
     display: flex;
     column-gap: $column-gap;
+    align-items: center;
   }
 
   .vsc-shared-file-data {
@@ -88,6 +95,16 @@
       font-weight: 900;
       user-select: none;
     }
+  }
+
+  .vsc-aspect-ratio {
+    line-height: 1;
+    padding: $ar-padding-y $ar-padding-x;
+    outline: $ar-thickness solid white; /* the color here */
+    outline-offset: -1 * $ar-thickness;
+    mask: conic-gradient(at $ar-size $ar-size, #0000 75%, #000 0) 0 0 /
+        calc(100% - $ar-size) calc(100% - $ar-size),
+      conic-gradient(#000 0 0) content-box;
   }
 
   /* ------------------------------- Description ------------------------------ */
