@@ -1,5 +1,6 @@
 import { ISceneCardPropsExtended } from "@pluginTypes/ValkyrSceneCards";
 import ScenePreview from "@components/SceneCard/Preview/Preview";
+import { RatingBanner } from "@components/RatingBanner/RatingBanner";
 const { React } = window.PluginApi;
 const { ReactRouterDOM } = window.PluginApi.libraries;
 
@@ -42,6 +43,14 @@ const SceneCardImage: React.FC<ISceneCardPropsExtended> = ({
     return height > width;
   }
 
+  function maybeRenderRatingBanner() {
+    return props.config.ratingBanner ? (
+      <RatingBanner rating={scene.rating100} stashSettings={stashSettings} />
+    ) : null;
+  }
+
+  /* ------------------------------------------ Component ----------------------------------------- */
+
   return (
     <>
       <ScenePreview
@@ -54,6 +63,7 @@ const SceneCardImage: React.FC<ISceneCardPropsExtended> = ({
         config={props.config}
         stashSettings={stashSettings}
       />
+      {maybeRenderRatingBanner()}
       {maybeRenderInteractiveSpeedOverlay()}
     </>
   );
