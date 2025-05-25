@@ -107,6 +107,9 @@ interface VSCConfigMap {
   /** When enabled, the cursor will be hidden when hovering over the scene
    * preview video. */
   previewVideoHideCursor?: boolean;
+  /** When enabled, the scene rating is displayed as a banner in the same way as
+   * the default Stash experience. */
+  ratingBanner?: boolean;
   /** When enabled, the scene resolution be displayed as an SD/HD/2K/4K/etc.
    * icon. SD and HD icons can be hovered over for the full resolution. */
   resolutionIcon?: boolean;
@@ -153,6 +156,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   previewScrubberDisabled: boolean;
   previewVideoDisabled: boolean;
   previewVideoHideCursor: boolean;
+  ratingBanner: boolean;
   resolutionIcon: boolean;
 }
 
