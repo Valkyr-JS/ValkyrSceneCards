@@ -93,11 +93,11 @@ If other variables are required, please [raise an issue on the Github page](http
 
 ## Tag banner configuration
 
-Tag banners can display a particular tag as a banner below the scene cover, making them stand out. See the screenshots section below for an example.
+Tag banners can display a particular tag as a banner below the scene cover to make them stand out. See the screenshots section below for an example.
 
 ### Configuration data
 
-The configuration data is structured as an array of JSON objects, and example of which is as follows;
+The tag banner configuration data is structured as an array of JSON objects, and example of which is as follows;
 
 ```
 [
@@ -114,15 +114,15 @@ The configuration data is structured as an array of JSON objects, and example of
 
 Each object has the following key/value pairs;
 
-|  Property       | Is required  |  Description                                          |
-| --------------- | ------------ | ----------------------------------------------------- |
-| `"tagID"`       | **Yes**      | The ID of the tag you want to display.                |
-| `"className"`   | **Yes**      | The CSS class to apply to the tag for custom styling. |
-| `"displayName"` | No           | Replaces the tag name with the provided text.         |
+|  Property       | Required  |  Description                                          |
+| --------------- | --------- | ----------------------------------------------------- |
+| `"tagID"`       | **Yes**   | The ID of the tag you want to display.                |
+| `"className"`   | **Yes**   | The CSS class to apply to the tag for custom styling. |
+| `"displayName"` | No        | Replaces the tag name with the provided text.         |
 
-If you are unfamiliar with JSON, use the example above as a starting point and modify it to your requirements. All property keys, as well as the value for `"className"` and `"displayName"`, must be wrapped in double-quotation marks. The only one that isn't is the `"tagID"` value.
+If you are unfamiliar with JSON, use the example above as a starting point and modify it to your requirements. All property keys, as well as the values for `"className"` and `"displayName"`, must be wrapped in double-quotation marks. The only one that isn't is the `"tagID"` value.
 
-The order of objects is important, as the object closest to the top will take precedence over others. For example, if using the configuration data above and a scene has both tags 2 and 3, the scene card will display the information for tag 2 as that appears first in the configuration data list.
+The order of objects is important, as the object closest to the top will take precedence over others. For example, if using the configuration data above and a scene has tags 2 and 3, the scene card will display the information for tag 2 as it appears first in the configuration data list.
 
 To update the tag banner configuration:
 
@@ -162,5 +162,5 @@ Another customised layout featuring a profile image avatar performer list and hi
 ![minimal](https://github.com/user-attachments/assets/d77a3188-135c-420c-b2f7-2ac3d6f9be10)
 A minimal layout featuring only non-hidable info.
 
-![tag-banner]()
+![tag-banners](https://github.com/user-attachments/assets/a3b2ecfd-f720-4872-986e-519232a764a4)
 Tag banners.
