@@ -16,6 +16,10 @@ settings:
     displayName: Pad duration timestamps
     description: When enabled, the scene duration will be padded out to HH:MM:SS. For example, 6:37 would appear as 00:06:37.
     type: BOOLEAN
+  hideAspectRatio:
+    displayName: Hide aspect ratio
+    description: When enabled, the scene aspect ratio will not be displayed.
+    type: BOOLEAN
   hideDate:
     displayName: Hide date
     description: When enabled, the scene date will not be displayed.
