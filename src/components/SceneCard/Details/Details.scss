@@ -133,6 +133,7 @@ $ar-padding-x: $ar-padding-y + 2px;
   /* -------------------------------- Director -------------------------------- */
 
   .vsc-director {
+    grid-row: director-top / director-bottom;
     margin-top: $row-gap;
   }
 
