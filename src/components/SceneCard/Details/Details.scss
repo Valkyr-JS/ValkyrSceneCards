@@ -68,6 +68,8 @@ $ar-padding-x: $ar-padding-y + 2px;
     grid-row: key-data-top / key-data-bottom;
 
     display: flex;
+    flex-wrap: wrap;
+    column-gap: $column-gap;
     margin-top: 3px;
 
     font-size: var(--#{$prefix}-font-sm);
@@ -82,6 +84,11 @@ $ar-padding-x: $ar-padding-y + 2px;
 
   .vsc-shared-file-data {
     margin-right: auto;
+  }
+
+  .vsc-date,
+  .vsc-aspect-ratio {
+    white-space: pre;
   }
 
   .vsc-resolution {
