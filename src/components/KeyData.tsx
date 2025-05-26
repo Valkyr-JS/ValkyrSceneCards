@@ -124,7 +124,10 @@ interface SharedFileProps {
 const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
   if (
     !file ||
-    (props.hideFilesize && props.hideFramerate && props.hideResolution)
+    (props.hideFilesize &&
+      props.hideFramerate &&
+      props.hideAspectRatio &&
+      props.hideResolution)
   )
     return null;
 
@@ -169,7 +172,7 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
   const commonDenom = gcd(file.width, file.height);
   const width = Math.round(file.width / commonDenom);
   const height = Math.round(file.height / commonDenom);
-  const aspectRatio = (
+  const aspectRatio = props.hideAspectRatio ? null : (
     <span className="vsc-aspect-ratio">
       {width}&thinsp;:&thinsp;{height}
     </span>
