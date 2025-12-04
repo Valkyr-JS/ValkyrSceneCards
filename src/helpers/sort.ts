@@ -28,8 +28,6 @@ export function sortPerformers<T extends IPerformerFragment>(
       "NON_BINARY",
     ];
 
-    console.log(performerGenderFilter);
-
     const acceptedGenders = performerGenderFilter
       .split(",")
       .map((str) => {
@@ -45,12 +43,9 @@ export function sortPerformers<T extends IPerformerFragment>(
       })
       .filter((x) => x !== null);
 
-    console.log(acceptedGenders);
-
-    return ret.filter((p) => {
-      console.log(p.gender);
-      return !!p.gender && acceptedGenders.includes(p.gender as string);
-    });
+    return ret.filter(
+      (p) => !!p.gender && acceptedGenders.includes(p.gender as string)
+    );
   }
 
   return ret;
