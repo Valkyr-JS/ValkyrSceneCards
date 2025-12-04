@@ -8,6 +8,7 @@ import { SceneCardDetails, SceneCardImage } from "@components/SceneCard";
 import "./styles.scss";
 import { stringToTagBannerData } from "@helpers";
 import TagBanner from "@components/TagBanner";
+import StudioOverlay from "@components/StudioOverlay";
 const { PluginApi } = window;
 const { GQL, React } = PluginApi;
 
@@ -179,8 +180,13 @@ PluginApi.patch.instead("SceneCard.Details", function (props) {
 });
 
 // Remove overlays
-PluginApi.patch.instead("SceneCard.Overlays", function () {
-  return [];
+PluginApi.patch.instead("SceneCard.Overlays", function (props) {
+  const extendedProps = props as ISceneCardPropsExtended;
+
+  // If the studio logo hasn't been enabled, return nothing.
+  if (!extendedProps.config.studioLogoOnThumbnail) return [];
+
+  return [<StudioOverlay studio={props.scene.studio} />];
 });
 
 // Remove popovers
