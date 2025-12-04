@@ -51,11 +51,13 @@ const Details: React.FC<ISceneCardPropsExtended> = ({
       <KeyData
         durationPadding={config.durationPadding}
         hideAspectRatio={config.hideAspectRatio}
+        hideBitRate={config.hideBitRate}
         hideDate={config.hideDate}
         hideDuration={config.hideDuration}
         hideFilesize={config.hideFilesize}
         hideFramerate={config.hideFramerate}
         hideResolution={config.hideResolution}
+        hideVideoCodec={config.hideVideoCodec}
         resolutionIcon={config.resolutionIcon}
         scene={scene}
       />
