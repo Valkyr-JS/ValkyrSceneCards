@@ -120,6 +120,9 @@ interface VSCConfigMap {
   /** When enabled, the scene resolution be displayed as an SD/HD/2K/4K/etc.
    * icon. SD and HD icons can be hovered over for the full resolution. */
   resolutionIcon?: boolean;
+  /** When enabled, the studio logo is added to the top right corner of the card
+   * thumbnail, the same way as the base Stash UI. */
+  studioLogoOnThumbnail?: boolean;
   /** Add customisable banners to display certain tags. */
   tagBanners?: string;
 }
@@ -170,6 +173,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   previewVideoHideCursor: boolean;
   ratingBanner: boolean;
   resolutionIcon: boolean;
+  studioLogoOnThumbnail: boolean;
   tagBanners: ITagBanner[];
 }
 
