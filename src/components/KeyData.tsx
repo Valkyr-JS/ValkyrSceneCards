@@ -35,6 +35,7 @@ const KeyData: React.FC<KeyDataProps> = ({
         hideFilesize={props.hideFilesize}
         hideFramerate={props.hideFramerate}
         hideResolution={hideResolution}
+        hideVideoCodec={props.hideVideoCodec}
         resolutionIcon={resolutionIcon}
       />
     </div>
@@ -61,6 +62,8 @@ interface KeyDataProps {
   hideFramerate: boolean;
   /** When `true`, the scene resolution will not be displayed. */
   hideResolution: boolean;
+  /** When enabled, the primary file's video codec will not be displayed. */
+  hideVideoCodec: boolean;
   /** When `true`, the scene resolution be displayed as an SD/HD/2K/4K/etc.
    * icon. SD and HD icons can be hovered over for the full resolution. */
   resolutionIcon: boolean;
@@ -128,6 +131,7 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
   if (
     !file ||
     (props.hideFilesize &&
+      props.hideVideoCodec &&
       props.hideBitRate &&
       props.hideFramerate &&
       props.hideAspectRatio &&
@@ -158,10 +162,15 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
     </span>
   ) : null;
 
+  // Video codec
+  const videoCodec = !props.hideVideoCodec ? (
+    <span className="vsc-video-codec">{file.video_codec}</span>
+  ) : null;
+
   // Bit rate to 2 decimal places
   const birateValue = Math.round(file.bit_rate / 10000) / 100 + " mbps";
   const bitrate = !props.hideBitRate ? (
-    <span className="vsc-bitrate">{birateValue}fps</span>
+    <span className="vsc-bitrate">{birateValue}</span>
   ) : null;
 
   // Frame rate
@@ -191,6 +200,7 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
   return (
     <div className="vsc-unique-file-data">
       {filesize}
+      {videoCodec}
       {bitrate}
       {framerate}
       {aspectRatio}
@@ -213,6 +223,8 @@ type UniqueFileProps = {
   hideFramerate: boolean;
   /** When `true`, the scene resolution will not be displayed. */
   hideResolution: boolean;
+  /** When enabled, the primary file's video codec will not be displayed. */
+  hideVideoCodec: boolean;
   /** When `true`, the scene resolution be displayed as an SD/HD/2K/4K/etc.
    * icon. SD and HD icons can be hovered over for the full resolution. */
   resolutionIcon: boolean;
