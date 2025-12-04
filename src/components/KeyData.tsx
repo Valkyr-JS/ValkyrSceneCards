@@ -2,21 +2,23 @@ import { gcd, TextUtils } from "@helpers";
 import ResolutionIcon from "./Icons/ResolutionIcon";
 const { React } = window.PluginApi;
 
-const KeyData: React.FC<KeyDataProps> = ({
-  hideResolution,
-  resolutionIcon,
-  scene,
-  ...props
-}) => {
+const KeyData: React.FC<KeyDataProps> = (props) => {
   // Base all file data on the file with the highest resolution
-  const primaryFile = [...scene.files].sort((a, b) => b.height - a.height)[0];
-
-  const showDate = !!scene.date && !props.hideDate;
-  const showDuration = !!primaryFile && !props.hideDuration;
-  const showFilesize = !!primaryFile && !props.hideFilesize;
+  const primaryFile = [...props.scene.files].sort(
+    (a, b) => b.height - a.height
+  )[0];
 
   // Render nothing if there is no data at all to render
-  if (!showDate && !showDuration && !showFilesize && hideResolution)
+  if (
+    props.hideAspectRatio &&
+    props.hideBitRate &&
+    props.hideDate &&
+    props.hideDuration &&
+    props.hideFilesize &&
+    props.hideFramerate &&
+    props.hideResolution &&
+    props.hideVideoCodec
+  )
     return null;
 
   return (
@@ -26,15 +28,17 @@ const KeyData: React.FC<KeyDataProps> = ({
         file={primaryFile}
         hideDate={props.hideDate}
         hideDuration={props.hideDuration}
-        scene={scene}
+        scene={props.scene}
       />
       <UniqueFileData
         file={primaryFile}
         hideAspectRatio={props.hideAspectRatio}
+        hideBitRate={props.hideBitRate}
         hideFilesize={props.hideFilesize}
         hideFramerate={props.hideFramerate}
-        hideResolution={hideResolution}
-        resolutionIcon={resolutionIcon}
+        hideResolution={props.hideResolution}
+        hideVideoCodec={props.hideVideoCodec}
+        resolutionIcon={props.resolutionIcon}
       />
     </div>
   );
@@ -48,6 +52,8 @@ interface KeyDataProps {
   durationPadding: boolean;
   /** When enabled, the scene aspect ratio will not be displayed. */
   hideAspectRatio: boolean;
+  /** When enabled, the bit rate will not be displayed. */
+  hideBitRate: boolean;
   /** When `true`, the scene date will not be displayed. */
   hideDate: boolean;
   /** When `true`, the scene duration will not be displayed. */
@@ -58,6 +64,8 @@ interface KeyDataProps {
   hideFramerate: boolean;
   /** When `true`, the scene resolution will not be displayed. */
   hideResolution: boolean;
+  /** When enabled, the primary file's video codec will not be displayed. */
+  hideVideoCodec: boolean;
   /** When `true`, the scene resolution be displayed as an SD/HD/2K/4K/etc.
    * icon. SD and HD icons can be hovered over for the full resolution. */
   resolutionIcon: boolean;
@@ -125,6 +133,8 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
   if (
     !file ||
     (props.hideFilesize &&
+      props.hideVideoCodec &&
+      props.hideBitRate &&
       props.hideFramerate &&
       props.hideAspectRatio &&
       props.hideResolution)
@@ -154,6 +164,17 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
     </span>
   ) : null;
 
+  // Video codec
+  const videoCodec = !props.hideVideoCodec ? (
+    <span className="vsc-video-codec">{file.video_codec}</span>
+  ) : null;
+
+  // Bit rate to 2 decimal places
+  const birateValue = Math.round(file.bit_rate / 10000) / 100 + " mbps";
+  const bitrate = !props.hideBitRate ? (
+    <span className="vsc-bitrate">{birateValue}</span>
+  ) : null;
+
   // Frame rate
   const framerate = !props.hideFramerate ? (
     <span className="vsc-framerate">{file.frame_rate}fps</span>
@@ -181,6 +202,8 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
   return (
     <div className="vsc-unique-file-data">
       {filesize}
+      {videoCodec}
+      {bitrate}
       {framerate}
       {aspectRatio}
       {resolutionText}
@@ -194,12 +217,16 @@ type UniqueFileProps = {
   file?: VideoFile;
   /** When enabled, the scene aspect ratio will not be displayed. */
   hideAspectRatio: boolean;
+  /** When enabled, the bit rate will not be displayed. */
+  hideBitRate: boolean;
   /** When `true`, the file size will not be displayed. */
   hideFilesize: boolean;
   /** When `true`, the frame rate will not be displayed. */
   hideFramerate: boolean;
   /** When `true`, the scene resolution will not be displayed. */
   hideResolution: boolean;
+  /** When enabled, the primary file's video codec will not be displayed. */
+  hideVideoCodec: boolean;
   /** When `true`, the scene resolution be displayed as an SD/HD/2K/4K/etc.
    * icon. SD and HD icons can be hovered over for the full resolution. */
   resolutionIcon: boolean;

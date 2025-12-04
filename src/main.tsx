@@ -24,6 +24,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       descriptionMaxLines: userConfig?.descriptionMaxLines || 3, // If config returns undefined or 0, set to default
       durationPadding: userConfig?.durationPadding ?? false,
       hideAspectRatio: userConfig?.hideAspectRatio ?? false,
+      hideBitRate: userConfig?.hideBitRate ?? false,
       hideDate: userConfig?.hideDate ?? false,
       hideDescription: userConfig?.hideDescription ?? false,
       hideDirector: userConfig?.hideDirector ?? false,
@@ -45,6 +46,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       hideRating: userConfig?.hideRating ?? false,
       hideResolution: userConfig?.hideResolution ?? false,
       hideTags: userConfig?.hideTags ?? false,
+      hideVideoCodec: userConfig?.hideVideoCodec ?? false,
       hideZeroValueData: userConfig?.hideZeroValueData ?? false,
       parentStudioFirst: userConfig?.parentStudioFirst ?? false,
       parentStudioSeparator: userConfig?.parentStudioSeparator,
