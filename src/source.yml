@@ -176,6 +176,10 @@ settings:
     displayName: Display resolution as icon
     description: When enabled, the scene resolution be displayed as an SD/HD/2K/4K/etc. icon. SD and HD icons can be hovered over to see the full resolution.
     type: BOOLEAN
+  studioLogoOnThumbnail:
+    displayName: Studio logo on thumbnail
+    description: "When enabled, the studio logo is added to the top right corner of the card thumbnail, the same way as the base Stash UI."
+    type: STRING
   tagBanners:
     displayName: Tag banners
     description: "Add customisable banners to display certain tags. Data must be structured in a JSON object - see the repository readme for more information."

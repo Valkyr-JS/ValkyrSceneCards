@@ -63,6 +63,7 @@ PluginApi.patch.instead("SceneCard", function (props, _, Original) {
       previewScrubberDisabled: userConfig?.previewScrubberDisabled ?? false,
       previewVideoDisabled: userConfig?.previewVideoDisabled ?? false,
       previewVideoHideCursor: userConfig?.previewVideoHideCursor ?? false,
+      studioLogoOnThumbnail: userConfig?.studioLogoOnThumbnail ?? false,
       ratingBanner: userConfig?.ratingBanner ?? false,
       resolutionIcon: userConfig?.resolutionIcon ?? false,
       tagBanners: stringToTagBannerData(userConfig?.tagBanners ?? ""),
