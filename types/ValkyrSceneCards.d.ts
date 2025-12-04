@@ -11,6 +11,8 @@ interface VSCConfigMap {
   durationPadding?: boolean;
   /** When enabled, the scene aspect ratio will not be displayed. */
   hideAspectRatio?: boolean;
+  /** When enabled, the bit rate will not be displayed. */
+  hideBitRate?: boolean;
   /** When enabled, the scene date will not be displayed. */
   hideDate?: boolean;
   /** When enabled, the scene description will not be displayed. */
@@ -130,6 +132,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   descriptionMaxLines: number;
   durationPadding: boolean;
   hideAspectRatio: boolean;
+  hideBitRate: boolean;
   hideDate: boolean;
   hideDescription: boolean;
   hideDirector: boolean;
