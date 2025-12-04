@@ -31,6 +31,7 @@ const KeyData: React.FC<KeyDataProps> = ({
       <UniqueFileData
         file={primaryFile}
         hideAspectRatio={props.hideAspectRatio}
+        hideBitRate={props.hideBitRate}
         hideFilesize={props.hideFilesize}
         hideFramerate={props.hideFramerate}
         hideResolution={hideResolution}
@@ -48,6 +49,8 @@ interface KeyDataProps {
   durationPadding: boolean;
   /** When enabled, the scene aspect ratio will not be displayed. */
   hideAspectRatio: boolean;
+  /** When enabled, the bit rate will not be displayed. */
+  hideBitRate: boolean;
   /** When `true`, the scene date will not be displayed. */
   hideDate: boolean;
   /** When `true`, the scene duration will not be displayed. */
@@ -125,6 +128,7 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
   if (
     !file ||
     (props.hideFilesize &&
+      props.hideBitRate &&
       props.hideFramerate &&
       props.hideAspectRatio &&
       props.hideResolution)
@@ -154,6 +158,12 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
     </span>
   ) : null;
 
+  // Bit rate to 2 decimal places
+  const birateValue = Math.round(file.bit_rate / 10000) / 100 + " mbps";
+  const bitrate = !props.hideBitRate ? (
+    <span className="vsc-bitrate">{birateValue}fps</span>
+  ) : null;
+
   // Frame rate
   const framerate = !props.hideFramerate ? (
     <span className="vsc-framerate">{file.frame_rate}fps</span>
@@ -181,6 +191,7 @@ const UniqueFileData: React.FC<UniqueFileProps> = ({ file, ...props }) => {
   return (
     <div className="vsc-unique-file-data">
       {filesize}
+      {bitrate}
       {framerate}
       {aspectRatio}
       {resolutionText}
@@ -194,6 +205,8 @@ type UniqueFileProps = {
   file?: VideoFile;
   /** When enabled, the scene aspect ratio will not be displayed. */
   hideAspectRatio: boolean;
+  /** When enabled, the bit rate will not be displayed. */
+  hideBitRate: boolean;
   /** When `true`, the file size will not be displayed. */
   hideFilesize: boolean;
   /** When `true`, the frame rate will not be displayed. */
