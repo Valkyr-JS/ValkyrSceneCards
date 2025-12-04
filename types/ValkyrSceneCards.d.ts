@@ -11,7 +11,7 @@ interface VSCConfigMap {
   durationPadding?: boolean;
   /** When enabled, the scene aspect ratio will not be displayed. */
   hideAspectRatio?: boolean;
-  /** When enabled, the bit rate will not be displayed. */
+  /** When enabled, the primary file's bit rate will not be displayed. */
   hideBitRate?: boolean;
   /** When enabled, the scene date will not be displayed. */
   hideDate?: boolean;
@@ -21,9 +21,9 @@ interface VSCConfigMap {
   hideDirector?: boolean;
   /** When enabled, the scene duration will not be displayed. */
   hideDuration?: boolean;
-  /** When enabled, the file size will not be displayed. */
+  /** When enabled, the primary file's size will not be displayed. */
   hideFilesize?: boolean;
-  /** When enabled, the frame rate will not be displayed. */
+  /** When enabled, the primary file's frame rate will not be displayed. */
   hideFramerate?: boolean;
   /** When enabled, the scene galleries count will not be displayed. */
   hideGalleries?: boolean;
@@ -54,10 +54,12 @@ interface VSCConfigMap {
   hidePlayCount?: boolean;
   /** When enabled, the scene user rating will not be displayed. */
   hideRating?: boolean;
-  /** When enabled, the scene resolution will not be displayed. */
+  /** When enabled, the primary file's scene resolution will not be displayed. */
   hideResolution?: boolean;
   /** When enabled, the scene tag count will not be displayed. */
   hideTags?: boolean;
+  /** When enabled, the primary file's video codec will not be displayed. */
+  hideVideoCodec?: boolean;
   /** When enabled, numerical data that has a value of 0 will not be displayed,
    * irrespective of other settings. */
   hideZeroValueData?: boolean;
@@ -153,6 +155,7 @@ interface VSCFinalConfigMap extends VSCConfigMap {
   hideRating: boolean;
   hideResolution: boolean;
   hideTags: boolean;
+  hideVideoCodec: boolean;
   hideZeroValueData: boolean;
   parentStudioFirst: boolean;
   performerAvatars: boolean;
