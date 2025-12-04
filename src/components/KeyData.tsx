@@ -2,21 +2,23 @@ import { gcd, TextUtils } from "@helpers";
 import ResolutionIcon from "./Icons/ResolutionIcon";
 const { React } = window.PluginApi;
 
-const KeyData: React.FC<KeyDataProps> = ({
-  hideResolution,
-  resolutionIcon,
-  scene,
-  ...props
-}) => {
+const KeyData: React.FC<KeyDataProps> = (props) => {
   // Base all file data on the file with the highest resolution
-  const primaryFile = [...scene.files].sort((a, b) => b.height - a.height)[0];
-
-  const showDate = !!scene.date && !props.hideDate;
-  const showDuration = !!primaryFile && !props.hideDuration;
-  const showFilesize = !!primaryFile && !props.hideFilesize;
+  const primaryFile = [...props.scene.files].sort(
+    (a, b) => b.height - a.height
+  )[0];
 
   // Render nothing if there is no data at all to render
-  if (!showDate && !showDuration && !showFilesize && hideResolution)
+  if (
+    props.hideAspectRatio &&
+    props.hideBitRate &&
+    props.hideDate &&
+    props.hideDuration &&
+    props.hideFilesize &&
+    props.hideFramerate &&
+    props.hideResolution &&
+    props.hideVideoCodec
+  )
     return null;
 
   return (
@@ -26,7 +28,7 @@ const KeyData: React.FC<KeyDataProps> = ({
         file={primaryFile}
         hideDate={props.hideDate}
         hideDuration={props.hideDuration}
-        scene={scene}
+        scene={props.scene}
       />
       <UniqueFileData
         file={primaryFile}
@@ -34,9 +36,9 @@ const KeyData: React.FC<KeyDataProps> = ({
         hideBitRate={props.hideBitRate}
         hideFilesize={props.hideFilesize}
         hideFramerate={props.hideFramerate}
-        hideResolution={hideResolution}
+        hideResolution={props.hideResolution}
         hideVideoCodec={props.hideVideoCodec}
-        resolutionIcon={resolutionIcon}
+        resolutionIcon={props.resolutionIcon}
       />
     </div>
   );
